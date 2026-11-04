@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>TAMINADO FX — Where Serious Traders Grow</title>
+<meta name="description" content="TAMINADO FX is a distraction-free home for traders who want to become consistent. Education, community and mentorship.">
+<meta name="theme-color" content="#07080b">
+<!-- Share preview: replace YOUR-DOMAIN.com with your real domain so WhatsApp/Telegram show the image -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TAMINADO FX">
+<meta property="og:title" content="TAMINADO FX — Where Serious Traders Grow">
+<meta property="og:description" content="Distraction-free trading education, community and mentorship. Discipline, structure and risk first.">
+<meta property="og:image" content="https://YOUR-DOMAIN.com/photo-2.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="TAMINADO FX — Where Serious Traders Grow">
+<meta name="twitter:description" content="Distraction-free trading education, community and mentorship.">
+<meta name="twitter:image" content="https://YOUR-DOMAIN.com/photo-2.jpg">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" sizes="48x48" href="favicon-48.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="TAMINADO FX">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#07080b;--bg2:#0b0d12;--surface:#0f1116;--surface2:#151822;--line:#232733;--text:#f3f1ea;--muted:#9a9fae;
+  --gold:#d4af37;--gold2:#f1d77a;--onGold:#111;--glow:rgba(212,175,55,.16);--ok:#3ecf8e;--bad:#ff6b6b;
+  --serif:"Playfair Display",Georgia,serif;
+}
+:root[data-theme="light"]{
+  --bg:#faf8f2;--bg2:#f3efe3;--surface:#ffffff;--surface2:#f7f3e6;--line:#e5e0d0;--text:#14151a;--muted:#5d6272;
+  --gold:#a8821a;--gold2:#c9a23a;--onGold:#fff;--glow:rgba(168,130,26,.14)
+}
+@media (prefers-color-scheme:light){
+  :root:not([data-theme="dark"]){
+    --bg:#faf8f2;--bg2:#f3efe3;--surface:#ffffff;--surface2:#f7f3e6;--line:#e5e0d0;--text:#14151a;--muted:#5d6272;
+    --gold:#a8821a;--gold2:#c9a23a;--onGold:#fff;--glow:rgba(168,130,26,.14)
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;line-height:1.65;-webkit-font-smoothing:antialiased;padding-bottom:env(safe-area-inset-bottom,0px)}
+a{color:inherit;text-decoration:none}
+img,svg{max-width:100%}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:6px}
+
+/* ---------- header ---------- */
+header{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:66px;gap:12px}
+.logo{font-weight:800;letter-spacing:.16em;font-size:17px;white-space:nowrap}
+.logo span{color:var(--gold)}
+nav{display:flex;align-items:center;gap:4px}
+nav a.l{margin-left:18px;font-size:14px;color:var(--muted);transition:color .2s}
+nav a.l:hover{color:var(--gold)}
+.nb{display:flex;align-items:center;gap:8px;margin-left:16px}
+.nb .btn{padding:9px 16px}
+.tbtn{background:none;border:1px solid var(--line);color:var(--muted);width:38px;height:38px;border-radius:50%;cursor:pointer;font-size:16px;margin-left:10px;transition:all .2s}
+.tbtn:hover{color:var(--gold);border-color:var(--gold)}
+.badge{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:999px;border:1px solid var(--gold);color:var(--gold)}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-block;padding:14px 26px;border-radius:999px;font-weight:700;font-size:14px;border:1px solid var(--gold);cursor:pointer;font-family:inherit;transition:transform .2s,box-shadow .2s,background .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn.p{background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--onGold);box-shadow:0 8px 28px var(--glow)}
+.btn.p:hover{box-shadow:0 12px 34px var(--glow)}
+.btn.g{color:var(--gold);background:transparent}
+.btn.g:hover{background:var(--glow)}
+.btn:disabled{opacity:.6;cursor:wait;transform:none}
+
+/* ---------- hero ---------- */
+.heroS{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+.heroS:before{content:"";position:absolute;inset:-20% -10% auto -10%;height:90%;background:radial-gradient(60% 60% at 50% 0%,var(--glow),transparent 70%);pointer-events:none}
+.chart{position:absolute;inset:auto 0 0 0;height:55%;width:100%;opacity:.55;pointer-events:none}
+.chart .ln{fill:none;stroke:var(--gold);stroke-width:2;stroke-dasharray:2400;stroke-dashoffset:2400;animation:draw 3.2s ease-out .3s forwards}
+.chart .ar{fill:url(#cg);opacity:0;animation:fade 1.6s ease-out 2s forwards}
+.chart .gr{stroke:var(--line);stroke-width:1}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes fade{to{opacity:1}}
+.hero{position:relative;padding:104px 0 80px;text-align:center}
+.eyebrow{display:inline-block;color:var(--gold);font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;border:1px solid var(--line);background:var(--surface);padding:7px 16px;border-radius:999px}
+.hero h1{font-family:var(--serif);font-size:clamp(42px,8vw,84px);line-height:1.02;margin:22px 0 20px;letter-spacing:-.02em;font-weight:800}
+.hero h1 em{font-style:italic;background:linear-gradient(135deg,var(--gold),var(--gold2));-webkit-background-clip:text;background-clip:text;color:transparent;padding-right:.05em}
+.hero p.lead{max-width:640px;margin:0 auto 32px;color:var(--muted);font-size:19px}
+.hero .btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px;margin-top:64px}
+.stat{border:1px solid var(--line);background:color-mix(in srgb,var(--surface) 88%,transparent);backdrop-filter:blur(6px);border-radius:18px;padding:22px;transition:transform .25s,border-color .25s}
+.stat:hover{transform:translateY(-4px);border-color:var(--gold)}
+.stat b{display:block;font-family:var(--serif);font-size:32px;color:var(--gold)}
+.stat span{color:var(--muted);font-size:13px}
+
+/* ---------- ticker ---------- */
+.ticker{overflow:hidden;border-bottom:1px solid var(--line);background:var(--bg2);white-space:nowrap}
+.tk{display:inline-block;padding:11px 0;animation:mq 38s linear infinite;font-size:13px;color:var(--muted);letter-spacing:.08em}
+.tk i{font-style:normal;color:var(--gold);margin:0 22px}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* ---------- sections ---------- */
+section{padding:84px 0}
+.alt{background:var(--surface)}
+.tag{color:var(--gold);font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:700}
+h2{font-family:var(--serif);font-size:clamp(30px,4.8vw,46px);margin:8px 0 14px;letter-spacing:-.01em;line-height:1.12}
+.sub{color:var(--muted);max-width:640px;font-size:17px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(245px,1fr));gap:18px;margin-top:36px}
+.card{position:relative;border:1px solid var(--line);background:var(--surface);border-radius:20px;padding:28px;transition:transform .25s,border-color .25s,box-shadow .25s}
+.alt .card{background:var(--surface2)}
+.card:hover{transform:translateY(-5px);border-color:var(--gold);box-shadow:0 18px 40px var(--glow)}
+.card h3{margin:8px 0 8px;font-size:20px}
+.card p{color:var(--muted);margin:0;font-size:15px}
+.card .k{color:var(--gold);font-size:11px;letter-spacing:.16em;font-weight:700}
+.split{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:40px;align-items:center}
+.panel{border:1px solid var(--gold);border-radius:24px;padding:34px;background:linear-gradient(160deg,var(--surface2),transparent);box-shadow:0 20px 50px var(--glow)}
+.panel h3{font-family:var(--serif);font-size:26px;margin:8px 0 0}
+ul.chk{list-style:none;padding:0;margin:18px 0 0}
+ul.chk li{padding:6px 0 6px 30px;position:relative;color:var(--muted)}
+ul.chk li:before{content:"✓";position:absolute;left:0;top:6px;width:20px;height:20px;border-radius:50%;background:var(--glow);color:var(--gold);font-weight:800;font-size:12px;display:flex;align-items:center;justify-content:center;line-height:1}
+
+/* ---------- library ---------- */
+.prog{margin-top:22px;max-width:420px}
+.bar{height:8px;border-radius:99px;background:var(--line);overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gold),var(--gold2));transition:width .5s}
+.prog .note{margin-top:6px}
+.lesson{cursor:pointer}
+.lesson .st{position:absolute;top:20px;right:20px;font-size:12px;font-weight:700;color:var(--muted)}
+.lesson.done{border-color:color-mix(in srgb,var(--ok) 55%,var(--line))}
+.lesson.done .st{color:var(--ok)}
+.lesson.lk:after{content:attr(data-lock);position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:16px;background:color-mix(in srgb,var(--bg) 80%,transparent);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);border-radius:20px;font-weight:700;color:var(--gold)}
+.lesson .go{display:inline-block;margin-top:14px;font-size:13px;font-weight:700;color:var(--gold)}
+
+.cov{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:12px;margin-bottom:14px;border:1px solid var(--line);background:var(--surface)}
+.shopact{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:16px}
+.btn.sm{padding:9px 16px;font-size:13px}
+
+/* ---------- calculator ---------- */
+.calcbox{margin-top:30px;border:1px solid var(--line);background:var(--surface2);border-radius:22px;padding:28px;max-width:760px}
+.calc{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px}
+.calc label{font-size:12px;color:var(--muted);display:block;margin-bottom:6px;font-weight:600}
+.res{margin-top:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px}
+.res div{border:1px solid var(--line);border-radius:14px;padding:14px 16px;background:var(--surface)}
+.res small{display:block;color:var(--muted);font-size:12px}
+.res b{font-family:var(--serif);font-size:26px;color:var(--gold)}
+
+/* ---------- plans ---------- */
+.price{text-align:center}
+.price .amt{font-family:var(--serif);font-size:36px;color:var(--gold);font-weight:800;margin:4px 0}
+.price.f{border-color:var(--gold);box-shadow:0 20px 50px var(--glow)}
+.price.f:before{content:"MOST POPULAR";position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--onGold);font-size:10px;font-weight:800;letter-spacing:.14em;padding:5px 12px;border-radius:99px;white-space:nowrap}
+.risk{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--gold);padding:16px 20px;border-radius:12px;color:var(--muted);font-size:14px}
+
+/* ---------- faq / forms ---------- */
+details{border-bottom:1px solid var(--line);padding:18px 0}
+summary{cursor:pointer;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:16px}
+summary::-webkit-details-marker{display:none}
+summary:after{content:"+";color:var(--gold);font-size:22px;line-height:1;transition:transform .2s}
+details[open] summary:after{transform:rotate(45deg)}
+details p{color:var(--muted);margin:12px 0 0}
+form{display:grid;gap:12px;margin-top:24px;max-width:540px}
+input,select,textarea{width:100%;padding:14px 16px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--text);font:inherit;transition:border-color .2s}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold)}
+.note{font-size:13px;color:var(--muted)}
+.msg{font-size:13px;min-height:18px}
+.msg.ok{color:var(--ok)}.msg.bad{color:var(--bad)}
+.hp{position:absolute;left:-9999px;opacity:0;height:0;width:0}
+
+/* ---------- footer ---------- */
+footer{border-top:1px solid var(--line);padding:48px 0 40px;color:var(--muted);font-size:13px;background:var(--bg2)}
+footer .cols{display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;margin-bottom:24px}
+footer a{margin-right:16px}footer a:hover{color:var(--gold)}
+
+/* ---------- modal / float ---------- */
+.modal{position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.72);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:20px}
+.modal.show{display:flex}
+.box{width:100%;max-width:420px;background:var(--surface);border:1px solid var(--gold);border-radius:22px;padding:30px;box-shadow:0 30px 80px rgba(0,0,0,.5);max-height:90vh;overflow:auto}
+.box.wide{max-width:640px}
+.box h3{font-family:var(--serif);margin:0 0 4px;font-size:26px}
+.box form{margin-top:16px;max-width:none}
+.x{float:right;cursor:pointer;color:var(--muted);font-size:26px;background:none;border:0;line-height:1}
+.lbody{white-space:pre-wrap;color:var(--muted);margin:18px 0}
+.wa{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:15;background:#25d366;color:#111;width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;box-shadow:0 8px 24px rgba(0,0,0,.4)}
+.demo{position:fixed;left:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:15;background:var(--surface);border:1px solid var(--gold);color:var(--gold);font-size:12px;padding:8px 14px;border-radius:99px;display:none}
+
+/* ---------- reveal ---------- */
+.js .rv{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.js .rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .chart .ln{stroke-dashoffset:0}.chart .ar{opacity:1}
+  .js .rv{opacity:1;transform:none}
+}
+/* ================= NEW SECTIONS ================= */
+.bgimg{position:absolute;inset:0;background:url(photo-2.jpg) center 30%/cover no-repeat;opacity:.2;pointer-events:none;-webkit-mask-image:linear-gradient(to bottom,#000 30%,transparent 95%);mask-image:linear-gradient(to bottom,#000 30%,transparent 95%)}
+:root[data-theme="light"] .bgimg{opacity:.12}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]) .bgimg{opacity:.12}}
+.riskbar{background:color-mix(in srgb,var(--bad) 10%,var(--bg2));border-bottom:1px solid var(--line);text-align:center;padding:10px 16px;font-size:13px;color:var(--muted)}
+.riskbar b{color:var(--bad)}
+.photo{position:relative;border-radius:24px;overflow:hidden;border:1px solid var(--gold);box-shadow:0 20px 50px var(--glow);aspect-ratio:4/5;max-height:600px;background:var(--surface2)}
+.photo img{width:100%;height:100%;object-fit:cover;object-position:50% 30%;display:block}
+.photo.wide{aspect-ratio:4/3;margin-top:28px;max-height:420px}
+.photo:after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(7,8,11,.35),transparent 45%);pointer-events:none}
+.sess{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr));gap:16px;margin-top:32px}
+.sess .card{padding:22px}
+.sess .tm{font-family:var(--serif);font-size:30px;color:var(--text);margin:6px 0}
+.pill{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:99px;border:1px solid var(--line);color:var(--muted)}
+.pill.on{border-color:var(--ok);color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,transparent)}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:18px;margin-top:32px}
+.vid{border:1px solid var(--line);border-radius:18px;overflow:hidden;background:var(--surface)}
+.vid .fr{aspect-ratio:16/9;width:100%}
+.vid iframe{width:100%;height:100%;border:0;display:block}
+.vid p{margin:0;padding:12px 16px;font-weight:600;font-size:14px}
+.quote{font-size:16px;color:var(--text);margin:10px 0 14px}
+.quote:before{content:"“";font-family:var(--serif);font-size:40px;color:var(--gold);line-height:0;vertical-align:-14px;margin-right:4px}
+.band{background:linear-gradient(135deg,var(--surface2),var(--bg2));border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.news{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px;max-width:560px}
+.news input{flex:1 1 220px}
+.legal h4{margin:20px 0 4px;font-size:15px;color:var(--text)}
+.legal p{color:var(--muted);margin:0 0 6px;font-size:14px}
+@media(max-width:760px){.photo{aspect-ratio:1/1}.photo.wide{aspect-ratio:4/3}.news .btn{flex:1 1 100%}}
+
+/* ================= RESPONSIVE LAYER ================= */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{overflow-x:hidden}
+img,svg,video{max-width:100%;height:auto}
+.chart{height:55%}
+h1,h2,h3{overflow-wrap:anywhere}
+.grid{grid-template-columns:repeat(auto-fit,minmax(min(245px,100%),1fr))}
+.split{grid-template-columns:repeat(auto-fit,minmax(min(290px,100%),1fr))}
+.calc,.res{grid-template-columns:repeat(auto-fit,minmax(min(170px,100%),1fr))}
+.stats{grid-template-columns:repeat(auto-fit,minmax(min(150px,100%),1fr))}
+.btn,.tbtn,summary{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.mbtn{display:none;align-items:center;justify-content:center;flex-direction:column;gap:5px;width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:var(--surface);cursor:pointer;padding:0}
+.mbtn span{display:block;width:20px;height:2px;background:var(--gold);border-radius:2px;transition:transform .25s,opacity .2s}
+.mbtn[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.mbtn[aria-expanded="true"] span:nth-child(2){opacity:0}
+.mbtn[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.demo{bottom:calc(72px + env(safe-area-inset-bottom,0px))}
+.box{max-height:90vh;max-height:90dvh}
+
+/* tablets and small laptops: collapse nav into a menu */
+@media(max-width:1180px){
+  .mbtn{display:flex}
+  nav{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;padding:8px 20px 22px;background:var(--bg);border-bottom:1px solid var(--line);box-shadow:0 24px 40px rgba(0,0,0,.35);max-height:calc(100vh - 70px);max-height:calc(100dvh - 70px);overflow-y:auto;-webkit-overflow-scrolling:touch}
+  nav.open{display:flex}
+  nav a.l{display:block;margin:0;padding:15px 4px;font-size:16px;border-bottom:1px solid var(--line)}
+  .nb{margin:16px 0 0;flex-wrap:wrap;gap:10px}
+  .nb .btn{flex:1;text-align:center;min-width:120px}
+  #who{display:inline}
+  .tbtn{margin:16px 0 0;align-self:flex-start;width:44px;height:44px}
+}
+
+/* phones and small tablets */
+@media(max-width:760px){
+  .wrap{padding:0 16px}
+  nav{padding-left:16px;padding-right:16px}
+  .nav{height:60px}
+  html{scroll-padding-top:68px}
+  .hero{padding:64px 0 52px}
+  .hero p.lead{font-size:17px}
+  .hero .btns .btn{flex:1 1 100%;text-align:center}
+  .stats{margin-top:44px;grid-template-columns:repeat(2,1fr);gap:12px}
+  .stat{padding:16px}
+  .stat b{font-size:26px}
+  section{padding:56px 0}
+  .sub{font-size:16px}
+  .card{padding:22px}
+  .panel{padding:24px;border-radius:20px}
+  .calcbox{padding:20px;border-radius:18px}
+  .res b{font-size:22px}
+  .split{gap:28px}
+  #community p .btn{display:block;text-align:center;margin:10px 0 0!important}
+  .price .amt{font-size:30px}
+  .price.f{margin-top:10px}
+  footer .cols{flex-direction:column}
+  footer a{display:inline-block;margin:0 14px 8px 0}
+  .box{padding:22px;border-radius:18px}
+  .box h3{font-size:22px}
+  .lbody{font-size:15px}
+  .shopact .btn{flex:1;text-align:center}
+  .lesson h3{padding-right:76px}
+  /* 16px inputs stop iOS Safari zooming into forms */
+  input,select,textarea{font-size:16px;min-height:48px}
+  textarea{min-height:110px}
+  .btn{min-height:46px}
+  .btn.sm{min-height:40px}
+  form{max-width:100%}
+  .wa{width:50px;height:50px;right:12px}
+  .demo{left:12px}
+  #inst{left:12px!important}
+}
+
+/* very small phones */
+@media(max-width:380px){
+  .logo{font-size:15px;letter-spacing:.1em}
+  .hero h1{font-size:38px}
+  .eyebrow{font-size:10px;letter-spacing:.14em;padding:6px 12px}
+  .stats{grid-template-columns:1fr}
+  .btn{padding:13px 20px}
+  .nb .btn{min-width:100px}
+}
+
+/* landscape phones: keep modals and hero usable on short screens */
+@media(max-height:480px) and (orientation:landscape){
+  .hero{padding:48px 0 40px}
+  .modal{align-items:flex-start;overflow-y:auto}
+  .box{max-height:none;margin:12px auto}
+  nav{max-height:calc(100vh - 66px)}
+}
+
+/* large screens */
+@media(min-width:1500px){
+  .wrap{max-width:1280px}
+  .hero p.lead{font-size:21px}
+}
+
+/* touch devices: no sticky hover lifts */
+@media(hover:none){
+  .card:hover,.stat:hover,.btn:hover{transform:none;box-shadow:none}
+  .card:hover{border-color:var(--line)}
+  .btn.p:hover{box-shadow:0 8px 28px var(--glow)}
+}
+
+/* print */
+@media print{
+  header,.wa,.demo,#inst,.ticker,.modal{display:none!important}
+  body{background:#fff;color:#000}
+}
+
+.pm{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:14px 0}
+.pm button{background:none;border:1px solid var(--line);color:var(--text);border-radius:12px;padding:12px;cursor:pointer;font:inherit}
+.pm button.on{border-color:var(--gold);color:var(--gold)}
+.pi{border:1px dashed var(--line);border-radius:12px;padding:14px;margin-bottom:14px;line-height:1.7;font-size:14px}
+.pf input{width:100%;margin-bottom:10px}
+.at{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.at button{padding:8px 14px;border-radius:99px;border:1px solid var(--line);background:none;color:var(--text);cursor:pointer}.at button.on{border-color:var(--gold);color:var(--gold)}
+.aw{overflow-x:auto}.aw table{width:100%;border-collapse:collapse;font-size:13px}.aw td,.aw th{padding:8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.aw .btn{padding:5px 10px;font-size:12px;margin:0 4px 4px 0}
+/* ---------- toast (email confirmed etc.) ---------- */
+.toast{position:fixed;left:50%;top:calc(76px + env(safe-area-inset-top,0px));transform:translate(-50%,-20px);z-index:60;max-width:min(520px,calc(100% - 32px));background:var(--surface);border:1px solid var(--gold);color:var(--text);padding:14px 20px;border-radius:14px;box-shadow:0 18px 50px rgba(0,0,0,.45);font-size:14px;font-weight:600;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;text-align:center}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.toast.ok{border-color:var(--ok)}.toast.bad{border-color:var(--bad)}
+</style>
+</head>
+<body>
+<script>document.documentElement.classList.add('js');try{var t=localStorage.getItem('tfx_theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+
+<header><div class="wrap nav">
+  <a class="logo" href="#top">TAMINADO <span>FX</span></a>
+  <nav>
+    <a class="l" href="#about">About</a><a class="l" href="#courses">Courses</a><a class="l" href="#library">Library</a><a class="l" href="#books">Books</a><a class="l" href="#tools">Tools</a><a class="l" href="#community">Community</a><a class="l" href="#coaching">Coaching</a><a class="l" href="#faq">FAQ</a>
+    <span class="nb" id="out"><a class="btn g" href="#" onclick="openAuth('in');return false">Log In</a><a class="btn p" href="#" onclick="openAuth('up');return false">Sign Up</a></span>
+    <span class="nb" id="inn" style="display:none"><a class="btn g" id="adm" style="display:none" href="#" onclick="openAdmin();return false">Admin</a><a class="btn g" href="#" onclick="openMyPay();return false">My Payments</a><span class="badge" id="plan">free</span><span class="note" id="who"></span><a class="btn g" href="#" onclick="logout();return false">Log Out</a></span>
+    <button class="tbtn" id="tb" aria-label="Toggle light and dark theme" title="Toggle theme">◐</button>
+  </nav>
+  <button class="mbtn" id="mb" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mnav"><span></span><span></span><span></span></button>
+</div></header>
+
+<main id="top">
+<div class="heroS">
+  <div class="bgimg" aria-hidden="true"></div>
+  <svg class="chart" viewBox="0 0 1200 400" preserveAspectRatio="none" aria-hidden="true">
+    <defs><linearGradient id="cg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d4af37" stop-opacity=".28"/><stop offset="1" stop-color="#d4af37" stop-opacity="0"/></linearGradient></defs>
+    <g class="gr"><line x1="0" y1="100" x2="1200" y2="100"/><line x1="0" y1="200" x2="1200" y2="200"/><line x1="0" y1="300" x2="1200" y2="300"/></g>
+    <path class="ar" d="M0 340 L90 310 L170 330 L260 270 L340 290 L430 220 L510 245 L600 170 L690 200 L780 130 L860 150 L950 80 L1040 105 L1120 50 L1200 70 L1200 400 L0 400Z"/>
+    <path class="ln" d="M0 340 L90 310 L170 330 L260 270 L340 290 L430 220 L510 245 L600 170 L690 200 L780 130 L860 150 L950 80 L1040 105 L1120 50 L1200 70"/>
+  </svg>
+  <div class="wrap hero">
+    <span class="eyebrow">Education · Community · Mentorship</span>
+    <h1>Where <em>Serious</em><br>Traders Grow.</h1>
+    <p class="lead">TAMINADO FX is a distraction-free home for traders who want to become consistent. No fluff. Discipline, structure and risk first.</p>
+    <div class="btns"><a class="btn p" href="#community">Join the Community</a><a class="btn g" href="#library">Beginner? Start Free</a></div>
+    <div class="stats">
+      <div class="stat"><b>5</b><span>Pillars of Trading</span></div>
+      <div class="stat"><b>1D+</b><span>Backtested Structure</span></div>
+      <div class="stat"><b>24/7</b><span>Community Access</span></div>
+      <div class="stat"><b>100%</b><span>Risk-First Approach</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="ticker" aria-hidden="true"><div class="tk" id="tk"></div></div>
+<div class="riskbar" role="note"><b>⚠ Risk warning:</b> Trading forex and CFDs carries a high level of risk and you can lose more than you deposit. Education only, not financial advice. <a href="#" onclick="openM('priv2');return false" style="color:var(--gold);text-decoration:underline">Read more</a></div>
+
+<section id="about"><div class="wrap split">
+<div class="photo rv"><img src="photo-1.jpg" alt="TAMINADO, trader and mentor" loading="lazy" onerror="this.parentNode.style.display='none'"></div>
+<div class="rv"><span class="tag">About</span><h2>Meet TAMINADO.</h2>
+<p class="sub">A mentor focused on one thing: helping traders become consistent through discipline, structure and risk control, not hype, signals or shortcuts.</p>
+<ul class="chk"><li><b>Risk first.</b> Protect your capital before chasing profit.</li><li><b>Structure over noise.</b> Clear rules for analysis and entries.</li><li><b>Process over outcome.</b> Judge yourself on execution.</li></ul>
+<p style="margin-top:26px"><a class="btn p" href="#coaching">Work With Me</a> <a class="btn g" href="#community" style="margin-left:8px">Join the Community</a></p></div>
+</div></section>
+
+<section id="courses"><div class="wrap">
+<div class="rv"><span class="tag">The Learning Path</span><h2>Mastery Courses.</h2>
+<p class="sub">Go beyond the basics with a clear path from foundations to execution.</p></div>
+<div class="grid">
+<div class="card rv"><span class="k">FOUNDATIONS</span><h3>Market Basics</h3><p>Pairs, sessions, pips, lots and how the market really moves. Start from zero.</p></div>
+<div class="card rv"><span class="k">ADVANCED</span><h3>Market Structure</h3><p>Multi-timeframe analysis, pullbacks and high-probability zones.</p></div>
+<div class="card rv"><span class="k">EXECUTION</span><h3>Risk &amp; Entries</h3><p>Quantify risk, remove emotion and execute with precision.</p></div>
+<div class="card rv"><span class="k">BOOK</span><h3>The Five Pillars of Trading</h3><p>The TAMINADO framework in one focused read.</p></div>
+</div>
+<div id="courseWrap" style="display:none;margin-top:44px"><span class="tag">Available now</span><div class="grid" id="courseList"></div></div>
+</div></section>
+
+<section id="community" class="alt"><div class="wrap split">
+<div class="rv"><span class="tag">Free Community</span><h2>Join Our Trading Community.</h2>
+<p class="sub">Daily market breakdowns, chart setups and explanations behind every idea, so you learn the why, not just the what.</p>
+<ul class="chk"><li>Daily market analysis</li><li>Chart setups with reasoning</li><li>Direct updates from TAMINADO</li><li>Free to join</li></ul>
+<p style="margin-top:26px"><a class="btn p" href="https://t.me/+hVx5qFHp41g1MmQ0" id="tg" target="_blank" rel="noopener noreferrer">Join Telegram Free</a> <a class="btn g" href="https://whatsapp.com/channel/0029Vb8x5JZ3wtbAJbSzhY0m" id="wch" target="_blank" rel="noopener noreferrer" style="margin-left:8px">Join WhatsApp Channel</a></p></div>
+<div class="panel rv"><span class="tag">What's Included</span>
+<h3>Start your journey. Zero cost attached.</h3>
+<ul class="chk"><li>Library of free lessons and resources</li><li>Member login with progress tracking</li><li>Live sessions and Q&amp;A</li></ul></div>
+</div></section>
+
+<section id="coaching"><div class="wrap split">
+<div class="panel rv"><span class="tag">1-on-1</span><h3>Private Coaching with TAMINADO</h3>
+<ul class="chk"><li>Initial strategy assessment</li><li>Custom trading plan</li><li>Live chart reviews</li><li>Long-term development</li></ul>
+<p style="margin-top:24px"><a class="btn p" href="#contact" onclick="pick('1-on-1 Coaching')">Secure Your Spot</a></p></div>
+<div class="rv"><span class="tag">Personal Mentorship</span><h2>Work directly with a mentor.</h2>
+<p class="sub">Personalised sessions built around your goals, your schedule and your learning style.</p>
+<div class="photo wide"><img src="photo-2.jpg" alt="TAMINADO, your mentor" loading="lazy" onerror="this.parentNode.style.display='none'"></div></div>
+</div></section>
+
+<section id="library" class="alt"><div class="wrap">
+<div class="rv"><span class="tag">Members Area</span><h2>Your Library.</h2>
+<p class="sub" id="libsub">Free lessons and resources, unlocked when you create a free account.</p>
+<div class="prog" id="prog" style="display:none"><div class="bar"><i id="pbar"></i></div><div class="note" id="ptxt"></div></div></div>
+<div class="grid" id="lessons"></div>
+</div></section>
+
+<section id="books"><div class="wrap">
+<div class="rv"><span class="tag">Books</span><h2>Read. Learn. Apply.</h2>
+<p class="sub">Books and guides from TAMINADO, free and premium.</p></div>
+<div class="grid" id="bookList"></div>
+<p class="note" id="bookEmpty" style="margin-top:24px">New books are coming soon.</p>
+</div></section>
+
+<section id="tools"><div class="wrap">
+<div class="rv"><span class="tag">Free Tool</span><h2>Position Size Calculator.</h2>
+<p class="sub">Know your lot size before you enter. Assumes $10 per pip per standard lot (USD-quoted pairs).</p></div>
+<div class="calcbox rv">
+<div class="calc">
+<div><label for="cb">Account balance ($)</label><input id="cb" type="number" value="1000" min="0"></div>
+<div><label for="cr">Risk per trade (%)</label><input id="cr" type="number" value="1" min="0" step="0.1"></div>
+<div><label for="cs">Stop loss (pips)</label><input id="cs" type="number" value="20" min="1"></div>
+<div><label for="cx">Reward : Risk</label><input id="cx" type="number" value="2" min="0" step="0.5"></div>
+</div>
+<div class="res"><div><small>Amount at risk</small><b id="r1"></b></div><div><small>Position size</small><b id="r2"></b></div><div><small>Target profit</small><b id="r3"></b></div></div>
+</div></div></section>
+
+<section id="sessions" class="alt"><div class="wrap">
+<div class="rv"><span class="tag">Free Tool</span><h2>Market Session Clock.</h2>
+<p class="sub">See which major sessions are open right now. Times shown are each city's local time; your own time is below.</p>
+<p class="note" id="mylocal" style="margin-top:8px"></p></div>
+<div class="sess" id="sessGrid"></div>
+<p class="note" style="margin-top:16px">Sessions assumed 8:00–17:00 local time (Tokyo 9:00–18:00), Monday to Friday. Daylight saving is handled automatically.</p>
+</div></section>
+
+<section id="watch" style="display:none"><div class="wrap">
+<div class="rv"><span class="tag">Watch</span><h2>Free Video Lessons.</h2></div>
+<div class="vids" id="vidGrid"></div>
+</div></section>
+
+<section id="proof" class="alt" style="display:none"><div class="wrap">
+<div class="rv"><span class="tag">Student Feedback</span><h2>What Members Say.</h2></div>
+<div class="grid" id="proofGrid"></div>
+</div></section>
+
+<section id="plans" class="alt"><div class="wrap">
+<div class="rv"><span class="tag">Plans</span><h2>Choose Your Path.</h2></div>
+<div class="grid">
+<div class="card price rv"><h3>Free</h3><div class="amt">$0</div><ul class="chk" style="text-align:left"><li>Community access</li><li>Free lessons</li><li>Position calculator</li></ul><p style="margin-top:20px"><a class="btn g" href="#" onclick="openAuth('up');return false">Sign Up Free</a></p></div>
+<div class="card price f rv"><h3>Mastery</h3><div class="amt" id="mprice">Upgrade</div><ul class="chk" style="text-align:left"><li>Full course library</li><li>The Five Pillars book</li><li>Live sessions</li></ul><p style="margin-top:20px"><a class="btn p" href="#" onclick="openPay();return false">Upgrade to Mastery</a></p></div>
+<div class="card price rv"><h3>1-on-1</h3><div class="amt">Apply</div><ul class="chk" style="text-align:left"><li>Private coaching</li><li>Custom trading plan</li><li>Live chart reviews</li></ul><p style="margin-top:20px"><a class="btn g" href="#contact" onclick="pick('1-on-1 Coaching')">Apply Now</a></p></div>
+</div>
+<p class="risk" style="margin-top:32px"><b>Risk warning:</b> Trading carries a high level of risk. Only trade money you can afford to lose.</p>
+</div></section>
+
+<section id="newsletter" class="band"><div class="wrap">
+<div class="rv"><span class="tag">Stay Sharp</span><h2>Get Trading Notes by Email.</h2>
+<p class="sub">Occasional lessons, market ideas and updates from TAMINADO. No spam, unsubscribe any time.</p>
+<form id="nf" class="news" style="max-width:560px"><input id="ne" type="email" placeholder="Your email address" required maxlength="200" aria-label="Email address"><input class="hp" id="nw" tabindex="-1" autocomplete="off" aria-hidden="true"><button class="btn p" type="submit">Subscribe</button></form>
+<span class="msg" id="nm"></span></div>
+</div></section>
+
+<section id="faq"><div class="wrap">
+<div class="rv"><span class="tag">Knowledge Base</span><h2>Everything You Need to Know.</h2></div>
+<div class="rv">
+<details><summary>Is this suitable for beginners?</summary><p>Yes. The path starts from zero and builds up to execution and risk management.</p></details>
+<details><summary>How do I access the courses?</summary><p>Create a free account and log in to your personal library. Your progress is saved to your account.</p></details>
+<details><summary>What makes the approach different?</summary><p>Capital preservation comes first: position sizing, stop placement and drawdown limits.</p></details>
+<details><summary>Does it work on my phone?</summary><p>Yes, the site is fully responsive.</p></details>
+<details><summary>When does Mastery launch?</summary><p>Join the waitlist and you will be the first to know.</p></details>
+</div>
+</div></section>
+
+<section id="contact" class="alt"><div class="wrap">
+<div class="rv"><span class="tag">Get in Touch</span><h2>Start Your Journey.</h2>
+<p class="sub">Send a message and we'll route it to the right place.</p></div>
+<form id="cf" class="rv">
+<select id="ct" aria-label="Topic"><option>Join the Community</option><option>1-on-1 Coaching</option><option>Partnership</option><option>Other</option></select>
+<input id="cn" placeholder="Your name" required maxlength="120">
+<input id="ce" type="email" placeholder="Email address" required maxlength="200">
+<textarea id="cm" rows="4" placeholder="Your message" maxlength="4000"></textarea>
+<input class="hp" id="cw" tabindex="-1" autocomplete="off" aria-hidden="true" placeholder="Leave empty">
+<button class="btn p" type="submit" id="cbn">Send Message</button>
+<span class="msg" id="ok"></span>
+</form></div></section>
+</main>
+
+<footer><div class="wrap">
+<div class="cols"><div><div class="logo">TAMINADO <span>FX</span></div><p>Trading education, community and mentorship.</p></div>
+<div><a href="#courses">Courses</a><a href="#library">Library</a><a href="#community">Community</a><a href="#coaching">Coaching</a><a href="#faq">FAQ</a></div></div>
+<p><b>Disclaimer:</b> TAMINADO FX is an educational platform. Nothing here is financial advice or an offer to buy or sell any instrument. Trading forex and CFDs involves substantial risk and you may lose more than your initial investment. Past performance is not indicative of future results.</p>
+<p>© 2026 TAMINADO FX. All rights reserved. <a href="#" onclick="openM('priv');return false">Privacy</a><a href="#" onclick="openM('terms');return false">Terms</a><a href="#" onclick="openM('priv2');return false">Risk Disclosure</a></p>
+</div></footer>
+
+<a class="wa" href="https://whatsapp.com/channel/0029Vb8x5JZ3wtbAJbSzhY0m" id="wa" target="_blank" rel="noopener noreferrer" title="WhatsApp" aria-label="Chat on WhatsApp">WA</a>
+<div class="demo" id="demo">Demo mode: Supabase not connected</div>
+<button class="btn p" id="inst" type="button" style="display:none;position:fixed;left:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:16">Install App</button>
+<div class="modal" id="ios"><div class="box"><button class="x" onclick="closeM('ios')" aria-label="Close">×</button>
+<h3>Install TAMINADO FX</h3>
+<p class="lbody" style="white-space:normal">On iPhone: tap the <b>Share</b> button in Safari, then choose <b>Add to Home Screen</b>.</p>
+<button class="btn p" type="button" onclick="closeM('ios')">Got it</button></div></div>
+
+<!-- auth modal -->
+<div class="modal" id="am"><div class="box"><button class="x" onclick="closeM('am')" aria-label="Close">×</button>
+<h3 id="at">Log In</h3><span class="note" id="as">Welcome back to TAMINADO FX.</span>
+<form id="af"><input id="an" placeholder="Full name" style="display:none" maxlength="120"><input id="ae" type="email" placeholder="Email" required><input id="ap" type="password" placeholder="Password (min 6 characters)" minlength="6" required autocomplete="current-password"><input id="ac" type="password" placeholder="Confirm password" minlength="6" autocomplete="new-password" style="display:none">
+<button class="btn p" type="submit" id="ab">Log In</button>
+<span class="msg" id="am2"></span>
+<a href="#" class="note" id="fp" onclick="forgot();return false">Forgot password?</a>
+<a href="#" class="note" id="sw" onclick="swap();return false">No account? Sign up</a>
+<a href="#" class="note" id="rs" style="display:none;color:var(--gold);text-decoration:underline" onclick="resendConf();return false">Resend confirmation email</a></form></div></div>
+
+<!-- set new password modal (opens from the reset email link) -->
+<div class="modal" id="rp"><div class="box"><button class="x" onclick="closeM('rp')" aria-label="Close">×</button>
+<h3>Set a New Password</h3><span class="note">Choose a new password for your account.</span>
+<form id="rf"><input id="rp1" type="password" placeholder="New password (min 6 characters)" minlength="6" required autocomplete="new-password"><input id="rp2" type="password" placeholder="Confirm new password" minlength="6" required autocomplete="new-password">
+<button class="btn p" type="submit" id="rb">Update Password</button><span class="msg" id="rm"></span></form></div></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<!-- waitlist modal -->
+<div class="modal" id="wl"><div class="box"><button class="x" onclick="closeM('wl')" aria-label="Close">×</button>
+<h3>Join the Mastery Waitlist</h3><span class="note">Be first to know when the full course library opens.</span>
+<form id="wf"><input id="we" type="email" placeholder="Email address" required maxlength="200"><input class="hp" id="ww" tabindex="-1" autocomplete="off" aria-hidden="true">
+<button class="btn p" type="submit">Notify Me</button><span class="msg" id="wm"></span></form></div></div>
+
+<!-- lesson modal -->
+<div class="modal" id="lm"><div class="box wide"><button class="x" onclick="closeM('lm')" aria-label="Close">×</button>
+<span class="tag" id="lt"></span><h3 id="ltitle"></h3>
+<div class="lbody" id="lbody"></div>
+<button class="btn p" id="lbtn" type="button"></button></div></div>
+
+<!-- legal modals: have these reviewed by a qualified person for your country before launch -->
+<div class="modal" id="priv"><div class="box wide legal"><button class="x" onclick="closeM('priv')" aria-label="Close">×</button>
+<h3>Privacy Policy</h3><span class="note">Last updated: November 2026</span>
+<h4>What we collect</h4><p>When you create an account we collect your name, email address and a password (stored securely by our authentication provider). We also store your lesson progress. If you use the contact form, waitlist or email signup, we store the details you submit.</p>
+<h4>How we use it</h4><p>To run your account and library, track your progress, reply to your messages, and send updates you asked for. We do not sell your personal information.</p>
+<h4>Service providers</h4><p>Our database and sign-in are provided by Supabase. Fonts load from Google Fonts. Telegram and WhatsApp links open those services, which have their own privacy policies.</p>
+<h4>Storage on your device</h4><p>We save your light/dark theme choice and, if you are logged in, your session in your browser's local storage.</p>
+<h4>Your choices</h4><p>You can ask us to access, correct or delete your data, or unsubscribe from emails, using the contact form on this site.</p>
+<h4>Age</h4><p>This site is for people aged 18 and over.</p>
+<button class="btn p" type="button" onclick="closeM('priv')" style="margin-top:14px">Close</button></div></div>
+
+<div class="modal" id="terms"><div class="box wide legal"><button class="x" onclick="closeM('terms')" aria-label="Close">×</button>
+<h3>Terms of Use</h3><span class="note">Last updated: November 2026</span>
+<h4>Educational purposes only</h4><p>All content is for general education. Nothing on this site is financial, investment or trading advice, or an offer or recommendation to buy or sell any instrument.</p>
+<h4>No guarantees</h4><p>We make no promise of profit. Trading forex and CFDs is high risk and you may lose more than your initial investment. Past performance is not indicative of future results. You are solely responsible for your trading decisions.</p>
+<h4>Your account</h4><p>You must be 18 or over, provide accurate details and keep your password secure. We may suspend accounts that misuse the site.</p>
+<h4>Content and copyright</h4><p>Lessons, books and other materials belong to TAMINADO FX. You may use them for personal learning only. Do not copy, resell or share them publicly without written permission.</p>
+<h4>Paid products</h4><p>Prices, access and refund terms for paid plans, books and coaching will be stated at the point of purchase.</p>
+<h4>Liability</h4><p>To the fullest extent allowed by law, TAMINADO FX is not liable for any loss arising from use of this site or its content.</p>
+<h4>Changes</h4><p>We may update these terms. Continued use means you accept the updated terms.</p>
+<button class="btn p" type="button" onclick="closeM('terms')" style="margin-top:14px">Close</button></div></div>
+
+<div class="modal" id="priv2"><div class="box wide legal"><button class="x" onclick="closeM('priv2')" aria-label="Close">×</button>
+<h3>Risk Disclosure</h3>
+<p style="margin-top:12px">Trading foreign exchange and contracts for difference (CFDs) on margin carries a high level of risk and may not be suitable for everyone. Leverage can work against you as well as for you, and you can lose more than your initial deposit.</p>
+<p>Only trade with money you can afford to lose. Before trading, consider your experience, objectives and financial situation, and seek independent advice if needed.</p>
+<p>TAMINADO FX provides education only. We do not manage accounts, hold client funds or give personal recommendations. Any example, chart or result shown is for illustration and does not guarantee future performance.</p>
+<button class="btn p" type="button" onclick="closeM('priv2')" style="margin-top:14px">I understand</button></div></div>
+
+<div class="modal" id="pay"><div class="box wide"><button class="x" onclick="closeM('pay')" aria-label="Close">×</button>
+<h3>Upgrade to Mastery</h3><p class="note" id="pamt"></p>
+<div class="pm" id="pms"></div><div class="pi" id="pinfo">Choose a payment method.</div>
+<form class="pf" id="pform"><input id="psender" placeholder="Name / number you paid from" required><input id="pref" placeholder="Transaction ID or reference" required>
+<button class="btn p" type="submit">I Have Paid</button> <span class="msg" id="pmsg"></span></form></div></div>
+<div class="modal" id="mypm"><div class="box wide"><button class="x" onclick="closeM('mypm')" aria-label="Close">×</button>
+<h3>My Payments</h3><div class="aw" id="mypbody">Loading…</div></div></div>
+<div class="modal" id="adminm"><div class="box wide"><button class="x" onclick="closeM('adminm')" aria-label="Close">×</button>
+<h3>Admin Panel</h3><div class="at" id="atabs"></div><div class="aw" id="abody">Loading…</div></div></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script>
+/* ===================== CONFIG ===================== */
+/* Supabase: Dashboard → Project Settings → API. Use the "anon / public" key ONLY (never the service_role key). */
+var SUPABASE_URL='https://hgjhoztrtvauphrjcage.supabase.co',SUPABASE_KEY='sb_publishable_2xMVIAWxQool_oWk06CaRw_2fe1gkkj',WHATSAPP='https://whatsapp.com/channel/0029Vb8x5JZ3wtbAJbSzhY0m',TELEGRAM='https://t.me/+hVx5qFHp41g1MmQ0';
+/* ================================================== */
+
+var BOOT_HASH=location.hash||'',BOOT_Q=location.search||'';
+var sb=null;try{if(SUPABASE_URL&&SUPABASE_KEY&&window.supabase)sb=supabase.createClient(SUPABASE_URL,SUPABASE_KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true,lock:function(n,t,fn){return fn()}}})}catch(e){}
+var mode='in',cur=null,lessons=[],done={};
+var RANK={free:1,mastery:2,coaching:3};
+/* Public teaser list (titles only) + demo content used when Supabase is not configured */
+var CATALOG=[
+ {position:1,tag:'LESSON 1',title:'Forex Foundations',summary:'Pairs, pips, lots, sessions and platform setup.',min_plan:'free',body:'What you will learn\n\n• How currency pairs are quoted (base vs quote)\n• What a pip and a lot are, and why they matter for risk\n• The four trading sessions and when volatility is highest\n• How to set up a demo account and your chart platform\n\nAction step: open a demo account and identify the current session on EURUSD.'},
+ {position:2,tag:'LESSON 2',title:'Reading Market Structure',summary:'Trends, ranges, support and resistance.',min_plan:'free',body:'What you will learn\n\n• Higher highs / higher lows vs lower highs / lower lows\n• How to mark support and resistance zones (not lines)\n• Telling a trend from a range\n• Top-down analysis: Daily → 4H → 1H\n\nAction step: mark the last three swing highs and lows on the Daily chart of any pair.'},
+ {position:3,tag:'LESSON 3',title:'Risk Management',summary:'Position sizing, stop loss and drawdown rules.',min_plan:'free',body:'What you will learn\n\n• The 1% rule and why survival comes before profit\n• Position sizing from account size, risk % and stop distance\n• Setting a stop where the idea is invalid, not where it is comfortable\n• Daily and weekly drawdown limits\n\nAction step: use the Position Size Calculator on this page for three hypothetical trades.'},
+ {position:4,tag:'LESSON 4',title:'Trading Psychology',summary:'Discipline, patience and a repeatable routine.',min_plan:'free',body:'What you will learn\n\n• Why revenge trading and overtrading happen\n• Building a pre-session checklist\n• Journaling every trade: setup, risk, result, emotion\n• Judging yourself on execution, not outcome\n\nAction step: create a one-page checklist you must complete before every trade.'},
+ {position:5,tag:'MASTERY 1',title:'Multi-Timeframe Analysis',summary:'Align higher-timeframe bias with lower-timeframe entries.',min_plan:'mastery',body:'Coming to Mastery members.'},
+ {position:6,tag:'MASTERY 2',title:'Entries and Execution',summary:'Precision entries, partials and trade management.',min_plan:'mastery',body:'Coming to Mastery members.'}
+];
+
+function $(i){return document.getElementById(i)}
+function store(k,v){try{if(v===undefined)return localStorage.getItem(k);if(v===null)localStorage.removeItem(k);else localStorage.setItem(k,v)}catch(e){}}
+function openM(id){$(id).classList.add('show')}
+function closeM(id){$(id).classList.remove('show')}
+function setMsg(el,t,ok){el.textContent=t;el.className='msg '+(ok===true?'ok':ok===false?'bad':'')}
+/* Friendlier text when Supabase says the email/sign-up rate limit was hit */
+function friendly(er){var t=((er&&er.message)||'').toLowerCase();if(t.indexOf('invalid login')>-1)return 'Wrong email or password. Please try again.';return (er&&er.status===429)||t.indexOf('rate limit')>-1?'We are getting a lot of sign-ups right now. Please try again in a few minutes.':(er&&er.message)||'Something went wrong. Please try again.'}
+document.querySelectorAll('.modal').forEach(function(m){m.addEventListener('click',function(e){if(e.target===m)m.classList.remove('show')})});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')document.querySelectorAll('.modal.show').forEach(function(m){m.classList.remove('show')})});
+
+/* ---------- theme ---------- */
+$('tb').addEventListener('click',function(){
+  var r=document.documentElement,c=r.getAttribute('data-theme');
+  if(!c)c=window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';
+  var n=c==='light'?'dark':'light';r.setAttribute('data-theme',n);store('tfx_theme',n)});
+
+/* ---------- mobile menu ---------- */
+(function(){
+  var nv=document.querySelector('header nav'),mb=$('mb');
+  nv.id='mnav';
+  function set(o){nv.classList.toggle('open',o);mb.setAttribute('aria-expanded',o?'true':'false');mb.setAttribute('aria-label',o?'Close menu':'Open menu')}
+  mb.addEventListener('click',function(e){e.stopPropagation();set(!nv.classList.contains('open'))});
+  nv.addEventListener('click',function(e){if(e.target.closest('a'))set(false)});
+  document.addEventListener('click',function(e){if(nv.classList.contains('open')&&!nv.contains(e.target))set(false)});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')set(false)});
+  window.addEventListener('resize',function(){if(window.innerWidth>1180)set(false)});
+})();
+/* lock page scroll behind open modals */
+(function(){
+  var mo=new MutationObserver(function(){document.body.style.overflow=document.querySelector('.modal.show')?'hidden':''});
+  document.querySelectorAll('.modal').forEach(function(m){mo.observe(m,{attributes:true,attributeFilter:['class']})});
+})();
+
+/* ---------- ticker + reveal ---------- */
+(function(){var p=['EURUSD','GBPUSD','USDJPY','XAUUSD','AUDUSD','USDCAD','NZDUSD','USDCHF','GBPJPY','EURJPY'],h='';
+ for(var k=0;k<2;k++)p.forEach(function(s){h+='<i>◆</i>'+s});$('tk').innerHTML=h})();
+(function(){var els=document.querySelectorAll('.rv');
+ if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return}
+ var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{threshold:.12});
+ els.forEach(function(e){io.observe(e)})})();
+
+/* ---------- auth ---------- */
+function openAuth(m){mode=m;draw();setMsg($('am2'),'');$('rs').style.display='none';openM('am')}
+function swap(){mode=mode==='in'?'up':'in';draw()}
+function draw(){var u=mode==='up';$('at').textContent=u?'Create Account':'Log In';$('ab').textContent=u?'Sign Up':'Log In';$('an').style.display=u?'block':'none';$('ac').style.display=u?'block':'none';$('ac').required=u;$('ac').value='';$('ap').autocomplete=u?'new-password':'current-password';$('fp').style.display=u?'none':'block';$('sw').textContent=u?'Have an account? Log in':'No account? Sign up';$('as').textContent=u?'Free access to lessons and tools.':'Welcome back to TAMINADO FX.'}
+async function forgot(){var em=$('ae').value.trim(),m=$('am2');
+ if(!em){setMsg(m,'Enter your email above first.',false);return}
+ if(!sb){setMsg(m,'Password reset needs Supabase connected.',false);return}
+ var r=await sb.auth.resetPasswordForEmail(em,{redirectTo:location.origin+location.pathname});
+ setMsg(m,r.error?friendly(r.error):'Check your email for a reset link.',!r.error)}
+
+function tmo(p,ms){return Promise.race([Promise.resolve(p),new Promise(function(_,rej){setTimeout(function(){rej(new Error('timeout'))},ms)})])}
+var setSeq=0;
+async function setUser(u){
+  var seq=++setSeq;
+  if(!u){cur=null;done={};lessons=[];renderAll();return}
+  cur={id:u.id,email:u.email,name:(u.user_metadata&&u.user_metadata.name)||u.email.split('@')[0],plan:'free'};
+  renderAll();  /* logged-in view appears at once; data loads after */
+  if(sb){try{var r=await tmo(sb.from('profiles').select('full_name,plan,role').eq('id',u.id).maybeSingle(),8000);
+    if(seq!==setSeq)return;
+    if(r&&r.data){cur.role=r.data.role||'user';cur.plan=r.data.plan||'free';if(r.data.full_name)cur.name=r.data.full_name}}catch(e){console.warn('profile load',e)}}
+  renderAll();
+  try{await tmo(loadLessons(),8000)}catch(e){console.warn('lessons load',e)}
+  if(seq!==setSeq)return;
+  renderAll()}
+
+async function logout(){if(sb){await sb.auth.signOut()}store('tfx_user',null);await setUser(null)}
+
+$('af').addEventListener('submit',async function(e){
+  e.preventDefault();var em=$('ae').value.trim(),pw=$('ap').value,nm=$('an').value.trim(),msg=$('am2'),btn=$('ab');
+  if(mode==='up'&&pw!==$('ac').value){setMsg(msg,'Passwords do not match. Please re-enter them.',false);return}
+  setMsg(msg,'Please wait...');btn.disabled=true;
+  try{
+    if(sb){
+      var r=mode==='up'?await sb.auth.signUp({email:em,password:pw,options:{data:{name:nm||em.split('@')[0]},emailRedirectTo:location.origin+location.pathname}}):await tmo(sb.auth.signInWithPassword({email:em,password:pw}),20000);
+      if(r.error){
+        var low=String(r.error.message||'').toLowerCase();
+        if(low.indexOf('not confirmed')>-1){setMsg(msg,'Please confirm your email first. Open the link we sent you (check spam too).',false);$('rs').style.display='block'}
+        else setMsg(msg,friendly(r.error),false);
+        return}
+      if(mode==='up'&&r.data.user&&r.data.user.identities&&r.data.user.identities.length===0){setMsg(msg,'This email is already registered. Please log in instead.',false);return}
+      if(mode==='up'&&!r.data.session){setMsg(msg,'Account created. We sent a confirmation link to '+em+'. Open it to activate your account, then log in.',true);$('rs').style.display='block';return}
+      if(r.data&&r.data.session&&(!cur||cur.id!==r.data.session.user.id))setUser(r.data.session.user);
+    }else{
+      var u={id:'demo-'+em,email:em,user_metadata:{name:nm||em.split('@')[0]}};
+      store('tfx_user',JSON.stringify(u));await setUser(u)}
+    closeM('am');this.reset()
+  }catch(err){setMsg(msg,'Could not connect. Please try again.',false)}
+  finally{btn.disabled=false}});
+
+/* ---------- email confirmation, expired links, password reset ---------- */
+var confirmedFlag=false,recoveryFlag=false,toastT=null;
+function toast(t,kind){var e=$('toast');e.textContent=t;e.className='toast show '+(kind||'');clearTimeout(toastT);toastT=setTimeout(function(){e.classList.remove('show')},6500)}
+function cleanUrl(){try{history.replaceState(null,'',location.pathname+'#top')}catch(e){}}
+async function resendConf(){
+  var em=$('ae').value.trim(),m=$('am2');
+  if(!em){setMsg(m,'Enter your email above first.',false);return}
+  if(!sb){setMsg(m,'Needs Supabase connected.',false);return}
+  setMsg(m,'Sending...');
+  var r=await sb.auth.resend({type:'signup',email:em,options:{emailRedirectTo:location.origin+location.pathname}});
+  setMsg(m,r.error?friendly(r.error):'Confirmation email sent. Check your inbox and spam folder.',!r.error)}
+(function(){
+  var p=new URLSearchParams((BOOT_HASH.replace(/^#/,'')||BOOT_Q.replace(/^\?/,'')));
+  var err=p.get('error_description')||p.get('error');
+  if(err){
+    var expired=p.get('error_code')==='otp_expired'||/expired|invalid/i.test(err);
+    cleanUrl();mode='in';draw();openM('am');
+    setMsg($('am2'),expired?'That link has expired or was already used. Enter your email below and request a new one.':err,false);
+    if(expired)$('rs').style.display='block';
+    return}
+  var ty=p.get('type');
+  if(ty==='signup'||ty==='email'||ty==='email_change'||ty==='magiclink')confirmedFlag=true;
+  if(ty==='recovery')recoveryFlag=true})();
+function openRecovery(){closeM('am');$('rf').reset();setMsg($('rm'),'');openM('rp');cleanUrl()}
+$('rf').addEventListener('submit',async function(e){
+  e.preventDefault();var m=$('rm'),a=$('rp1').value,b=$('rp2').value,btn=$('rb');
+  if(a!==b){setMsg(m,'Passwords do not match. Please re-enter them.',false);return}
+  if(!sb){setMsg(m,'Needs Supabase connected.',false);return}
+  btn.disabled=true;setMsg(m,'Please wait...');
+  try{
+    var r=await sb.auth.updateUser({password:a});
+    if(r.error){setMsg(m,friendly(r.error),false);return}
+    closeM('rp');this.reset();recoveryFlag=false;toast('Password updated. You are now logged in.','ok')
+  }catch(err){setMsg(m,'Could not update. Please try again.',false)}
+  finally{btn.disabled=false}});
+
+/* ---------- lessons / progress ---------- */
+async function loadLessons(){
+  if(!cur){lessons=[];done={};return}
+  if(sb){
+    try{
+      var l=await sb.from('lessons').select('*').order('position');
+      lessons=l.data||[];
+      var p=await sb.from('lesson_progress').select('lesson_id');
+      done={};(p.data||[]).forEach(function(x){done[x.lesson_id]=true})
+    }catch(e){lessons=[];done={}}
+  }else{
+    lessons=CATALOG.filter(function(c){return RANK[c.min_plan]<=RANK[cur.plan]}).map(function(c){var o={};for(var k in c)o[k]=c[k];o.id=c.position;return o});
+    try{done={};JSON.parse(store('tfx_prog_'+cur.id)||'[]').forEach(function(i){done[i]=true})}catch(e){done={}}
+  }}
+
+function renderLib(){
+  var box=$('lessons');box.innerHTML='';
+  var total=0,finished=0;
+  CATALOG.forEach(function(c){
+    var real=null;lessons.forEach(function(l){if(l.position===c.position)real=l});
+    var d=document.createElement('div');d.className='card lesson rv in';
+    var item=real||c;
+    var k=document.createElement('span');k.className='k';k.textContent=item.tag;
+    var h=document.createElement('h3');h.textContent=item.title;
+    var p=document.createElement('p');p.textContent=item.summary||'';
+    d.appendChild(k);d.appendChild(h);d.appendChild(p);
+    if(!cur){
+      d.classList.add('lk');d.setAttribute('data-lock','🔒 Log in to unlock');
+      d.addEventListener('click',function(){openAuth('in')});
+    }else if(!real){
+      d.classList.add('lk');d.setAttribute('data-lock','🔒 '+c.min_plan.charAt(0).toUpperCase()+c.min_plan.slice(1)+' plan');
+      d.addEventListener('click',function(){openWL()});
+    }else{
+      total++;
+      var st=document.createElement('span');st.className='st';
+      var isDone=!!done[real.id];if(isDone){finished++;d.classList.add('done')}
+      st.textContent=isDone?'✓ Completed':'';
+      var g=document.createElement('span');g.className='go';g.textContent=isDone?'Review lesson →':'Start lesson →';
+      d.appendChild(st);d.appendChild(g);
+      d.addEventListener('click',function(){openLesson(real)});
+    }
+    box.appendChild(d)});
+  var pr=$('prog');
+  if(cur&&total){pr.style.display='block';var pct=Math.round(finished/total*100);$('pbar').style.width=pct+'%';$('ptxt').textContent=finished+' of '+total+' lessons completed ('+pct+'%)'}
+  else pr.style.display='none';
+  $('libsub').textContent=cur?'Welcome back, '+cur.name+'. Pick up where you left off.':'Free lessons and resources, unlocked when you create a free account.'}
+
+function openLesson(l){
+  $('lt').textContent=l.tag;$('ltitle').textContent=l.title;$('lbody').textContent=l.body||'Content coming soon.';
+  var b=$('lbtn');
+  function label(){b.textContent=done[l.id]?'✓ Completed (click to undo)':'Mark as complete'}
+  label();
+  b.onclick=async function(){
+    b.disabled=true;
+    try{
+      if(done[l.id]){
+        if(sb)await sb.from('lesson_progress').delete().eq('user_id',cur.id).eq('lesson_id',l.id);
+        delete done[l.id]
+      }else{
+        if(sb){var r=await sb.from('lesson_progress').insert({user_id:cur.id,lesson_id:l.id});if(r.error&&r.error.code!=='23505')throw r.error}
+        done[l.id]=true}
+      if(!sb)store('tfx_prog_'+cur.id,JSON.stringify(Object.keys(done).map(Number)));
+      label();renderLib()
+    }catch(e){b.textContent='Could not save. Try again.'}
+    finally{b.disabled=false}};
+  openM('lm')}
+
+function renderAll(){
+  var on=!!cur;
+  $('out').style.display=on?'none':'flex';$('inn').style.display=on?'flex':'none';
+  if(on){$('who').textContent=cur.name;$('plan').textContent=cur.plan}
+  renderLib();renderShop()}
+
+/* ---------- books + courses ---------- */
+var books=[],courses=[],shopErr=null,BOOK_CURRENCY='MWK'; /* shown before a plain numeric price, e.g. 15000 -> "MWK 15,000" */
+/* The books table may name its columns differently; the first one that has a value is used. */
+var COLS={
+  cover:['cover_url','cover_image_url','cover_image','cover','image_url','image','thumbnail','cover_path'],
+  file:['file_url','download_url','file','pdf_url','file_path'],
+  price:['price','price_text']
+};
+function pickCol(item,list){for(var i=0;i<list.length;i++){var v=item[list[i]];if(v!==undefined&&v!==null&&String(v).trim()!=='')return String(v).trim()}return ''}
+function sortByPos(a){return a.slice().sort(function(x,y){return (x.position==null?1e9:x.position)-(y.position==null?1e9:y.position)})}
+async function loadShop(){
+  var err=null;
+  if(sb){
+    try{
+      /* no .order('position') here: if that column does not exist the whole query fails and no books show */
+      var b=await sb.from('books').select('*').eq('published',true);
+      if(b.error){err=b.error;console.error('Supabase books error:',b.error)}
+      books=sortByPos(b.data||[]);
+      var c=await sb.from('courses').select('*').eq('published',true);
+      if(c.error)console.warn('Supabase courses error:',c.error);
+      courses=sortByPos(c.data||[])
+    }catch(e){err=e;console.error('loadShop failed:',e)}
+  }
+  shopErr=err;renderShop()}
+function coverUrl(p){if(!p)return '';if(/^https?:\/\//i.test(p))return p;if(!sb)return '';try{return sb.storage.from('covers').getPublicUrl(p).data.publicUrl}catch(e){return ''}}
+function safeUrl(u){return /^https?:\/\//i.test(u||'')?u:''}
+function fmtPrice(v){
+  if(v==='')return '';
+  if(/^\d+(\.\d+)?$/.test(v)){var n=parseFloat(v);return n===0?'Free':(BOOK_CURRENCY?BOOK_CURRENCY+' ':'')+n.toLocaleString()}
+  return v}
+function shopCard(item,kind){
+  var d=document.createElement('div');d.className='card rv in';
+  var cu=coverUrl(pickCol(item,COLS.cover));
+  if(cu){var im=document.createElement('img');im.className='cov';im.src=cu;im.alt=(item.title||'')+' cover';im.loading='lazy';
+    im.onerror=function(){im.style.display='none'};d.appendChild(im)}
+  var k=document.createElement('span');k.className='k';k.textContent=kind==='book'?'BOOK':'COURSE';
+  var h=document.createElement('h3');h.textContent=item.title||'';
+  d.appendChild(k);d.appendChild(h);
+  if(kind==='book'&&item.author){var au=document.createElement('p');au.className='note';au.textContent='by '+item.author;d.appendChild(au)}
+  var p=document.createElement('p');p.textContent=item.description||'';d.appendChild(p);
+  var row=document.createElement('div');row.className='shopact';
+  if(kind==='book'){var pt=fmtPrice(pickCol(item,COLS.price));if(pt){var pr=document.createElement('span');pr.className='badge';pr.textContent=pt;row.appendChild(pr)}}
+  var buy=safeUrl(item.buy_url);
+  if(buy){var a=document.createElement('a');a.className='btn p sm';a.href=buy;a.target='_blank';a.rel='noopener noreferrer';a.textContent='Buy now';row.appendChild(a)}
+  if(kind==='book'){
+    var f=pickCol(item,COLS.file);
+    if(f){
+      if(safeUrl(f)){
+        var dl=document.createElement('a');dl.className='btn g sm';dl.href=f;dl.target='_blank';dl.rel='noopener noreferrer';dl.setAttribute('download','');dl.textContent='Download';row.appendChild(dl)
+      }else{
+        var bt=document.createElement('button');bt.type='button';bt.className='btn g sm';bt.textContent='Download';
+        bt.onclick=async function(){
+          bt.disabled=true;var w=window.open('about:blank','_blank');
+          try{
+            var r=await sb.storage.from('books').createSignedUrl(f,120);
+            if(r.error||!r.data)throw (r.error||new Error('no url'));
+            if(w)w.location=r.data.signedUrl;else location.href=r.data.signedUrl
+          }catch(e){if(w)w.close();bt.textContent='Unavailable. Try again.'}
+          finally{bt.disabled=false}};
+        row.appendChild(bt)}}}
+  if(kind==='course'){var need=RANK[item.min_plan]||1;if(need>1&&(!cur||RANK[cur.plan]<need)){var lk=document.createElement('span');lk.className='badge';lk.textContent=item.min_plan;row.appendChild(lk)}}
+  d.appendChild(row);return d}
+function renderShop(){
+  var err=shopErr;
+  var bl=$('bookList'),cl=$('courseList'),be=$('bookEmpty');bl.innerHTML='';cl.innerHTML='';
+  books.forEach(function(b){bl.appendChild(shopCard(b,'book'))});
+  courses.forEach(function(c){cl.appendChild(shopCard(c,'course'))});
+  if(err&&!books.length){be.textContent='Books could not be loaded: '+(err.message||err);be.style.display='block'}
+  else{be.textContent='New books are coming soon.';be.style.display=books.length?'none':'block'}
+  $('courseWrap').style.display=courses.length?'block':'none'}
+
+/* ---------- waitlist ---------- */
+function openWL(){setMsg($('wm'),'');if(cur)$('we').value=cur.email;openM('wl')}
+$('wf').addEventListener('submit',async function(e){
+  e.preventDefault();var m=$('wm'),em=$('we').value.trim();
+  if($('ww').value){return}
+  setMsg(m,'Saving...');
+  if(!sb){setMsg(m,'Thanks! (Demo mode: connect Supabase to store emails.)',true);this.reset();return}
+  var r=await sb.from('waitlist').insert({email:em,source:'mastery'});
+  if(r.error&&r.error.code==='23505'){setMsg(m,'You are already on the list. We will be in touch!',true);return}
+  if(r.error){setMsg(m,'Could not save. Please try again.',false);return}
+  setMsg(m,'You are on the list. We will email you at launch.',true);this.reset()});
+
+/* ---------- contact ---------- */
+function pick(t){var s=$('ct');for(var i=0;i<s.options.length;i++)if(s.options[i].text===t)s.selectedIndex=i}
+$('cf').addEventListener('submit',async function(e){
+  e.preventDefault();var m=$('ok'),b=$('cbn');
+  if($('cw').value){this.reset();return}
+  b.disabled=true;setMsg(m,'Sending...');
+  try{
+    if(!sb){setMsg(m,'Thank you! (Demo mode: connect Supabase to receive messages.)',true);this.reset();return}
+    var r=await sb.from('contact_messages').insert({topic:$('ct').value,name:$('cn').value.trim(),email:$('ce').value.trim(),message:$('cm').value.trim()});
+    if(r.error){setMsg(m,'Could not send. Please try again.',false);return}
+    setMsg(m,'Thank you! Your message has been sent.',true);this.reset()
+  }catch(err){setMsg(m,'Could not send. Please try again.',false)}
+  finally{b.disabled=false}});
+
+/* ---------- session clock ---------- */
+var SESS=[{n:'Sydney',tz:'Australia/Sydney',o:8,c:17},{n:'Tokyo',tz:'Asia/Tokyo',o:9,c:18},{n:'London',tz:'Europe/London',o:8,c:17},{n:'New York',tz:'America/New_York',o:8,c:17}];
+function zoneParts(tz){
+  var o={};try{new Intl.DateTimeFormat('en-GB',{timeZone:tz,weekday:'short',hour:'2-digit',minute:'2-digit',hour12:false}).formatToParts(new Date()).forEach(function(x){o[x.type]=x.value})}catch(e){}
+  return o}
+function drawSess(){
+  var g=$('sessGrid');if(!g)return;g.innerHTML='';
+  SESS.forEach(function(s){
+    var z=zoneParts(s.tz),h=(parseInt(z.hour,10)||0)%24,wk=z.weekday!=='Sat'&&z.weekday!=='Sun',open=wk&&h>=s.o&&h<s.c;
+    var d=document.createElement('div');d.className='card';
+    var k=document.createElement('span');k.className='k';k.textContent=s.n.toUpperCase();
+    var t=document.createElement('div');t.className='tm';t.textContent=(z.hour||'--')+':'+(z.minute||'--');
+    var p=document.createElement('span');p.className='pill'+(open?' on':'');p.textContent=open?'Open':'Closed';
+    d.appendChild(k);d.appendChild(t);d.appendChild(p);g.appendChild(d)});
+  var ml=$('mylocal');if(ml){try{ml.textContent='Your local time: '+new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})}catch(e){}}}
+drawSess();setInterval(drawSess,30000);
+
+/* ---------- videos (add YouTube IDs here) ---------- */
+/* Example: var VIDEOS=[{id:'YOUTUBE_VIDEO_ID',title:'Forex Foundations'}]; */
+var VIDEOS=[];
+(function(){
+  if(!VIDEOS.length)return;
+  var g=$('vidGrid');
+  VIDEOS.forEach(function(v){
+    if(!/^[\w-]{6,20}$/.test(v.id||''))return;
+    var w=document.createElement('div');w.className='vid';
+    var f=document.createElement('div');f.className='fr';
+    var i=document.createElement('iframe');i.src='https://www.youtube-nocookie.com/embed/'+v.id;i.title=v.title||'Video lesson';i.loading='lazy';i.allowFullscreen=true;i.setAttribute('allow','accelerometer; encrypted-media; gyroscope; picture-in-picture');
+    var p=document.createElement('p');p.textContent=v.title||'';
+    f.appendChild(i);w.appendChild(f);w.appendChild(p);g.appendChild(w)});
+  if(g.children.length)$('watch').style.display='block'})();
+
+/* ---------- testimonials (real ones only, from Supabase table "testimonials") ---------- */
+(async function(){
+  if(!sb)return;
+  try{
+    var r=await sb.from('testimonials').select('*').eq('published',true).order('position');
+    if(r.error||!r.data||!r.data.length)return;
+    var g=$('proofGrid');
+    r.data.forEach(function(t){
+      var d=document.createElement('div');d.className='card rv in';
+      var q=document.createElement('p');q.className='quote';q.textContent=t.quote||'';
+      var n=document.createElement('h3');n.style.fontSize='16px';n.textContent=t.name||'';
+      var ro=document.createElement('span');ro.className='note';ro.textContent=t.role||'';
+      d.appendChild(q);d.appendChild(n);d.appendChild(ro);g.appendChild(d)});
+    $('proof').style.display='block'
+  }catch(e){}})();
+
+/* ---------- newsletter ---------- */
+$('nf').addEventListener('submit',async function(e){
+  e.preventDefault();var m=$('nm'),em=$('ne').value.trim();
+  if($('nw').value)return;
+  setMsg(m,'Saving...');
+  if(!sb){setMsg(m,'Thanks! (Demo mode: connect Supabase to store emails.)',true);this.reset();return}
+  var r=await sb.from('waitlist').insert({email:em,source:'newsletter'});
+  if(r.error&&r.error.code==='23505'){setMsg(m,'You are already subscribed. Thank you!',true);return}
+  if(r.error){setMsg(m,'Could not save. Please try again.',false);return}
+  setMsg(m,'You are subscribed. Welcome!',true);this.reset()});
+
+/* ---------- calculator ---------- */
+function calc(){
+  var b=+$('cb').value||0,r=+$('cr').value||0,s=+$('cs').value||0,rr=+$('cx').value||0,risk=b*r/100,lots=s>0?risk/(s*10):0;
+  $('r1').textContent='$'+risk.toFixed(2);$('r2').textContent=lots.toFixed(2)+' lots';$('r3').textContent='$'+(risk*rr).toFixed(2)}
+['cb','cr','cs','cx'].forEach(function(i){$(i).addEventListener('input',calc)});calc();
+
+/* ---------- links + boot ---------- */
+if(WHATSAPP){$('wa').href=WHATSAPP;$('wch').href=WHATSAPP}else{$('wa').style.display='none';$('wch').style.display='none'}
+if(TELEGRAM)$('tg').href=TELEGRAM;
+if(!sb)$('demo').style.display='block';
+loadShop();
+
+/* ---------- install as app (PWA) ---------- */
+(function(){
+  var standalone=window.matchMedia&&matchMedia('(display-mode: standalone)').matches||window.navigator.standalone;
+  if('serviceWorker' in navigator&&location.protocol.indexOf('http')===0){
+    window.addEventListener('load',function(){navigator.serviceWorker.register('service-worker.js').catch(function(){})})}
+  if(standalone)return;
+  var dp=null,b=$('inst');
+  window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();dp=e;b.style.display='inline-block'});
+  b.addEventListener('click',async function(){
+    if(!dp)return;dp.prompt();try{await dp.userChoice}catch(e){}dp=null;b.style.display='none'});
+  window.addEventListener('appinstalled',function(){b.style.display='none'});
+  var ios=/iphone|ipad|ipod/i.test(navigator.userAgent)&&!window.MSStream;
+  if(ios){b.style.display='inline-block';b.addEventListener('click',function(){openM('ios')})}
+})();
+
+if(sb){
+  sb.auth.getSession().then(function(r){
+    var u=r.data.session?r.data.session.user:null;
+    setUser(u).then(function(){
+      if(u&&confirmedFlag){confirmedFlag=false;toast('Email confirmed. Welcome to TAMINADO FX, '+cur.name+'!','ok');cleanUrl()}
+      if(u&&recoveryFlag)openRecovery()})});
+  sb.auth.onAuthStateChange(function(ev,s){
+    setTimeout(function(){
+      if(ev==='PASSWORD_RECOVERY'){recoveryFlag=false;openRecovery()}
+      if(ev==='SIGNED_IN'&&s&&(!cur||cur.id!==s.user.id)){
+        setUser(s.user).then(function(){
+          if(confirmedFlag){confirmedFlag=false;toast('Email confirmed. Welcome to TAMINADO FX, '+cur.name+'!','ok');cleanUrl()}})}
+      if(ev==='SIGNED_OUT')setUser(null)},0)});
+}else{
+  try{var sv=store('tfx_user');if(sv)setUser(JSON.parse(sv));else renderAll()}catch(e){renderAll()}}
+
+/* ===================== PAYMENTS CONFIG: fill in YOUR details ===================== */
+var PAY={plan:'mastery',usd:20,mwk:35000,methods:{
+ airtel:{name:'Airtel Money',cur:'MWK',lines:['Send to: 0993316434']},
+ tnm:{name:'TNM Mpamba',cur:'MWK',lines:['Send to: 0896069619']},
+ nbm:{name:'National Bank of Malawi',cur:'MWK',lines:['Account number: 1011430992']},
+ binance:{name:'Binance (USDT)',cur:'USD',lines:['Binance Pay ID: 1132002627','Send the exact amount in USDT']}}};
+/* ================================================================================== */
+function esc2(t){return String(t==null?'':t).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+var pm=null,_ra=renderAll;
+renderAll=function(){_ra();var a=$('adm');if(a)a.style.display=cur&&cur.role==='admin'?'':'none'};
+function amtOf(k){return PAY.methods[k].cur==='USD'?'$'+PAY.usd:'MWK '+PAY.mwk.toLocaleString()}
+$('mprice').textContent='MWK '+PAY.mwk.toLocaleString();
+function openPay(){
+ if(!cur){openAuth('up');return}
+ pm=null;$('pmsg').textContent='';$('pinfo').textContent='Choose a payment method.';
+ $('pamt').textContent='Mastery access: MWK '+PAY.mwk.toLocaleString()+' (or $'+PAY.usd+' via Binance). Pay, then enter your transaction ID below.';
+ $('pms').innerHTML=Object.keys(PAY.methods).map(function(k){return '<button type="button" data-k="'+k+'">'+esc2(PAY.methods[k].name)+'</button>'}).join('');
+ $('pms').querySelectorAll('button').forEach(function(b){b.onclick=function(){
+  pm=b.dataset.k;$('pms').querySelectorAll('button').forEach(function(x){x.classList.toggle('on',x===b)});
+  $('pinfo').innerHTML='<b>Amount: '+esc2(amtOf(pm))+'</b><br>'+PAY.methods[pm].lines.map(esc2).join('<br>')}});
+ openM('pay')}
+function errText(e){
+  if(!e)return 'Unknown error';
+  var t=(e.message||String(e));
+  if(e.code)t+=' [code '+e.code+']';
+  if(e.details)t+=' - '+e.details;
+  if(e.hint)t+=' (hint: '+e.hint+')';
+  return t}
+function isMissingCol(e){var m=String(e&&e.message||'').toLowerCase();return !!e&&(e.code==='PGRST204'||e.code==='42703'||(m.indexOf('column')>-1&&(m.indexOf('schema cache')>-1||m.indexOf('does not exist')>-1)))}
+$('pform').addEventListener('submit',async function(e){
+ e.preventDefault();var m=$('pmsg'),btn=this.querySelector('button[type=submit]');
+ if(!pm){setMsg(m,'Please choose a payment method first.',false);return}
+ if(!sb){setMsg(m,'Payments are not connected yet.',false);return}
+ var ref=$('pref').value.trim();
+ if(!ref){setMsg(m,'Please enter your transaction ID.',false);return}
+ btn.disabled=true;setMsg(m,'Submitting...');
+ try{
+  /* use the live Supabase session so user_id always matches auth.uid() (needed by row level security) */
+  var ss=await sb.auth.getSession(),su=ss&&ss.data&&ss.data.session?ss.data.session.user:null;
+  if(!su){var se='You are not logged in (session expired). Please log in again.';console.error('Payment submit:',se,ss&&ss.error);setMsg(m,se,false);return}
+  var d=PAY.methods[pm];
+  var core={user_id:su.id,amount:d.cur==='USD'?PAY.usd:PAY.mwk,currency:d.cur,method:pm,reference:ref,plan:PAY.plan,status:'pending'};
+  var extra={email:su.email,sender:$('psender').value.trim()};
+  var row=Object.assign({},core,extra);
+  console.log('Submitting payment:',row);
+  var r=await sb.from('payments').insert(row);
+  if(r.error&&isMissingCol(r.error)){
+    console.warn('payments table is missing email/sender column, retrying without them:',r.error);
+    r=await sb.from('payments').insert(core)}
+  if(r.error){
+    console.error('Payment insert failed:',r.error);
+    var t=errText(r.error);
+    if(r.error.code==='23505')t='This transaction ID was already submitted. '+t;
+    else if(r.error.code==='42501'||/row-level security/i.test(r.error.message||''))t='The database blocked this insert (row level security policy). Run payments_setup.sql in Supabase. '+t;
+    setMsg(m,'Could not submit: '+t,false);return}
+  setMsg(m,'Payment submitted, waiting for approval.',true);$('pform').reset();
+ }catch(err){console.error('Payment submit exception:',err);setMsg(m,'Could not submit: '+errText(err),false)}
+ finally{btn.disabled=false}});
+
+/* ---------- My Payments ---------- */
+async function openMyPay(){
+ if(!cur){openAuth('in');return}
+ openM('mypm');var box=$('mypbody');box.textContent='Loading…';
+ if(!sb){box.textContent='Not connected.';return}
+ var r=await sb.from('payments').select('*').eq('user_id',cur.id);
+ if(r.error){console.error('My payments load failed:',r.error);box.textContent='Could not load: '+errText(r.error);return}
+ var rows=(r.data||[]).sort(function(x,y){return String(y.created_at||'').localeCompare(String(x.created_at||''))});
+ if(!rows.length){box.textContent='You have not submitted any payments yet.';return}
+ var lab={pending:'Pending approval',approved:'Approved',rejected:'Rejected'};
+ box.innerHTML='<table><tr><th>Date</th><th>Method</th><th>Amount</th><th>Reference</th><th>Status</th></tr>'+rows.map(function(p){
+  var nm=(PAY.methods[p.method]&&PAY.methods[p.method].name)||p.method;
+  return '<tr><td>'+esc2((p.created_at||'').slice(0,10))+'</td><td>'+esc2(nm)+'</td><td>'+esc2((p.currency||'')+' '+(p.amount==null?'':Number(p.amount).toLocaleString()))+'</td><td>'+esc2(p.reference)+'</td><td><span class="badge">'+esc2(lab[p.status]||p.status)+'</span></td></tr>'}).join('')+'</table>'}
+
+/* ---------- admin ---------- */
+var AT={payments:'Payments',members:'Members',lessons:'Lessons',books:'Books',courses:'Courses',testimonials:'Testimonials',messages:'Messages',waitlist:'Waitlist'};
+var CR={
+ lessons:{tb:'lessons',f:['position','tag','title','summary','min_plan','body']},
+ books:{tb:'books',f:['position','title','description','price_text','buy_url','min_plan','file_path','cover_path','published']},
+ courses:{tb:'courses',f:['position','title','description','buy_url','min_plan','cover_path','published']},
+ testimonials:{tb:'testimonials',f:['position','quote','name','role','published']}};
+async function admCrud(t){
+ var c=CR[t],box=$('abody'),eid=null,big={body:1,description:1,quote:1,summary:1};
+ var r=await sb.from(c.tb).select('*').order('position');
+ if(r.error){box.textContent='Could not load: '+r.error.message;return}
+ var rows=r.data||[];
+ box.innerHTML='<form id="cr" style="max-width:none">'+c.f.map(function(k){
+  var i='id="f_'+k+'"';
+  if(k==='published')return '<label class="note"><input type="checkbox" '+i+' style="width:auto;min-height:0" checked> published (visible on site)</label>';
+  if(k==='min_plan')return '<select '+i+'><option>free</option><option>mastery</option><option>coaching</option></select>';
+  if(k==='position')return '<input '+i+' type="number" placeholder="position (order, 1,2,3...)">';
+  return big[k]?'<textarea '+i+' rows="3" placeholder="'+k+'"></textarea>':'<input '+i+' placeholder="'+k+'">'}).join('')
+  +'<div><button class="btn p sm" type="submit">Save</button> <button class="btn g sm" type="button" id="crx">Clear</button> <span class="msg" id="crm"></span></div></form>'
+  +'<table><tr><th>#</th><th>Title</th><th></th></tr>'+rows.map(function(x){return '<tr><td>'+esc2(x.position)+'</td><td>'+esc2(x.title||x.name||x.quote)+(x.published===false?' <i>(hidden)</i>':'')+'</td><td><button class="btn g" data-e="'+x.id+'">Edit</button><button class="btn g" data-d="'+x.id+'">Delete</button></td></tr>'}).join('')+'</table>';
+ $('crx').onclick=function(){eid=null;$('cr').reset()};
+ box.querySelectorAll('[data-e]').forEach(function(b){b.onclick=function(){
+  var x=rows.find(function(y){return String(y.id)===b.dataset.e});eid=x.id;
+  c.f.forEach(function(k){var e=$('f_'+k);if(k==='published')e.checked=!!x[k];else e.value=x[k]==null?'':x[k]});$('cr').scrollIntoView({block:'nearest'})}});
+ box.querySelectorAll('[data-d]').forEach(function(b){b.onclick=async function(){
+  if(!confirm('Delete this item?'))return;
+  var d=await sb.from(c.tb).delete().eq('id',b.dataset.d);if(d.error)alert('Failed: '+d.error.message);admCrud(t)}});
+ $('cr').onsubmit=async function(e){e.preventDefault();var o={};
+  c.f.forEach(function(k){var v=$('f_'+k);o[k]=k==='published'?v.checked:k==='position'?(+v.value||0):v.value.trim()});
+  var q=eid?await sb.from(c.tb).update(o).eq('id',eid):await sb.from(c.tb).insert(o);
+  if(q.error){setMsg($('crm'),q.error.message,false);return}admCrud(t)}}
+function openAdmin(){if(!cur||cur.role!=='admin')return;
+ $('atabs').innerHTML=Object.keys(AT).map(function(k){return '<button data-t="'+k+'">'+AT[k]+'</button>'}).join('');
+ $('atabs').querySelectorAll('button').forEach(function(b){b.onclick=function(){admTab(b.dataset.t)}});
+ openM('adminm');admTab('payments')}
+async function admTab(t){
+ $('atabs').querySelectorAll('button').forEach(function(b){b.classList.toggle('on',b.dataset.t===t)});
+ var box=$('abody');box.textContent='Loading…';if(!sb){box.textContent='Connect Supabase to use the admin panel.';return}if(CR[t])return admCrud(t);
+ var tb={payments:'payments',members:'profiles',messages:'contact_messages',waitlist:'waitlist'}[t];
+ var r=await sb.from(tb).select('*').order(t==='members'?'id':'created_at',{ascending:false}).limit(200);
+ if(r.error){box.textContent='Could not load: '+r.error.message;return}
+ var rows=r.data||[];if(!rows.length){box.textContent='Nothing here yet.';return}
+ var h='<table>';
+ if(t==='payments'){h+='<tr><th>Date</th><th>User</th><th>Method</th><th>Amount</th><th>Ref</th><th>Status</th><th></th></tr>'+rows.map(function(p){
+  return '<tr><td>'+esc2((p.created_at||'').slice(0,10))+'</td><td>'+esc2(p.email||p.user_id)+'<br>'+esc2(p.sender||'')+'</td><td>'+esc2(p.method)+'</td><td>'+esc2(p.currency+' '+p.amount)+'</td><td>'+esc2(p.reference)+'</td><td>'+esc2(p.status)+'</td><td>'+(p.status==='pending'?'<button class="btn p" data-a="ok" data-i="'+p.id+'">Approve</button><button class="btn g" data-a="no" data-i="'+p.id+'">Reject</button>':'')+'</td></tr>'}).join('')}
+ else if(t==='members'){h+='<tr><th>Name</th><th>Plan</th><th>Role</th></tr>'+rows.map(function(m){
+  return '<tr><td>'+esc2(m.full_name||m.id)+'</td><td><select data-m="'+m.id+'">'+Object.keys(RANK).map(function(k){return '<option'+(k===m.plan?' selected':'')+'>'+k+'</option>'}).join('')+'</select></td><td><select data-r="'+m.id+'"><option'+(m.role==='admin'?'':' selected')+'>user</option><option'+(m.role==='admin'?' selected':'')+'>admin</option></select></td></tr>'}).join('')}
+ else{var ks=Object.keys(rows[0]).filter(function(k){return k!=='id'});h+='<tr>'+ks.map(function(k){return '<th>'+esc2(k)+'</th>'}).join('')+'</tr>'+rows.map(function(x){return '<tr>'+ks.map(function(k){return '<td>'+esc2(x[k])+'</td>'}).join('')+'</tr>'}).join('')}
+ box.innerHTML=h+'</table>';
+ box.querySelectorAll('button[data-a]').forEach(function(b){b.onclick=async function(){
+  var id=b.dataset.i,p=rows.find(function(x){return String(x.id)===id}),ok=b.dataset.a==='ok';b.disabled=true;
+  var u=await sb.from('payments').update({status:ok?'approved':'rejected'}).eq('id',id);
+  if(!u.error&&ok)u=await sb.from('profiles').update({plan:p.plan||'mastery'}).eq('id',p.user_id);
+  if(u.error)alert('Failed: '+u.error.message);admTab('payments')}});
+ box.querySelectorAll('select[data-m]').forEach(function(sel){sel.onchange=async function(){
+  var u=await sb.from('profiles').update({plan:sel.value}).eq('id',sel.dataset.m);if(u.error)alert('Failed: '+u.error.message)}});
+ box.querySelectorAll('select[data-r]').forEach(function(sel){sel.onchange=async function(){var u=await sb.from('profiles').update({role:sel.value}).eq('id',sel.dataset.r);if(u.error)alert('Failed: '+u.error.message)}})}
+</script>
+</body>
+</html>
