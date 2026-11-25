@@ -477,7 +477,8 @@ h1,h2,h3{overflow-wrap:anywhere}
 .p2pov .ptop{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 16px;padding-top:calc(10px + env(safe-area-inset-top,0px));background:var(--surface);border-bottom:1px solid var(--line)}
 .p2pov .ptop b{font-weight:800;letter-spacing:.14em;font-size:15px}.p2pov .ptop b span{color:var(--gold)}
 .p2pov .ptop button{border:1px solid var(--line);background:transparent;color:var(--text);border-radius:10px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
-.p2pov iframe{flex:1;width:100%;border:0;background:var(--bg)}
+.p2pov iframe{flex:1;width:100%;min-height:0;min-width:0;border:0;background:var(--bg)}
+@media(max-width:600px){.p2pov .ptop{padding-left:12px;padding-right:12px}.p2pov .ptop b{font-size:13px}.p2pov .ptop button{min-height:42px}}
 @media print{.p2pov{display:none!important}}
 </style>
 <style id="acss">
@@ -627,6 +628,46 @@ section{scroll-margin-top:72px}
   .wrap{padding:0 28px}
   #academy .acapp{padding:18px}
 }
+</style>
+
+
+<style id="academy-mobile-final">
+/* Final mobile layout for TAMINADO Academy */
+#academy, #academy .wrap, #academy .acapp, #academy #acmain, #academy #acside {min-width:0;max-width:100%;}
+#academy .acapp {grid-template-columns:minmax(220px,270px) minmax(0,1fr);}
+#academy #acmain {overflow-wrap:anywhere;}
+#academy .grid {grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));}
+#academy .card, #academy .acbox {min-width:0;max-width:100%;}
+#academy img, #academy video, #academy iframe {max-width:100%;}
+#academy table {width:100%;max-width:100%;}
+#academy input, #academy select, #academy textarea {box-sizing:border-box;max-width:100%;}
+@media (max-width: 760px) {
+  #academy .acapp {display:flex;flex-direction:column;gap:14px;padding:12px;margin-top:18px;border-radius:18px;}
+  #academy #acside {position:static;display:flex;flex-direction:column;gap:8px;width:100%;}
+  #academy #acside .acbox {display:flex;flex-wrap:nowrap;align-items:center;gap:7px;width:100%;overflow-x:auto;overflow-y:hidden;white-space:nowrap;margin:0;padding:10px;border-radius:14px;-webkit-overflow-scrolling:touch;scrollbar-width:thin;}
+  #academy #acside .acbox h6 {display:none!important;}
+  #academy #acside .acbox a {display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;min-height:40px;padding:9px 13px;margin:0;border:1px solid var(--line);border-radius:999px;background:var(--surface);font-size:13px;white-space:nowrap;transform:none;box-shadow:none;}
+  #academy #acside .acbox a:before {width:5px;height:5px;margin-right:7px;}
+  #academy #acside .acbox a.on {border-color:var(--gold);background:var(--glow);box-shadow:none;}
+  #academy #acmain {width:100%;padding:2px 0;overflow-x:hidden;}
+  #academy #acmain h1 {font-size:clamp(21px,6vw,27px);line-height:1.2;overflow-wrap:anywhere;}
+  #academy #acmain h2 {font-size:clamp(19px,5vw,23px);}
+  #academy .grid {grid-template-columns:minmax(0,1fr);gap:11px;}
+  #academy .card {padding:16px;border-radius:15px;}
+  #academy input, #academy select, #academy textarea {width:100%;min-height:44px;margin:5px 0;font-size:16px;}
+  #academy button, #academy .btn, #academy a.btn {min-height:42px;max-width:100%;}
+  #academy table {display:block;overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch;}
+  #academy th, #academy td {font-size:12px;padding:8px 9px;}
+  #academy .acv {min-height:120px;padding:18px 12px;}
+  #academy .acst {font-size:24px;}
+}
+@media (max-width:380px) {
+  #academy .acapp {padding:9px;}
+  #academy #acside .acbox {padding:8px;}
+  #academy #acside .acbox a {font-size:12px;padding:8px 10px;}
+}
+/* Prevent long labels and tables elsewhere from widening phone screens */
+html, body {max-width:100%;overflow-x:hidden;}
 </style>
 
 </head>
