@@ -2720,192 +2720,187 @@ if(cur){afterProfile().then(renderAll)}
 </div>
 <script>
 (function(){
-var KEY='tfx_p2p_v2',ov=document.getElementById('p2pov'),root=document.getElementById('p2pbody'),sheet=document.getElementById('px-sheet'),tst=document.getElementById('px-toast');
-var ASSETS={USDT:{p:1,d:2},USDC:{p:1,d:2},BTC:{p:90000,d:6},ETH:{p:3000,d:5},BNB:{p:600,d:4}},CG={BTC:'bitcoin',ETH:'ethereum',BNB:'binancecoin'};
+var KEY='tfx_p2p_v3',ov=document.getElementById('p2pov'),root=document.getElementById('p2pbody'),sheet=document.getElementById('px-sheet'),tst=document.getElementById('px-toast');
+var ASSETS={USDT:{p:1,d:2,nets:['TRC20','BEP20','ERC20']},USDC:{p:1,d:2,nets:['ERC20','BEP20','TRC20']},BTC:{p:90000,d:6,nets:['Bitcoin']},ETH:{p:3000,d:5,nets:['ERC20']},BNB:{p:600,d:4,nets:['BEP20']}},CG={BTC:'bitcoin',ETH:'ethereum',BNB:'binancecoin'};
 var PAYS=['Airtel Money','TNM Mpamba','National Bank of Malawi','Standard Bank','FDH Bank','NBS Bank'];
 var FX={mwk:1750,live:false,t:0,cg:false};
-var MER=[
- {id:'m1',n:'KwachaDesk',c:99.2,o:2140,t:3,g:1.4,s:1.1,liq:9000,pay:[0,1,2],lo:5000,hi:3000000},
- {id:'m2',n:'LilongweFX',c:98.4,o:1275,t:5,g:1.9,s:1.6,liq:6000,pay:[0,3,4],lo:10000,hi:2500000},
- {id:'m3',n:'BlantyreTrade',c:97.8,o:864,t:6,g:1.2,s:1.8,liq:4500,pay:[1,2,5],lo:3000,hi:1500000},
- {id:'m4',n:'MzuzuMarket',c:99.6,o:3090,t:2,g:2.2,s:1.3,liq:12000,pay:[0,1,2,3,4],lo:2000,hi:4000000},
- {id:'m5',n:'ZombaCrypto',c:96.9,o:402,t:9,g:1.1,s:2.2,liq:2500,pay:[0,5],lo:1000,hi:900000},
- {id:'m6',n:'MalawiPay',c:98.9,o:1730,t:4,g:1.7,s:1.4,liq:7500,pay:[1,3,4,5],lo:5000,hi:2000000}];
-var REPLIES=['Hello! Please complete the payment inside the time window.','Noted. I am online and ready.','Thanks, I am checking now.','Please use the order reference when you pay.','Got it, one moment.'];
-var S=load(),V={tab:'market',side:'buy',asset:'USDT',pay:'',q:'',order:null,trade:null},timer=null,tmr2=null;
+function defSt(){var a={};Object.keys(ASSETS).forEach(function(k){a[k]={on:k==='USDT'?1:0,bm:2,sm:1.5,bp:'',sp:'',lo:5000,hi:2000000}});return{win:15,wa:'',assets:a,pay:[],dep:{}}}
+var ST=defSt(),ORD=[],MODE='local',SIG='',V={tab:'market',side:'buy',asset:'USDT',order:null,trade:null},tm1=null,tm2=null,busy=false;
 
-function load(){var d=null;try{d=JSON.parse(localStorage.getItem(KEY))}catch(e){}if(!d||typeof d!=='object')d={};
-  return{orders:d.orders||[],ads:d.ads||[],pm:d.pm||[],wallet:d.wallet||{USDT:500,USDC:200,BTC:.01,ETH:.2,BNB:1}}}
-function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
 function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
 function $(i){return document.getElementById(i)}
 function mwk(n){return 'MWK '+Math.round(n).toLocaleString('en-US')}
 function qty(n,a){return (+n).toFixed(ASSETS[a].d)}
 function mkt(a){return ASSETS[a].p*FX.mwk}
-function toast(t){tst.textContent=t;tst.style.display='block';clearTimeout(tst._t);tst._t=setTimeout(function(){tst.style.display='none'},2600)}
-function hm(ts){var d=new Date(ts);return d.toLocaleTimeString('en',{hour:'2-digit',minute:'2-digit'})}
+function hm(ts){return new Date(ts).toLocaleTimeString('en',{hour:'2-digit',minute:'2-digit'})}
+function toast(t){tst.textContent=t;tst.style.display='block';clearTimeout(tst._t);tst._t=setTimeout(function(){tst.style.display='none'},2800)}
+function uid(){return (typeof cur!=='undefined'&&cur)?cur.id:null}
+function isAdmin(){return typeof cur!=='undefined'&&!!cur&&cur.role==='admin'}
+function L(){try{var d=JSON.parse(localStorage.getItem(KEY));return d&&typeof d==='object'?d:{}}catch(e){return{}}}
+function Ls(d){try{localStorage.setItem(KEY,JSON.stringify(d))}catch(e){}}
+function merge(a,b){var o=defSt();if(!b)return o;o.win=+b.win||15;o.wa=b.wa||'';o.pay=Array.isArray(b.pay)?b.pay:[];o.dep=b.dep||{};Object.keys(o.assets).forEach(function(k){if(b.assets&&b.assets[k])Object.assign(o.assets[k],b.assets[k])});return o}
 
-/* ----- market data ----- */
-function price(m,side,a){var off=(a.charCodeAt(0)%3)*.1;return side==='buy'?mkt(a)*(1+(m.g+off)/100):mkt(a)*(1-(m.s+off)/100)}
-function ads(){var q=parseFloat(V.q)||0,out=[];
-  MER.forEach(function(m){var pays=m.pay.map(function(i){return PAYS[i]});if(V.pay&&pays.indexOf(V.pay)<0)return;
-    var pr=price(m,V.side,V.asset),av=m.liq/ASSETS[V.asset].p,hi=Math.min(m.hi,av*pr);if(hi<m.lo)return;if(q&&(q<m.lo||q>hi))return;
-    out.push({m:m,price:pr,av:av,lo:m.lo,hi:hi,pays:pays})});
-  out.sort(function(a,b){return V.side==='buy'?a.price-b.price:b.price-a.price});return out}
-function findAd(id){return ads().filter(function(x){return x.m.id===id})[0]}
-function mdet(m,pm){var h=0,s=m.id+pm;for(var i=0;i<s.length;i++)h=(h*31+s.charCodeAt(i))>>>0;var n=('0000000000'+h).slice(-10);
-  var mob=pm.indexOf('Airtel')>-1?'099'+n.slice(0,7):pm.indexOf('TNM')>-1?'088'+n.slice(0,7):n;return{name:m.n+' Trading',acct:mob}}
+/* ----- data layer (Supabase when ready, device storage otherwise) ----- */
+async function loadSettings(){
+  if(typeof sb!=='undefined'&&sb){try{var r=await tmo(sb.from('tfx_p2p_settings').select('data').eq('id',1).maybeSingle(),7000);if(!r.error){MODE='cloud';ST=merge(null,r.data&&r.data.data);return}}catch(e){}}
+  MODE='local';ST=merge(null,L().settings)}
+async function saveSettings(){var d=L();d.settings=ST;Ls(d);
+  if(MODE==='cloud'){var r=await tmo(sb.from('tfx_p2p_settings').upsert({id:1,data:ST,updated_at:new Date().toISOString()}),8000);if(r.error)throw r.error}}
+function fromRow(r){return Object.assign({},r.data,{id:r.id,status:r.status,uid:r.user_id})}
+async function loadOrders(){
+  if(MODE==='cloud'&&uid()){try{var q=sb.from('tfx_p2p_orders').select('*').order('created_at',{ascending:false}).limit(200);if(!isAdmin())q=q.eq('user_id',uid());var r=await tmo(q,8000);if(!r.error){ORD=r.data.map(fromRow);return true}}catch(e){}}
+  ORD=(L().orders||[]).filter(function(o){return isAdmin()||o.uid===uid()});return MODE==='local'}
+async function putOrder(o,isNew){var d=L();d.orders=d.orders||[];var i=d.orders.findIndex(function(x){return x.id===o.id});if(i>-1)d.orders[i]=o;else d.orders.unshift(o);
+  if(MODE==='cloud'){var body={status:o.status,data:o,updated_at:new Date().toISOString()},r;
+    if(isNew)r=await tmo(sb.from('tfx_p2p_orders').insert(Object.assign({id:o.id,user_id:o.uid,email:o.email||''},body)),8000);else r=await tmo(sb.from('tfx_p2p_orders').update(body).eq('id',o.id),8000);
+    if(r.error)throw r.error}
+  Ls(d);var j=ORD.findIndex(function(x){return x.id===o.id});if(j>-1)ORD[j]=o;else ORD.unshift(o)}
+async function mutate(id,fn){if(busy)return;busy=true;try{await loadOrders();var o=ORD.filter(function(x){return x.id===id})[0];if(!o)return;if(fn(o)===false)return;await putOrder(o,false);SIG=sig();refreshOrder()}catch(e){toast('Could not save. Check your connection and try again.')}finally{busy=false}}
+
+/* ----- prices ----- */
+function cfg(a){return ST.assets[a]}
+function price(a,side){var c=cfg(a);if(side==='buy'){var p=parseFloat(c.bp);return p>0?p:mkt(a)*(1+(+c.bm||0)/100)}var s=parseFloat(c.sp);return s>0?s:mkt(a)*(1-(+c.sm||0)/100)}
+function enabled(){return Object.keys(ASSETS).filter(function(k){return ST.assets[k].on})}
+function buyMethods(){var s={};ST.pay.forEach(function(p){s[p.m]=1});return Object.keys(s)}
+function ready(side,a){if(!ST.assets[a].on)return 'This asset is not available right now.';if(side==='buy'&&!ST.pay.length)return 'TAMINADO is still adding payment accounts. Please check back soon.';if(side==='sell'&&!(ST.dep[a]&&ST.dep[a].addr))return 'TAMINADO has not set a '+a+' deposit address yet. Please check back soon.';return ''}
 function fetchRates(){if(Date.now()-FX.t<3e5)return;FX.t=Date.now();
-  fetch('https://open.er-api.com/v6/latest/USD').then(function(r){return r.json()}).then(function(d){if(d&&d.rates&&d.rates.MWK>100){FX.mwk=d.rates.MWK;FX.live=true;softRender()}}).catch(function(){});
-  fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,binancecoin&vs_currencies=usd').then(function(r){return r.json()}).then(function(d){
-    Object.keys(CG).forEach(function(k){if(d[CG[k]]&&d[CG[k]].usd)ASSETS[k].p=d[CG[k]].usd});FX.cg=true;softRender()}).catch(function(){})}
-function softRender(){if(!ov.classList.contains('show'))return;if(V.tab==='market'&&!V.order)rList()}
+  fetch('https://open.er-api.com/v6/latest/USD').then(function(r){return r.json()}).then(function(d){if(d&&d.rates&&d.rates.MWK>100){FX.mwk=d.rates.MWK;FX.live=true;if(V.tab==='market'&&!V.order)rMain()}}).catch(function(){});
+  fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,binancecoin&vs_currencies=usd').then(function(r){return r.json()}).then(function(d){Object.keys(CG).forEach(function(k){if(d[CG[k]]&&d[CG[k]].usd)ASSETS[k].p=d[CG[k]].usd});FX.cg=true;if(V.tab==='market'&&!V.order)rMain()}).catch(function(){})}
 
-/* ----- rendering ----- */
-function render(){var act=S.orders.filter(function(o){return o.status==='pending'||o.status==='paid'}).length;
-  var h='<div class="px-in"><div class="px-demo"><b>Demo mode.</b> Merchants, payment details and order releases are simulated on this device. No real money or crypto moves until your live P2P backend is connected.</div>';
-  if(V.order){h+=rOrder(V.order)}else{
-    h+='<div class="px-tabs">'+[['market','Market'],['orders','My orders'+(act?'<b>'+act+'</b>':'')],['ads','My ads'],['pay','Payment methods']].map(function(t){return'<button type="button" class="'+(V.tab===t[0]?'on':'')+'" data-a="tab" data-v="'+t[0]+'">'+t[1]+'</button>'}).join('')+'</div>';
-    h+=V.tab==='market'?rMarket():V.tab==='orders'?rOrders():V.tab==='ads'?rAds():rPay()}
-  root.innerHTML=h+'</div>';if(V.tab==='market'&&!V.order)rList()}
-function rMarket(){
-  var h='<div class="px-wal">'+Object.keys(ASSETS).map(function(k){return'<span>'+k+' <b>'+qty(S.wallet[k]||0,k)+'</b></span>'}).join('')+'</div>';
+/* ----- main render ----- */
+function sig(){return ORD.map(function(o){return o.id+o.status+(o.chat||[]).length}).join('|')}
+function render(){
+  if(V.tab==='settings'&&!isAdmin())V.tab='market';
+  var admin=isAdmin(),need=ORD.filter(function(o){return o.status==='paid'}).length,mine=ORD.filter(function(o){return o.status==='pending'||o.status==='paid'}).length;
+  var h='<div class="px-in">'+(MODE==='local'?'<div class="px-demo"><b>Server not connected.</b> Orders are saved on this device only'+(admin?'. Run <b>p2p-setup.sql</b> in Supabase so customer orders reach you.':'.')+'</div>':'');
+  if(V.order)h+=rOrder(V.order);
+  else{var tabs=[['market','Market'],['orders',admin?'All orders'+(need?'<b>'+need+'</b>':''):'My orders'+(mine?'<b>'+mine+'</b>':'')]];if(admin)tabs.push(['settings','Settings']);
+    h+='<div class="px-tabs">'+tabs.map(function(t){return'<button type="button" class="'+(V.tab===t[0]?'on':'')+'" data-a="tab" data-v="'+t[0]+'">'+t[1]+'</button>'}).join('')+'</div><div id="px-main"></div>'}
+  root.innerHTML=h+'</div>';if(!V.order)rMain()}
+function rMain(){var m=$('px-main');if(!m)return;if(V.tab==='settings'&&!isAdmin())V.tab='market';m.innerHTML=V.tab==='market'?rMarket():V.tab==='orders'?rOrders():rSettings()}
+
+function rMarket(){var en=enabled();
+  var h='<div class="px-card" style="display:flex;gap:12px;align-items:center"><div class="px-av" style="width:46px;height:46px;font-size:20px">T</div><div><b style="font-size:17px">TAMINADO P2P</b><div class="note" style="font-size:12.5px">Official TAMINADO FX desk · Buy and sell crypto in kwacha</div></div></div>';
+  if(!en.length)return h+'<div class="px-empty">The P2P desk is being set up. Please check back soon.</div>';
+  if(en.indexOf(V.asset)<0)V.asset=en[0];var a=V.asset,c=cfg(a),pr=price(a,V.side),bad=ready(V.side,a);
   h+='<div class="px-seg"><button type="button" class="buy'+(V.side==='buy'?' on':'')+'" data-a="side" data-v="buy">Buy</button><button type="button" class="sell'+(V.side==='sell'?' on':'')+'" data-a="side" data-v="sell">Sell</button></div>';
-  h+='<div class="px-chips">'+Object.keys(ASSETS).map(function(k){return'<button type="button" class="'+(V.asset===k?'on':'')+'" data-a="asset" data-v="'+k+'">'+k+'</button>'}).join('')+'</div>';
-  h+='<div class="px-filters"><input id="px-q" type="number" inputmode="numeric" placeholder="Amount in MWK" value="'+esc(V.q)+'"><select id="px-pf"><option value="">All payment methods</option>'+PAYS.map(function(p){return'<option'+(V.pay===p?' selected':'')+'>'+p+'</option>'}).join('')+'</select></div>';
-  h+='<p class="px-rate" id="px-rate"></p><div id="px-list"></div>';return h}
-function rList(){var box=$('px-list');if(!box)return;var L=ads();
-  var r=$('px-rate');if(r)r.textContent='Market: 1 '+V.asset+' ≈ '+mwk(mkt(V.asset))+(FX.live?' · live USD/MWK rate':' · approximate rate')+(V.asset==='USDT'||V.asset==='USDC'||FX.cg?'':' · indicative crypto price');
-  if(!L.length){box.innerHTML='<div class="px-empty">No ads match your filters. Try another amount or payment method.</div>';return}
-  box.innerHTML=L.map(function(a){var m=a.m;return'<div class="px-ad"><div class="px-m"><div class="px-av">'+esc(m.n[0])+'</div><div><b>'+esc(m.n)+'</b><small>'+m.c+'% completion · '+m.o.toLocaleString('en-US')+' orders · ~'+m.t+' min</small></div></div>'+
-    '<div class="px-pr">'+mwk(a.price)+'<br><small>per '+V.asset+'</small></div>'+
-    '<div class="px-meta"><span>Available <b>'+qty(a.av,V.asset)+' '+V.asset+'</b></span><span>Limit <b>'+mwk(a.lo)+' – '+mwk(a.hi)+'</b></span></div>'+
-    '<div class="px-pays">'+a.pays.map(function(p){return'<em>'+esc(p)+'</em>'}).join('')+'</div>'+
-    '<div class="px-go"><button type="button" class="px-btn '+V.side+'" data-a="trade" data-id="'+m.id+'">'+(V.side==='buy'?'Buy ':'Sell ')+V.asset+'</button></div></div>'}).join('')}
+  h+='<div class="px-chips">'+en.map(function(k){return'<button type="button" class="'+(a===k?'on':'')+'" data-a="asset" data-v="'+k+'">'+k+'</button>'}).join('')+'</div>';
+  h+='<p class="px-rate" style="margin-top:10px">Market: 1 '+a+' ≈ '+mwk(mkt(a))+(FX.live?' · live USD/MWK rate':' · approximate rate')+(a==='USDT'||a==='USDC'||FX.cg?'':' · indicative crypto price')+'</p>';
+  var pays=V.side==='buy'?buyMethods():PAYS;
+  h+='<div class="px-ad"><div class="px-m"><div class="px-av">T</div><div><b>TAMINADO</b><small>'+(V.side==='buy'?'You buy from TAMINADO':'You sell to TAMINADO')+'</small></div></div><div class="px-pr">'+mwk(pr)+'<br><small>per '+a+'</small></div>'+
+  '<div class="px-meta"><span>Limit <b>'+mwk(c.lo)+' – '+mwk(c.hi)+'</b></span><span>'+(V.side==='buy'?'Pay within <b>'+ST.win+' min</b>':'Network <b>'+esc((ST.dep[a]&&ST.dep[a].net)||ASSETS[a].nets[0])+'</b>')+'</span></div>'+
+  '<div class="px-pays">'+(V.side==='buy'?'':'<small class="note" style="width:100%;font-size:12px">You can be paid via:</small>')+pays.map(function(p){return'<em>'+esc(p)+'</em>'}).join('')+'</div>'+
+  '<div class="px-go">'+(bad?'<div class="px-empty" style="padding:14px">'+esc(bad)+'</div>':'<button type="button" class="px-btn '+V.side+'" data-a="trade">'+(V.side==='buy'?'Buy ':'Sell ')+a+'</button>')+'</div></div>';
+  return h+'<p class="note" style="font-size:12px;margin-top:6px">Crypto prices move quickly. Your price is locked when you place the order. Only trade what you can afford to lose.</p>'}
 
-function rOrders(){var L=S.orders;if(!L.length)return'<div class="px-empty">No orders yet. Pick an ad in the Market tab to place your first order.</div>';
-  return L.map(function(o){return'<div class="px-ord" data-a="order" data-id="'+o.id+'"><div><b>'+(o.side==='buy'?'Buy ':'Sell ')+qty(o.qty,o.asset)+' '+o.asset+'</b><small>'+esc(o.mname)+' · '+mwk(o.mwk)+' · '+new Date(o.created).toLocaleDateString('en',{day:'numeric',month:'short'})+' '+hm(o.created)+'</small></div><span class="px-pill '+o.status+'">'+stText(o)+'</span></div>'}).join('')+
-  '<p style="text-align:center;margin-top:18px"><button type="button" class="px-btn danger" style="display:inline-block;width:auto;padding:10px 18px;font-size:13px" data-a="reset">Reset P2P demo data</button></p>'}
-function stText(o){return{pending:o.side==='buy'?'Awaiting your payment':'Awaiting buyer payment',paid:o.side==='buy'?'Waiting for release':'Confirm receipt',completed:'Completed',cancelled:'Cancelled',appeal:'Under appeal'}[o.status]}
+function stText(o,adm){return{pending:o.side==='buy'?(adm?'Awaiting customer payment':'Awaiting your payment'):(adm?'Awaiting customer crypto':'Send your crypto'),paid:adm?'Needs your action':'Waiting for TAMINADO',completed:'Completed',cancelled:'Cancelled'}[o.status]}
+function rOrders(){var adm=isAdmin();
+  if(!uid())return'<div class="px-empty">Log in to see your orders.<br><br><button type="button" class="px-btn gold" style="display:inline-block;width:auto;padding:10px 20px" data-a="login">Log in</button></div>';
+  if(!ORD.length)return'<div class="px-empty">'+(adm?'No customer orders yet.':'No orders yet. Place your first order in the Market tab.')+'</div>';
+  return ORD.map(function(o){return'<div class="px-ord" data-a="order" data-id="'+esc(o.id)+'"><div><b>'+(o.side==='buy'?'Buy ':'Sell ')+qty(o.qty,o.asset)+' '+o.asset+'</b><small>'+(adm?esc(o.email||'Customer')+' · ':'')+mwk(o.mwk)+' · '+new Date(o.created).toLocaleDateString('en',{day:'numeric',month:'short'})+' '+hm(o.created)+'</small></div><span class="px-pill '+o.status+'">'+stText(o,adm)+'</span></div>'}).join('')}
 
-function rAds(){var h='<div class="px-card"><h3>Post an ad</h3><p class="note" style="margin:0 0 10px;font-size:12.5px">Ads are saved on this device. They go live to other traders once your live P2P backend is connected.</p><div class="px-form">'+
-  '<div class="px-row"><label>I want to<select id="pa-side"><option value="sell">Sell crypto</option><option value="buy">Buy crypto</option></select></label><label>Asset<select id="pa-asset">'+Object.keys(ASSETS).map(function(k){return'<option>'+k+'</option>'}).join('')+'</select></label></div>'+
-  '<div class="px-row"><label>Margin vs market (%)<input id="pa-mg" type="number" step="0.1" value="1.5"></label><label>Total amount<input id="pa-amt" type="number" step="any" placeholder="e.g. 100"></label></div>'+
-  '<div class="px-row"><label>Min order (MWK)<input id="pa-lo" type="number" value="5000"></label><label>Max order (MWK)<input id="pa-hi" type="number" value="500000"></label></div>'+
-  '<div class="px-chk">'+PAYS.map(function(p,i){return'<label><input type="checkbox" class="pa-p" value="'+p+'"'+(i<2?' checked':'')+'>'+p+'</label>'}).join('')+'</div><div class="px-err" id="pa-err"></div>'+
-  '<button type="button" class="px-btn gold" data-a="postad">Post ad</button></div></div>';
-  if(!S.ads.length)return h+'<div class="px-empty">You have no ads yet.</div>';
-  return h+S.ads.map(function(a){var pr=a.side==='buy'?mkt(a.asset)*(1-a.mg/100):mkt(a.asset)*(1+a.mg/100);
-    return'<div class="px-card"><div style="display:flex;justify-content:space-between;gap:10px"><div><b>'+(a.side==='buy'?'Buying ':'Selling ')+esc(a.asset)+'</b><div class="note" style="font-size:12.5px">'+qty(a.amt,a.asset)+' '+esc(a.asset)+' · '+mwk(a.lo)+' – '+mwk(a.hi)+'<br>'+a.pays.map(esc).join(', ')+'</div></div><div style="text-align:right"><b>'+mwk(pr)+'</b><div class="note" style="font-size:12px">'+(a.mg>=0?'+':'')+a.mg+'% · '+(a.on?'Online':'Offline')+'</div></div></div>'+
-    '<div class="px-row" style="margin-top:10px"><button type="button" class="px-btn ghost" data-a="adtoggle" data-id="'+a.id+'">'+(a.on?'Set offline':'Set online')+'</button><button type="button" class="px-btn danger" data-a="addel" data-id="'+a.id+'">Delete</button></div></div>'}).join('')}
+/* ----- admin settings ----- */
+function rSettings(){var h='<div class="px-card"><h3>Prices &amp; limits</h3><p class="note" style="font-size:12.5px;margin:0 0 10px">Leave a fixed price empty to use the live market rate plus your margin. Margins are % over market (buy) or under market (sell).</p>';
+  Object.keys(ASSETS).forEach(function(k){var c=cfg(k);h+='<div class="px-box"><label class="px-chk" style="margin-bottom:8px"><label><input type="checkbox" id="st-'+k+'-on"'+(c.on?' checked':'')+'><b>'+k+'</b> available</label></label><div class="px-form"><div class="px-row"><label>Buy margin %<input id="st-'+k+'-bm" type="number" step="0.1" value="'+esc(c.bm)+'"></label><label>Sell margin %<input id="st-'+k+'-sm" type="number" step="0.1" value="'+esc(c.sm)+'"></label></div>'+
+    '<div class="px-row"><label>Fixed buy price (MWK)<input id="st-'+k+'-bp" type="number" step="any" value="'+esc(c.bp)+'" placeholder="auto"></label><label>Fixed sell price (MWK)<input id="st-'+k+'-sp" type="number" step="any" value="'+esc(c.sp)+'" placeholder="auto"></label></div>'+
+    '<div class="px-row"><label>Min order (MWK)<input id="st-'+k+'-lo" type="number" value="'+esc(c.lo)+'"></label><label>Max order (MWK)<input id="st-'+k+'-hi" type="number" value="'+esc(c.hi)+'"></label></div>'+
+    '<div class="px-row"><label>Deposit network<select id="st-'+k+'-net">'+ASSETS[k].nets.map(function(n){return'<option'+(ST.dep[k]&&ST.dep[k].net===n?' selected':'')+'>'+n+'</option>'}).join('')+'</select></label><label>Your '+k+' deposit address<input id="st-'+k+'-addr" value="'+esc((ST.dep[k]&&ST.dep[k].addr)||'')+'" placeholder="Where customers send '+k+'"></label></div></div></div>'});
+  h+='<div class="px-form"><div class="px-row"><label>Payment window (minutes)<input id="st-win" type="number" min="5" max="120" value="'+esc(ST.win)+'"></label><label>Support WhatsApp (optional)<input id="st-wa" value="'+esc(ST.wa)+'" placeholder="e.g. 265999123456"></label></div><div class="px-err" id="st-err"></div><button type="button" class="px-btn gold" data-a="savest">Save settings</button></div></div>';
+  h+='<div class="px-card"><h3>Your payment accounts</h3><p class="note" style="font-size:12.5px;margin:0 0 10px">Customers who buy crypto will pay into these accounts.</p><div class="px-form"><label>Method<select id="pm-m">'+PAYS.map(function(p){return'<option>'+p+'</option>'}).join('')+'</select></label><label>Account name<input id="pm-n" maxlength="60"></label><label>Account / phone number<input id="pm-a" maxlength="30"></label><div class="px-err" id="pm-err"></div><button type="button" class="px-btn gold" data-a="addpm">Add account</button></div></div>';
+  h+=ST.pay.length?ST.pay.map(function(p,i){return'<div class="px-ord" style="cursor:default"><div><b>'+esc(p.m)+'</b><small>'+esc(p.n)+' · '+esc(p.a)+'</small></div><button type="button" class="px-btn danger" style="width:auto;padding:8px 14px;font-size:13px" data-a="delpm" data-v="'+i+'">Remove</button></div>'}).join(''):'<div class="px-empty">No payment accounts yet. Buyers cannot place orders until you add one.</div>';
+  return h}
+function readSettings(){var er=$('st-err'),n=JSON.parse(JSON.stringify(ST));
+  for(var k in ASSETS){var g=function(s){return $('st-'+k+'-'+s)};n.assets[k]={on:g('on').checked?1:0,bm:parseFloat(g('bm').value)||0,sm:parseFloat(g('sm').value)||0,bp:g('bp').value,sp:g('sp').value,lo:parseFloat(g('lo').value)||0,hi:parseFloat(g('hi').value)||0};
+    if(n.assets[k].on&&(!(n.assets[k].lo>0)||n.assets[k].hi<n.assets[k].lo)){er.textContent='Check the limits for '+k+'.';return null}
+    if(Math.abs(n.assets[k].bm)>30||Math.abs(n.assets[k].sm)>30){er.textContent='Margins must be within ±30%.';return null}
+    var ad=g('addr').value.trim();n.dep[k]={net:g('net').value,addr:ad}}
+  n.win=Math.min(120,Math.max(5,parseInt($('st-win').value)||15));n.wa=$('st-wa').value.replace(/[^\d]/g,'');return n}
 
-function rPay(){var h='<div class="px-card"><h3>Add a payment method</h3><div class="px-form"><label>Method<select id="pm-m">'+PAYS.map(function(p){return'<option>'+p+'</option>'}).join('')+'</select></label><label>Account name<input id="pm-n" maxlength="60" placeholder="Name on the account"></label><label>Account / phone number<input id="pm-a" maxlength="30" inputmode="numeric" placeholder="e.g. 0999123456"></label><div class="px-err" id="pm-err"></div><button type="button" class="px-btn gold" data-a="addpm">Save method</button></div></div>';
-  if(!S.pm.length)return h+'<div class="px-empty">No saved payment methods. You need one to sell crypto.</div>';
-  return h+S.pm.map(function(p,i){return'<div class="px-ord" style="cursor:default"><div><b>'+esc(p.m)+'</b><small>'+esc(p.n)+' · '+esc(p.a)+'</small></div><button type="button" class="px-btn danger" style="width:auto;padding:8px 14px;font-size:13px" data-a="delpm" data-v="'+i+'">Remove</button></div>'}).join('')}
-
-/* ----- trade sheet ----- */
-function openTrade(id){var a=findAd(id);if(!a)return;V.trade=a;var side=V.side,A=V.asset,m=a.m;
-  var h='<div class="px-sb"><div style="display:flex;justify-content:space-between;align-items:start"><div><h3>'+(side==='buy'?'Buy ':'Sell ')+A+' · '+esc(m.n)+'</h3><div class="note" style="font-size:13px">Price <b>'+mwk(a.price)+'</b> per '+A+' · Limit '+mwk(a.lo)+' – '+mwk(a.hi)+'</div></div><button type="button" class="px-btn ghost" style="width:auto;padding:6px 12px" data-a="closetrade">✕</button></div>'+
-  '<div class="px-form" style="margin-top:12px"><label>'+(side==='buy'?'I will pay (MWK)':'I want to receive (MWK)')+'<input id="tr-m" type="number" inputmode="numeric" placeholder="'+a.lo+' – '+Math.floor(a.hi)+'" value="'+(parseFloat(V.q)||'')+'"></label>'+
-  '<label>'+(side==='buy'?'I will receive ('+A+')':'I will sell ('+A+')')+'<input id="tr-c" type="number" step="any" inputmode="decimal"></label>';
-  if(side==='sell')h+='<div class="note" style="font-size:12.5px">Wallet balance: <b>'+qty(S.wallet[A]||0,A)+' '+A+'</b> · <span class="px-copy" data-a="maxsell">Sell max</span></div>';
-  h+='<label>Payment method<select id="tr-p">'+a.pays.map(function(p){return'<option>'+p+'</option>'}).join('')+'</select></label>';
-  if(side==='sell')h+='<label>Your account name<input id="tr-n" maxlength="60"></label><label>Your account / phone number<input id="tr-a" maxlength="30" inputmode="numeric"></label>';
-  h+='<div class="note" style="font-size:12.5px">'+(side==='buy'?'You will have 15 minutes to pay after placing the order. The merchant releases crypto after confirming payment.':'Your crypto is locked in escrow and only released after you confirm you received the money.')+'</div><div class="px-err" id="tr-err"></div>'+
-  '<button type="button" class="px-btn '+side+'" data-a="confirm">'+(side==='buy'?'Place buy order':'Place sell order')+'</button></div></div>';
-  sheet.innerHTML=h;sheet.classList.add('show');trSync('m');if(side==='sell')trPay()}
-function trPay(){var s=$('tr-p');if(!s)return;var f=S.pm.filter(function(p){return p.m===s.value})[0];if($('tr-n')){$('tr-n').value=f?f.n:'';$('tr-a').value=f?f.a:''}}
-function trSync(from){var a=V.trade;if(!a)return;var m=$('tr-m'),c=$('tr-c');if(!m||!c)return;
-  if(from==='m'){var v=parseFloat(m.value);c.value=v>0?(v/a.price).toFixed(ASSETS[V.asset].d):''}else{var q=parseFloat(c.value);m.value=q>0?Math.round(q*a.price):''}}
+/* ----- trade sheet (customer) ----- */
+function openTrade(){if(!uid()){toast('Please log in to trade.');closeP2P();setTimeout(function(){if(window.openAuth)openAuth('in')},120);return}
+  var side=V.side,A=V.asset,c=cfg(A),pr=price(A,side),bad=ready(side,A);if(bad){toast(bad);return}
+  var h='<div class="px-sb"><div style="display:flex;justify-content:space-between;align-items:start"><div><h3>'+(side==='buy'?'Buy ':'Sell ')+A+'</h3><div class="note" style="font-size:13px">Price <b>'+mwk(pr)+'</b> per '+A+' · Limit '+mwk(c.lo)+' – '+mwk(c.hi)+'</div></div><button type="button" class="px-btn ghost" style="width:auto;padding:6px 12px" data-a="closetrade">✕</button></div><div class="px-form" style="margin-top:12px">'+
+  '<label>'+(side==='buy'?'I will pay (MWK)':'I want to receive (MWK)')+'<input id="tr-m" type="number" inputmode="numeric" placeholder="'+c.lo+' – '+c.hi+'"></label><label>'+(side==='buy'?'I will receive ('+A+')':'I will sell ('+A+')')+'<input id="tr-c" type="number" step="any" inputmode="decimal"></label>';
+  if(side==='buy')h+='<label>Pay with<select id="tr-p">'+buyMethods().map(function(p){return'<option>'+esc(p)+'</option>'}).join('')+'</select></label><label>Network for receiving<select id="tr-net">'+ASSETS[A].nets.map(function(n){return'<option>'+n+'</option>'}).join('')+'</select></label><label>Your '+A+' wallet address<input id="tr-w" maxlength="120" placeholder="Where TAMINADO should send your crypto"></label><div class="note" style="font-size:12.5px">Check the address and network carefully. Crypto sent to a wrong address cannot be recovered.</div>';
+  else h+='<label>Get paid via<select id="tr-p">'+PAYS.map(function(p){return'<option>'+p+'</option>'}).join('')+'</select></label><label>Your account name<input id="tr-n" maxlength="60"></label><label>Your account / phone number<input id="tr-a" maxlength="30" inputmode="numeric"></label><div class="note" style="font-size:12.5px">After placing the order you will get TAMINADO\'s deposit address. Send the exact amount, then confirm with your transaction ID.</div>';
+  h+='<div class="px-err" id="tr-err"></div><button type="button" class="px-btn '+side+'" data-a="confirm">'+(side==='buy'?'Place buy order':'Place sell order')+'</button></div></div>';
+  sheet.innerHTML=h;sheet.classList.add('show');V.trade=1}
+function trSync(from){var pr=price(V.asset,V.side),m=$('tr-m'),c=$('tr-c');if(!m||!c)return;
+  if(from==='m'){var v=parseFloat(m.value);c.value=v>0?(v/pr).toFixed(ASSETS[V.asset].d):''}else{var q=parseFloat(c.value);m.value=q>0?Math.round(q*pr):''}}
 function closeTrade(){sheet.classList.remove('show');sheet.innerHTML='';V.trade=null}
-function confirmTrade(){var a=V.trade,err=$('tr-err'),side=V.side,A=V.asset;if(!a)return;
-  var mw=parseFloat($('tr-m').value),q=parseFloat($('tr-c').value),pm=$('tr-p').value;
-  if(!(mw>0)||!(q>0)){err.textContent='Enter an amount.';return}
-  if(mw<a.lo){err.textContent='Minimum order is '+mwk(a.lo)+'.';return}if(mw>a.hi){err.textContent='Maximum order is '+mwk(a.hi)+'.';return}
-  q=mw/a.price;var det;
-  if(side==='sell'){if(q>(S.wallet[A]||0)+1e-12){err.textContent='Not enough '+A+' in your wallet.';return}
-    var nm=$('tr-n').value.trim(),ac=$('tr-a').value.trim();if(nm.length<2||ac.length<5){err.textContent='Enter your account name and number so the buyer can pay you.';return}
-    det={name:nm,acct:ac};if(!S.pm.some(function(p){return p.m===pm&&p.a===ac}))S.pm.push({m:pm,n:nm,a:ac});S.wallet[A]-=q}
-  else det=mdet(a.m,pm);
-  var now=Date.now(),o={id:'P2P'+now.toString().slice(-9),side:side,asset:A,price:a.price,mwk:mw,qty:q,mid:a.m.id,mname:a.m.n,pm:pm,det:det,status:'pending',created:now,
-    expires:side==='buy'?now+15*60e3:0,payAt:side==='sell'?now+7e3+Math.random()*4e3:0,relAt:0,chat:[]};
-  sys(o,side==='buy'?'Order placed. Pay '+mwk(mw)+' via '+pm+' within 15 minutes.':'Order placed. '+qty(q,A)+' '+A+' is locked in escrow while the buyer pays.');
-  S.orders.unshift(o);save();closeTrade();V.order=o.id;render();toast('Order placed')}
+async function confirmTrade(){var err=$('tr-err'),side=V.side,A=V.asset,c=cfg(A),mw=parseFloat($('tr-m').value),pm=$('tr-p').value,pr=price(A,side);
+  if(!(mw>0)){err.textContent='Enter an amount.';return}if(mw<c.lo){err.textContent='Minimum order is '+mwk(c.lo)+'.';return}if(mw>c.hi){err.textContent='Maximum order is '+mwk(c.hi)+'.';return}
+  var info;
+  if(side==='buy'){var w=$('tr-w').value.trim();if(w.length<10){err.textContent='Enter your wallet address.';return}info={net:$('tr-net').value,wallet:w}}
+  else{var nm=$('tr-n').value.trim(),ac=$('tr-a').value.trim();if(nm.length<2||ac.length<5){err.textContent='Enter your account name and number so we can pay you.';return}info={name:nm,acct:ac}}
+  var now=Date.now(),o={id:'P2P'+now.toString().slice(-9),uid:uid(),email:cur.email||'',side:side,asset:A,price:pr,mwk:mw,qty:mw/pr,pm:pm,info:info,status:'pending',created:now,expires:now+ST.win*60e3,chat:[]};
+  if(side==='buy'){var acc=ST.pay.filter(function(p){return p.m===pm})[0];o.pay=acc?{name:acc.n,acct:acc.a}:null}else o.dep=ST.dep[A];
+  o.chat.push({f:'sys',x:side==='buy'?'Order placed. Pay '+mwk(mw)+' via '+pm+' within '+ST.win+' minutes, then tap "I have paid".':'Order placed. Send '+qty(o.qty,A)+' '+A+' to the deposit address, then confirm with your transaction ID.',t:now});
+  if(busy)return;busy=true;try{await putOrder(o,true);closeTrade();V.order=o.id;SIG=sig();render();toast('Order placed')}catch(e){err.textContent='Could not place the order. Please try again.'}finally{busy=false}}
 
 /* ----- order view ----- */
-function ord(id){return S.orders.filter(function(o){return o.id===id})[0]}
-function sys(o,t){o.chat.push({f:'sys',x:t,t:Date.now()})}
-function rOrder(id){var o=ord(id);if(!o)return'';var b=o.side==='buy',A=o.asset,steps=b?['Order placed','You pay','Merchant releases','Completed']:['Escrow locked','Buyer pays','You release','Completed'];
-  var cur={pending:1,paid:2,completed:4,cancelled:-1,appeal:2}[o.status],dead=o.status==='cancelled';
-  var h='<p style="margin:0 0 10px"><button type="button" class="px-btn ghost" style="width:auto;padding:8px 14px;font-size:13px" data-a="back">← Back</button></p>'+
-  '<div class="px-card"><div style="display:flex;justify-content:space-between;gap:10px;align-items:start"><div><h3 style="margin:0">'+(b?'Buy ':'Sell ')+qty(o.qty,A)+' '+A+'</h3><div class="note" style="font-size:12px">Order '+o.id+'</div></div><span class="px-pill '+o.status+'">'+stText(o)+'</span></div>'+
-  '<div class="px-tl" style="margin-top:14px">'+steps.map(function(s,i){return'<div class="'+(!dead&&i<cur?'done':!dead&&i===cur?'cur':'')+'"><i>'+(!dead&&i<cur?'✓':i+1)+'</i>'+s+'</div>'}).join('')+'</div></div>'+
-  '<div class="px-card"><div class="px-kv"><span>Price</span><b>'+mwk(o.price)+' / '+A+'</b><span>Amount</span><b>'+mwk(o.mwk)+'</b><span>Quantity</span><b>'+qty(o.qty,A)+' '+A+'</b><span>Merchant</span><b>'+esc(o.mname)+'</b><span>Payment</span><b>'+esc(o.pm)+'</b></div></div>';
-  h+='<div class="px-card" id="px-act">'+rAct(o)+'</div>';
-  h+='<div class="px-card"><h3>Order chat</h3><div class="px-chat" id="px-chat">'+rChat(o)+'</div>'+(o.status==='cancelled'||o.status==='completed'?'':'<div class="px-send"><input id="px-ci" maxlength="300" placeholder="Message '+esc(o.mname)+'"><button type="button" class="px-btn gold" data-a="send">Send</button></div>')+'</div>';return h}
-function rAct(o){var b=o.side==='buy';
-  if(o.status==='pending'&&b)return'<h3>Pay the merchant</h3><div class="px-cd" id="px-cd">'+cd(o)+'</div><div class="px-box"><div class="px-kv"><span>Method</span><b>'+esc(o.pm)+'</b><span>Account name</span><b>'+esc(o.det.name)+'</b><span>Account number</span><b>'+esc(o.det.acct)+'</b><span>Amount</span><b>'+mwk(o.mwk)+'</b><span>Reference</span><b>'+o.id+'</b></div></div><p class="note" style="font-size:12.5px;margin:0 0 10px">Demo account. Do not send real money. Transfer the exact amount, then tap the button below.</p><div class="px-row"><button type="button" class="px-btn buy" data-a="paid">I have paid</button><button type="button" class="px-btn danger" data-a="cancel">Cancel order</button></div>';
-  if(o.status==='paid'&&b)return'<h3>Waiting for the merchant</h3><p class="note" style="margin:0 0 12px">The merchant is confirming your payment. Crypto is released from escrow to your wallet right after.</p><button type="button" class="px-btn danger" data-a="appeal">Appeal to support</button>';
-  if(o.status==='pending')return'<h3>Waiting for the buyer</h3><p class="note" style="margin:0 0 12px">Your '+qty(o.qty,o.asset)+' '+o.asset+' is locked in escrow. The buyer is sending '+mwk(o.mwk)+' to your '+esc(o.pm)+' ('+esc(o.det.acct)+').</p><button type="button" class="px-btn danger" data-a="cancel">Cancel and unlock crypto</button>';
-  if(o.status==='paid')return'<h3>Check your account</h3><p class="note" style="margin:0 0 12px">The buyer says '+mwk(o.mwk)+' was sent to your '+esc(o.pm)+' ('+esc(o.det.acct)+'). Release the crypto <b>only after the money is in your account</b>.</p><div class="px-row"><button type="button" class="px-btn sell" data-a="release">I received the money · Release</button><button type="button" class="px-btn danger" data-a="appeal">Appeal</button></div>';
-  if(o.status==='completed')return'<h3>Order completed ✓</h3><p class="note" style="margin:0">'+(b?qty(o.qty,o.asset)+' '+o.asset+' was added to your wallet.':'You received '+mwk(o.mwk)+' and released '+qty(o.qty,o.asset)+' '+o.asset+'.')+'</p>';
-  if(o.status==='appeal')return'<h3>Under review</h3><p class="note" style="margin:0">Support is reviewing this order. Funds stay in escrow until it is resolved.</p>';
-  return'<h3>Order cancelled</h3><p class="note" style="margin:0">'+(o.why||'This order was cancelled.')+(!b?' Your crypto was returned to your wallet.':'')+'</p>'}
+function ord(id){return ORD.filter(function(o){return o.id===id})[0]}
+function rOrder(id){var o=ord(id);if(!o)return'<p class="note">Order not found.</p>';var adm=isAdmin()&&o.uid!==uid()||isAdmin(),b=o.side==='buy',A=o.asset;
+  var steps=b?['Order placed','Customer pays','Crypto sent','Completed']:['Order placed','Customer sends','You pay','Completed'];if(!adm)steps=b?['Order placed','You pay','TAMINADO sends','Completed']:['Order placed','You send crypto','TAMINADO pays','Completed'];
+  var cur_={pending:1,paid:2,completed:4,cancelled:-1}[o.status],dead=o.status==='cancelled';
+  var h='<p style="margin:0 0 10px"><button type="button" class="px-btn ghost" style="width:auto;padding:8px 14px;font-size:13px" data-a="back">← Back</button></p><div class="px-card"><div style="display:flex;justify-content:space-between;gap:10px;align-items:start"><div><h3 style="margin:0">'+(b?'Buy ':'Sell ')+qty(o.qty,A)+' '+A+'</h3><div class="note" style="font-size:12px">Order '+esc(o.id)+(adm?' · '+esc(o.email||''):'')+'</div></div><span class="px-pill '+o.status+'">'+stText(o,adm)+'</span></div>'+
+  '<div class="px-tl" style="margin-top:14px">'+steps.map(function(s,i){return'<div class="'+(!dead&&i<cur_?'done':!dead&&i===cur_?'cur':'')+'"><i>'+(!dead&&i<cur_?'✓':i+1)+'</i>'+s+'</div>'}).join('')+'</div></div>'+
+  '<div class="px-card"><div class="px-kv"><span>Price</span><b>'+mwk(o.price)+' / '+A+'</b><span>Amount</span><b>'+mwk(o.mwk)+'</b><span>Quantity</span><b>'+qty(o.qty,A)+' '+A+'</b><span>'+(b?'Pay with':'Paid via')+'</span><b>'+esc(o.pm)+'</b>'+
+  (b?'<span>Customer wallet</span><b>'+esc(o.info.wallet)+'</b><span>Network</span><b>'+esc(o.info.net)+'</b>':'<span>Customer account</span><b>'+esc(o.info.name)+' · '+esc(o.info.acct)+'</b>')+(o.ref?'<span>'+(b?'Payment ref':'Crypto TXID')+'</span><b>'+esc(o.ref)+'</b>':'')+(o.adminRef?'<span>TAMINADO ref</span><b>'+esc(o.adminRef)+'</b>':'')+'</div></div>';
+  h+='<div class="px-card" id="px-act">'+(adm?rActAdmin(o):rActCust(o))+'</div>';
+  h+='<div class="px-card"><h3>Order chat</h3><div class="px-chat" id="px-chat">'+rChat(o,adm)+'</div>'+(o.status==='cancelled'||o.status==='completed'?'':'<div class="px-send"><input id="px-ci" maxlength="300" placeholder="'+(adm?'Message the customer':'Message TAMINADO')+'"><button type="button" class="px-btn gold" data-a="send">Send</button></div>')+(ST.wa?'<p class="note" style="font-size:12px;margin:10px 0 0">Need help? <a href="https://wa.me/'+esc(ST.wa)+'" target="_blank" rel="noopener noreferrer" style="color:var(--gold)">WhatsApp TAMINADO</a></p>':'')+'</div>';return h}
 function cd(o){var s=Math.max(0,Math.round((o.expires-Date.now())/1e3));return('0'+Math.floor(s/60)).slice(-2)+':'+('0'+s%60).slice(-2)}
-function rChat(o){return o.chat.map(function(c){return'<div class="px-msg '+c.f+'">'+esc(c.x)+(c.f==='sys'?'':'<small>'+hm(c.t)+'</small>')+'</div>'}).join('')}
-function refreshOrder(){if(V.order&&ov.classList.contains('show')){var y=root.scrollTop;render();root.scrollTop=y;var c=$('px-chat');if(c)c.scrollTop=c.scrollHeight}}
-function finish(o,st,why){o.status=st;if(why)o.why=why;save()}
+function rActCust(o){var b=o.side==='buy';
+  if(o.status==='pending'&&b)return'<h3>Pay TAMINADO</h3><div class="px-cd" id="px-cd">'+cd(o)+'</div><div class="px-box"><div class="px-kv"><span>Method</span><b>'+esc(o.pm)+'</b><span>Account name</span><b>'+esc(o.pay?o.pay.name:'-')+'</b><span>Account number</span><b>'+esc(o.pay?o.pay.acct:'-')+'</b><span>Amount</span><b>'+mwk(o.mwk)+'</b><span>Reference</span><b>'+esc(o.id)+'</b></div></div><p class="note" style="font-size:12.5px;margin:0 0 10px">Transfer the exact amount using the reference above, then confirm. Do not pay after the timer ends.</p><div class="px-form" style="margin-bottom:10px"><input id="px-ref" maxlength="60" placeholder="Transaction ID / reference (optional)"></div><div class="px-row"><button type="button" class="px-btn buy" data-a="paid">I have paid</button><button type="button" class="px-btn danger" data-a="cancel">Cancel order</button></div>';
+  if(o.status==='pending')return'<h3>Send your '+o.asset+'</h3><div class="px-cd" id="px-cd">'+cd(o)+'</div><div class="px-box"><div class="px-kv"><span>Amount</span><b>'+qty(o.qty,o.asset)+' '+o.asset+'</b><span>Network</span><b>'+esc(o.dep?o.dep.net:'-')+'</b><span>Address</span><b>'+esc(o.dep?o.dep.addr:'-')+'</b></div></div><p class="note" style="font-size:12.5px;margin:0 0 10px">Send exactly this amount on the network shown. Sending on a different network may lose your funds. Then paste your transaction ID.</p><div class="px-form" style="margin-bottom:10px"><input id="px-ref" maxlength="120" placeholder="Transaction ID (TXID)"></div><div class="px-row"><button type="button" class="px-btn sell" data-a="paid">I have sent it</button><button type="button" class="px-btn danger" data-a="cancel">Cancel order</button></div>';
+  if(o.status==='paid')return'<h3>Waiting for TAMINADO</h3><p class="note" style="margin:0">'+(b?'TAMINADO is confirming your payment and will send the crypto to your wallet.':'TAMINADO is confirming your crypto and will pay '+mwk(o.mwk)+' to your '+esc(o.pm)+' account.')+' You can use the chat below if you need to share proof.</p>';
+  if(o.status==='completed')return'<h3>Order completed ✓</h3><p class="note" style="margin:0">'+(b?qty(o.qty,o.asset)+' '+o.asset+' was sent to your wallet.':'You were paid '+mwk(o.mwk)+'.')+'</p>';
+  return'<h3>Order cancelled</h3><p class="note" style="margin:0">'+esc(o.why||'This order was cancelled.')+'</p>'}
+function rActAdmin(o){var b=o.side==='buy';
+  if(o.status==='pending')return'<h3>Waiting for the customer</h3><div class="px-cd" id="px-cd">'+cd(o)+'</div><p class="note" style="margin:0 0 12px">'+(b?'The customer has not yet confirmed payment.':'The customer has not yet confirmed sending crypto.')+'</p><button type="button" class="px-btn danger" data-a="cancel">Cancel order</button>';
+  if(o.status==='paid')return'<h3>Your action needed</h3><p class="note" style="margin:0 0 10px">'+(b?'Check that <b>'+mwk(o.mwk)+'</b> arrived in your '+esc(o.pm)+' account. Then send <b>'+qty(o.qty,o.asset)+' '+o.asset+'</b> to the customer wallet shown above ('+esc(o.info.net)+').':'Check the blockchain that <b>'+qty(o.qty,o.asset)+' '+o.asset+'</b> arrived. Then pay <b>'+mwk(o.mwk)+'</b> to the customer account shown above.')+'</p><div class="px-form" style="margin-bottom:10px"><input id="px-aref" maxlength="120" placeholder="'+(b?'Your crypto TXID (optional)':'Your payment reference (optional)')+'"></div><div class="px-row"><button type="button" class="px-btn buy" data-a="complete">'+(b?'Crypto sent · Complete':'Customer paid · Complete')+'</button><button type="button" class="px-btn danger" data-a="cancel">Reject / cancel</button></div>';
+  if(o.status==='completed')return'<h3>Order completed ✓</h3>';return'<h3>Order cancelled</h3><p class="note" style="margin:0">'+esc(o.why||'')+'</p>'}
+function rChat(o,adm){return(o.chat||[]).map(function(c){var cls=c.f==='sys'?'sys':((c.f==='a')===!!adm?'me':'m');return'<div class="px-msg '+cls+'">'+esc(c.x)+(c.f==='sys'?'':'<small>'+(c.f==='a'?'TAMINADO':'Customer')+' · '+hm(c.t)+'</small>')+'</div>'}).join('')}
+function refreshOrder(){if(!ov.classList.contains('show'))return;var y=root.scrollTop,i=$('px-ci'),v=i?i.value:'',r=$('px-ref'),rv=r?r.value:'',ar=$('px-aref'),av=ar?ar.value:'',foc=document.activeElement&&document.activeElement.id;
+  render();root.scrollTop=y;var n;if(i&&(n=$('px-ci')))n.value=v;if(r&&(n=$('px-ref')))n.value=rv;if(ar&&(n=$('px-aref')))n.value=av;if(foc&&(n=$(foc)))try{n.focus()}catch(e){}var c=$('px-chat');if(c)c.scrollTop=c.scrollHeight}
 
-/* ----- order actions ----- */
-function doPaid(o){o.status='paid';o.relAt=Date.now()+8e3+Math.random()*4e3;sys(o,'You marked the payment as sent. Waiting for the merchant to confirm.');save();refreshOrder()}
-function doCancel(o){if(!confirm('Cancel this order?'))return;if(o.side==='sell')S.wallet[o.asset]=(S.wallet[o.asset]||0)+o.qty;sys(o,'Order cancelled by you.');finish(o,'cancelled','You cancelled this order.');refreshOrder()}
-function doRelease(o){S.wallet[o.asset]=S.wallet[o.asset]||0;sys(o,'You released the crypto. Order completed.');finish(o,'completed');refreshOrder();toast('Crypto released')}
-function doAppeal(o){if(!confirm('Open an appeal? Support will review this order.'))return;sys(o,'Appeal opened. Support will review the chat and payment proof.');finish(o,'appeal');refreshOrder()}
-function doSend(o){var i=$('px-ci'),t=i&&i.value.trim();if(!t)return;o.chat.push({f:'me',x:t.slice(0,300),t:Date.now()});save();refreshOrder();var f=$('px-ci');if(f)f.focus();
-  clearTimeout(tmr2);tmr2=setTimeout(function(){if(o.status==='pending'||o.status==='paid'){o.chat.push({f:'m',x:/paid|sent|done/i.test(t)?'Thanks, checking now.':REPLIES[Math.floor(Math.random()*REPLIES.length)],t:Date.now()});save();if(V.order===o.id){var y=root.scrollTop;var c=$('px-chat');if(c){c.innerHTML=rChat(o);c.scrollTop=c.scrollHeight}}}},1400)}
+/* ----- actions ----- */
+function say(o,f,x){o.chat=o.chat||[];o.chat.push({f:f,x:x,t:Date.now()})}
+function act(a,id){var adm=isAdmin();
+  if(a==='paid'){var ref=($('px-ref')||{}).value||'';mutate(id,function(o){if(o.status!=='pending')return false;if(o.side==='sell'&&ref.trim().length<6){toast('Enter your transaction ID first.');return false}o.status='paid';o.ref=ref.trim().slice(0,120);say(o,'sys',o.side==='buy'?'Customer marked payment as sent.':'Customer marked crypto as sent.')})}
+  else if(a==='cancel'){if(!confirm('Cancel this order?'))return;mutate(id,function(o){if(o.status==='completed'||o.status==='cancelled')return false;o.status='cancelled';o.why=adm&&o.uid!==uid()?'Cancelled by TAMINADO.':'Cancelled.';say(o,'sys','Order cancelled.')})}
+  else if(a==='complete'){var ar=($('px-aref')||{}).value||'';if(!confirm('Mark this order as completed? Make sure the '+'transfer is done.'))return;mutate(id,function(o){if(o.status!=='paid')return false;o.status='completed';o.adminRef=ar.trim().slice(0,120);say(o,'sys','Order completed by TAMINADO.')})}
+  else if(a==='send'){var t=(($('px-ci')||{}).value||'').trim();if(!t)return;mutate(id,function(o){if(o.status==='completed'||o.status==='cancelled')return false;say(o,isAdmin()?'a':'c',t.slice(0,300))})}}
 
-/* ----- simulation tick ----- */
-function tick(){var ch=false,now=Date.now();
-  S.orders.forEach(function(o){
-    if(o.status==='pending'&&o.side==='buy'&&now>=o.expires){sys(o,'Payment window expired. Order cancelled.');finish(o,'cancelled','The 15 minute payment window expired.');ch=true;if(V.order===o.id)toast('Order expired')}
-    else if(o.status==='paid'&&o.side==='buy'&&o.relAt&&now>=o.relAt){S.wallet[o.asset]=(S.wallet[o.asset]||0)+o.qty;o.chat.push({f:'m',x:'Payment received. Releasing your crypto now.',t:now});sys(o,'Merchant released '+qty(o.qty,o.asset)+' '+o.asset+' to your wallet. Order completed.');finish(o,'completed');ch=true;toast(qty(o.qty,o.asset)+' '+o.asset+' received')}
-    else if(o.status==='pending'&&o.side==='sell'&&now>=o.payAt){o.chat.push({f:'m',x:'I have sent '+mwk(o.mwk)+' to your '+o.pm+'. Ref '+o.id+'.',t:now});sys(o,'Buyer marked payment as sent. Check your account before releasing.');o.status='paid';save();ch=true;toast('Buyer says payment was sent')}});
-  var c=$('px-cd');if(c){var o2=ord(V.order);if(o2)c.textContent=cd(o2)}
-  if(ch){save();if(V.order)refreshOrder();else if(V.tab==='orders'||V.tab==='market')render()}}
+/* ----- timers & polling ----- */
+async function poll(){if(!ov.classList.contains('show')||!uid()||busy||V.trade)return;var had=sig(),prev={};ORD.forEach(function(o){prev[o.id]=o.status});
+  await loadOrders();var now=Date.now(),exp=ORD.filter(function(o){return o.status==='pending'&&o.expires&&now>o.expires&&(o.uid===uid())});
+  for(var i=0;i<exp.length;i++){var o=exp[i];o.status='cancelled';o.why='The '+ST.win+' minute window expired.';say(o,'sys','Time window expired. Order cancelled.');try{await putOrder(o,false)}catch(e){}}
+  ORD.forEach(function(o){if(prev[o.id]&&prev[o.id]!==o.status&&!isAdmin()){if(o.status==='completed')toast('Order '+o.id+' completed ✓');else if(o.status==='cancelled')toast('Order '+o.id+' was cancelled')}});
+  var s=sig();if(s!==had){SIG=s;var typing=document.activeElement&&/^(px-ci|px-ref|px-aref|px-q)$/.test(document.activeElement.id);if(V.order)refreshOrder();else if(V.tab==='orders'||V.tab==='market'){if(!typing)render()}}}
+function second(){var c=$('px-cd');if(c){var o=ord(V.order);if(o)c.textContent=cd(o)}}
 
 /* ----- events ----- */
-root.addEventListener('click',function(e){var t=e.target.closest('[data-a]');if(!t)return;var a=t.dataset.a,o=V.order?ord(V.order):null;
-  if(a==='tab'){V.tab=t.dataset.v;render()}
-  else if(a==='side'){V.side=t.dataset.v;render()}
-  else if(a==='asset'){V.asset=t.dataset.v;render()}
-  else if(a==='trade')openTrade(t.dataset.id);
+root.addEventListener('click',function(e){var t=e.target.closest('[data-a]');if(!t)return;var a=t.dataset.a;
+  if(a==='tab'){V.tab=t.dataset.v;render();if(V.tab==='orders')poll()}
+  else if(a==='side'){V.side=t.dataset.v;rMain()}else if(a==='asset'){V.asset=t.dataset.v;rMain()}
+  else if(a==='trade')openTrade();
+  else if(a==='login'){closeP2P();setTimeout(function(){if(window.openAuth)openAuth('in')},120)}
   else if(a==='order'){V.order=t.dataset.id;render();root.scrollTop=0;var c=$('px-chat');if(c)c.scrollTop=c.scrollHeight}
   else if(a==='back'){V.order=null;V.tab='orders';render()}
-  else if(a==='paid'&&o)doPaid(o);else if(a==='cancel'&&o)doCancel(o);else if(a==='release'&&o)doRelease(o);else if(a==='appeal'&&o)doAppeal(o);else if(a==='send'&&o)doSend(o);
-  else if(a==='reset'){if(confirm('Reset all P2P demo data on this device?')){S={orders:[],ads:[],pm:[],wallet:{USDT:500,USDC:200,BTC:.01,ETH:.2,BNB:1}};save();render()}}
-  else if(a==='addpm'){var n=$('pm-n').value.trim(),ac=$('pm-a').value.trim(),er=$('pm-err');if(n.length<2||ac.length<5){er.textContent='Enter the account name and number.';return}S.pm.push({m:$('pm-m').value,n:n,a:ac});save();render();toast('Payment method saved')}
-  else if(a==='delpm'){S.pm.splice(+t.dataset.v,1);save();render()}
-  else if(a==='postad'){var amt=parseFloat($('pa-amt').value),mg=parseFloat($('pa-mg').value),lo=parseFloat($('pa-lo').value),hi=parseFloat($('pa-hi').value),pays=[].map.call(document.querySelectorAll('.pa-p:checked'),function(x){return x.value}),er=$('pa-err');
-    if(!(amt>0)||isNaN(mg)||!(lo>0)||!(hi>=lo)){er.textContent='Check the amount, margin and limits.';return}if(!pays.length){er.textContent='Select at least one payment method.';return}if(Math.abs(mg)>20){er.textContent='Margin must be within ±20%.';return}
-    S.ads.unshift({id:'a'+Date.now(),side:$('pa-side').value,asset:$('pa-asset').value,mg:mg,amt:amt,lo:lo,hi:hi,pays:pays,on:true});save();render();toast('Ad posted')}
-  else if(a==='adtoggle'){S.ads.forEach(function(x){if(x.id===t.dataset.id)x.on=!x.on});save();render()}
-  else if(a==='addel'){if(confirm('Delete this ad?')){S.ads=S.ads.filter(function(x){return x.id!==t.dataset.id});save();render()}}});
-root.addEventListener('input',function(e){if(e.target.id==='px-q'){V.q=e.target.value;rList()}});
-root.addEventListener('change',function(e){if(e.target.id==='px-pf'){V.pay=e.target.value;rList()}});
-root.addEventListener('keydown',function(e){if(e.key==='Enter'&&e.target.id==='px-ci'){e.preventDefault();var o=ord(V.order);if(o)doSend(o)}});
-sheet.addEventListener('click',function(e){if(e.target===sheet){closeTrade();return}var t=e.target.closest('[data-a]');if(!t)return;
-  if(t.dataset.a==='closetrade')closeTrade();else if(t.dataset.a==='confirm')confirmTrade();
-  else if(t.dataset.a==='maxsell'){var a=V.trade;if(!a)return;var q=Math.min(S.wallet[V.asset]||0,a.hi/a.price);$('tr-c').value=q.toFixed(ASSETS[V.asset].d);trSync('c')}});
+  else if(['paid','cancel','complete','send'].indexOf(a)>-1)act(a,V.order);
+  else if(a==='addpm'){var n=$('pm-n').value.trim(),ac=$('pm-a').value.trim(),er=$('pm-err');if(n.length<2||ac.length<5){er.textContent='Enter the account name and number.';return}var keep=readSettings();if(keep)ST=keep;ST.pay.push({m:$('pm-m').value,n:n,a:ac});saveSettings().then(function(){toast('Account added');rMain()}).catch(function(){toast('Saved on this device only. Could not reach the server.');rMain()})}
+  else if(a==='delpm'){var keep2=readSettings();if(keep2)ST=keep2;ST.pay.splice(+t.dataset.v,1);saveSettings().then(rMain).catch(rMain)}
+  else if(a==='savest'){var n2=readSettings();if(!n2)return;ST=n2;saveSettings().then(function(){toast('Settings saved');rMain()}).catch(function(){toast('Saved on this device only. Could not reach the server.')})}});
+root.addEventListener('keydown',function(e){if(e.key==='Enter'&&e.target.id==='px-ci'){e.preventDefault();act('send',V.order)}});
+sheet.addEventListener('click',function(e){if(e.target===sheet){closeTrade();return}var t=e.target.closest('[data-a]');if(!t)return;if(t.dataset.a==='closetrade')closeTrade();else if(t.dataset.a==='confirm')confirmTrade()});
 sheet.addEventListener('input',function(e){if(e.target.id==='tr-m')trSync('m');else if(e.target.id==='tr-c')trSync('c')});
-sheet.addEventListener('change',function(e){if(e.target.id==='tr-p'&&V.side==='sell')trPay()});
 
 /* ----- open / close ----- */
-function theme(){}
-window.openP2P=function(){ov.classList.add('show');document.body.style.overflow='hidden';
-  try{history.replaceState(null,'','#p2p-app')}catch(e){}
-  render();fetchRates();tick();clearInterval(timer);timer=setInterval(tick,1000)};
-window.closeP2P=function(){closeTrade();ov.classList.remove('show');document.body.style.overflow='';clearInterval(timer);
-  try{history.replaceState(null,'',location.pathname+location.search+'#p2p')}catch(e){}};
+window.openP2P=async function(){V.order=null;V.trade=null;ov.classList.add('show');document.body.style.overflow='hidden';try{history.replaceState(null,'','#p2p-app')}catch(e){}
+  root.innerHTML='<div class="px-in"><div class="px-empty">Loading P2P desk...</div></div>';fetchRates();
+  await loadSettings();await loadOrders();SIG=sig();render();clearInterval(tm1);clearInterval(tm2);tm1=setInterval(poll,5000);tm2=setInterval(second,1000)};
+window.closeP2P=function(){closeTrade();ov.classList.remove('show');document.body.style.overflow='';clearInterval(tm1);clearInterval(tm2);try{history.replaceState(null,'',location.pathname+location.search+'#p2p')}catch(e){}};
 document.addEventListener('keydown',function(e){if(e.key==='Escape'&&ov.classList.contains('show')){if(sheet.classList.contains('show'))closeTrade();else closeP2P()}});
 window.addEventListener('hashchange',function(){if(location.hash==='#p2p-app'&&!ov.classList.contains('show'))openP2P()});
 if(location.hash==='#p2p-app')openP2P();
