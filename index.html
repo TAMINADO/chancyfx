@@ -7,7 +7,7 @@
 <meta name="description" content="TAMINADO FX is a forex markets company delivering trader education, market research, mentorship and tools, built on discipline, structure and risk management.">
 <meta name="theme-color" content="#0B1630">
 <!-- Security (in-page layer; the server headers in .htaccess / nginx.conf add the rest) -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://s3.tradingview.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https:; media-src 'self' https:; connect-src 'self' https://*.supabase.co wss://*.supabase.co https://open.er-api.com https://api.coingecko.com; frame-src 'self' https://www.youtube-nocookie.com https://www.tradingview-widget.com https://s.tradingview.com; object-src 'none'; base-uri 'self'; form-action 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://s3.tradingview.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https:; media-src 'self' https:; connect-src 'self' https://*.supabase.co wss://*.supabase.co https://open.er-api.com; frame-src 'self' https://www.youtube-nocookie.com https://www.tradingview-widget.com https://s.tradingview.com; object-src 'none'; base-uri 'self'; form-action 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <style id="antiframe">html{display:none!important}</style>
 <script>try{if(window.top===window.self){var _af=document.getElementById('antiframe');_af.parentNode.removeChild(_af)}else{window.top.location=window.self.location}}catch(e){}</script>
@@ -691,96 +691,6 @@ html, body {max-width:100%;overflow-x:hidden;}
 @media(max-width:420px){#academy .ac-welcome-mark{display:none}#academy .ac-welcome-actions{gap:10px}#academy .ac-statcard small{font-size:9px}#academy .ac-course-row>strong{margin-left:auto}#academy .ac-course-row .btn{width:100%;text-align:center}}
 </style>
 
-<style id="jx-px-css">
-/* ===== Journal (advanced) ===== */
-.jx-bar{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center;margin-top:28px}
-.jx-sync{font-size:12px;color:var(--muted);display:inline-flex;gap:7px;align-items:center}.jx-sync i{width:8px;height:8px;border-radius:50%;background:var(--muted);display:inline-block}.jx-sync em{font-style:normal}
-.jx-sync.cloud i{background:var(--ok)}.jx-sync.local i{background:var(--gold)}.jx-sync.busy i{background:var(--gold);animation:jxp 1s infinite}@keyframes jxp{50%{opacity:.3}}
-.jx-actions{display:flex;gap:8px;flex-wrap:wrap}.jx-actions .btn{margin:0;cursor:pointer}
-.jx-wide{max-width:none}
-.jx-stats{margin-top:18px}.jx-stats .stat{padding:16px}.jx-stats .stat b{font-size:22px;word-break:break-word}.jx-stats .stat span{font-size:12px}
-.jx-h{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px}.jx-h h3{margin:0!important}
-.jx-seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;flex-wrap:wrap}
-.jx-seg button{border:0;background:transparent;color:var(--muted);padding:7px 14px;font:inherit;font-size:12px;font-weight:700;cursor:pointer}
-.jx-seg button.on{background:var(--gold);color:var(--onGold)}
-.jx-cv{position:relative;width:100%}.jx-cv svg{display:block;width:100%;height:190px;touch-action:pan-y}
-.jx-tip{position:absolute;display:none;pointer-events:none;background:var(--surface);border:1px solid var(--gold);border-radius:10px;padding:6px 10px;font-size:12px;line-height:1.4;white-space:nowrap;z-index:2}
-.jx-two{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:22px}.jx-two .calcbox{margin-top:0}
-@media(max-width:860px){.jx-two{grid-template-columns:1fr}}
-.jx-cal{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}.jx-cal b{font-size:11px;color:var(--muted);text-align:center;padding:2px 0}
-.jx-d{border:1px solid var(--line);background:var(--bg);color:var(--text);border-radius:8px;min-height:46px;padding:3px 2px;font:inherit;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;line-height:1.15}
-.jx-d span{font-size:12px;font-weight:600}.jx-d em{font-style:normal;font-size:10px;font-weight:700}.jx-d.sel{outline:2px solid var(--gold)}
-.jx-i{padding:10px 12px;border-radius:12px;border:1px solid var(--line);border-left:4px solid var(--muted);margin-bottom:8px;font-size:14px;line-height:1.5}.jx-i.up{border-left-color:var(--up)}.jx-i.dn{border-left-color:var(--down)}
-.jx-b{display:grid;grid-template-columns:minmax(110px,1.2fr) 2fr 70px;gap:12px;align-items:center;padding:8px 0;border-bottom:1px solid var(--line)}
-.jx-bl b{display:block;font-size:14px}.jx-bl span{font-size:12px;color:var(--muted)}.jx-bt{height:8px;border-radius:99px;background:var(--bg);overflow:hidden}.jx-bt i{display:block;height:100%;border-radius:99px}.jx-bv{text-align:right;font-weight:700;font-size:14px}
-.jx-form{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px}
-.jx-f{display:flex;flex-direction:column;gap:5px;margin:0}.jx-f>span{font-size:12px;font-weight:600;color:var(--muted)}.jx-f small{color:var(--gold);font-weight:700}
-.jx-full{grid-column:1/-1}.jx-chk{flex-direction:row;align-items:center;gap:10px;align-self:end;min-height:48px}.jx-chk input{width:20px;height:20px;min-height:0;flex:none}.jx-chk span{font-size:14px;color:var(--text)}
-.jx-sub{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.jx-sub .btn{margin:0}
-.jx-shot{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.jx-shot .btn{cursor:pointer}.jx-shot img{max-height:90px;border-radius:10px;border:1px solid var(--line)}
-.jx-filters{display:grid;grid-template-columns:2fr repeat(5,1fr);gap:8px}.jx-filters input,.jx-filters select{padding:10px 12px;font-size:13px;min-height:42px}
-@media(max-width:900px){.jx-filters{grid-template-columns:1fr 1fr}.jx-filters input{grid-column:1/-1}}
-.jx-daychip{align-items:center;gap:10px;margin-top:10px;font-size:13px}.jx-daychip .btn{margin:0}
-#jlist{margin-top:14px}
-.jx-t{border:1px solid var(--line);border-radius:14px;margin-bottom:8px;background:var(--bg);overflow:hidden}
-.jx-th{display:flex;justify-content:space-between;gap:12px;padding:12px 14px;cursor:pointer;align-items:center}
-.jx-m{font-size:12px;color:var(--muted);margin-top:2px}.jx-r{text-align:right;flex:none}.jx-r b{display:block;font-size:17px}.jx-r small{font-size:12px;font-weight:600}
-.jx-s{font-style:normal;font-size:11px;font-weight:800;padding:2px 8px;border-radius:99px;margin-left:6px}.jx-s.b{background:rgba(22,163,106,.18);color:var(--up)}.jx-s.s{background:rgba(220,69,69,.18);color:var(--down)}
-.jx-td{display:none;padding:0 14px 14px;border-top:1px solid var(--line)}.jx-t.open .jx-td{display:block}
-.jx-det{display:flex;flex-wrap:wrap;gap:8px 18px;padding-top:12px;font-size:13px}.jx-det span small{display:block;color:var(--muted);font-size:11px}
-.jx-tg{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}.jx-tg em{font-style:normal;font-size:12px;color:var(--gold);border:1px solid var(--line);border-radius:99px;padding:2px 9px}
-.jx-td p{margin:10px 0 0;font-size:14px;white-space:pre-wrap}.jx-img{max-width:100%;max-height:340px;border-radius:12px;margin-top:10px;border:1px solid var(--line)}
-.jx-ac{display:flex;gap:8px;margin-top:12px}.jx-ac .btn{margin:0}
-
-/* ===== P2P desk (inside the site) ===== */
-.p2pov .px{flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;background:var(--bg)}
-.px-in{max-width:900px;margin:0 auto;padding:14px 16px calc(40px + env(safe-area-inset-bottom,0px))}
-.px-demo{background:rgba(212,175,55,.12);border:1px solid var(--gold);border-radius:12px;padding:10px 14px;font-size:12.5px;line-height:1.5;margin-bottom:12px}
-.px-tabs{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;margin-bottom:12px}
-.px-tabs button{flex:none;border:1px solid var(--line);background:var(--surface);color:var(--text);padding:9px 16px;border-radius:999px;font:inherit;font-size:13px;font-weight:700;cursor:pointer}
-.px-tabs button.on{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#111;border-color:var(--gold)}
-.px-tabs b{background:var(--bad);color:#fff;border-radius:99px;font-size:11px;padding:1px 7px;margin-left:6px}
-.px-seg{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:12px}
-.px-seg button{border:0;padding:13px;font:inherit;font-weight:800;font-size:15px;cursor:pointer;background:var(--surface);color:var(--muted)}
-.px-seg button.on.buy{background:var(--up);color:#fff}.px-seg button.on.sell{background:var(--down);color:#fff}
-.px-chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px}
-.px-chips button{flex:none;border:1px solid var(--line);background:var(--surface);color:var(--text);padding:8px 15px;border-radius:999px;font:inherit;font-size:13px;font-weight:700;cursor:pointer}
-.px-chips button.on{border-color:var(--gold);color:var(--gold);background:var(--glow)}
-.px-filters{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0 12px}.px-filters input,.px-filters select{padding:10px 12px;font-size:14px;min-height:44px}
-.px-rate{font-size:12px;color:var(--muted);margin:0 0 10px}
-.px-wal{display:flex;gap:8px;overflow-x:auto;margin-bottom:10px}.px-wal span{flex:none;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:6px 12px;font-size:12px}.px-wal b{color:var(--gold)}
-.px-ad{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px;margin-bottom:10px;display:grid;grid-template-columns:1fr auto;gap:10px 14px}
-.px-m{display:flex;align-items:center;gap:10px}.px-av{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#0F766E,#0B5560);color:#fff;display:grid;place-items:center;font-weight:800;flex:none}
-.px-m b{display:block;font-size:15px}.px-m small{color:var(--muted);font-size:12px}
-.px-pr{font-size:22px;font-weight:800;font-family:var(--serif)}.px-pr small{font-size:12px;font-family:Inter,sans-serif;color:var(--muted);font-weight:500}
-.px-meta{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:6px 18px;font-size:12.5px;color:var(--muted)}.px-meta b{color:var(--text)}
-.px-pays{grid-column:1/-1;display:flex;gap:6px;flex-wrap:wrap}.px-pays em{font-style:normal;font-size:11.5px;border:1px solid var(--line);border-radius:6px;padding:2px 8px;border-left:3px solid var(--gold)}
-.px-go{grid-column:1/-1}.px-btn{display:block;width:100%;border:0;border-radius:12px;padding:13px;font:inherit;font-weight:800;font-size:15px;cursor:pointer;color:#fff}
-.px-btn.buy{background:var(--up)}.px-btn.sell{background:var(--down)}.px-btn.gold{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#111}.px-btn.ghost{background:transparent;border:1px solid var(--line);color:var(--text)}.px-btn.danger{background:transparent;border:1px solid var(--bad);color:var(--bad)}
-.px-btn:disabled{opacity:.5;cursor:not-allowed}.px-row{display:flex;gap:10px}.px-row>*{flex:1}
-.px-empty{text-align:center;color:var(--muted);padding:34px 10px;border:1px dashed var(--line);border-radius:16px}
-.px-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px;margin-bottom:12px}.px-card h3{margin:0 0 10px;font-size:16px}
-.px-form{display:grid;gap:10px}.px-form label{display:flex;flex-direction:column;gap:4px;font-size:12px;font-weight:600;color:var(--muted)}.px-form input,.px-form select{padding:12px;font-size:15px;min-height:46px}
-.px-chk{display:flex;flex-wrap:wrap;gap:8px}.px-chk label{flex-direction:row;align-items:center;gap:6px;border:1px solid var(--line);border-radius:8px;padding:6px 10px;font-size:12.5px;color:var(--text);cursor:pointer}.px-chk input{width:auto;min-height:0}
-.px-ord{display:flex;justify-content:space-between;gap:10px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:8px;cursor:pointer}
-.px-ord b{display:block}.px-ord small{color:var(--muted);font-size:12px}
-.px-pill{font-size:11px;font-weight:800;padding:3px 10px;border-radius:99px;white-space:nowrap}.px-pill.pending{background:rgba(212,175,55,.2);color:var(--gold)}.px-pill.paid{background:rgba(59,130,246,.2);color:#60a5fa}.px-pill.completed{background:rgba(22,163,106,.2);color:var(--up)}.px-pill.cancelled{background:rgba(150,160,180,.2);color:var(--muted)}.px-pill.appeal{background:rgba(220,69,69,.2);color:var(--down)}
-.px-kv{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;font-size:14px}.px-kv span{color:var(--muted)}.px-kv b{text-align:right;word-break:break-all}
-.px-tl{display:flex;margin:6px 0 4px}.px-tl div{flex:1;text-align:center;font-size:11px;color:var(--muted);position:relative}.px-tl div i{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--bg);border:2px solid var(--line);margin:0 auto 4px;font-style:normal;font-size:12px;position:relative;z-index:1}
-.px-tl div:not(:last-child)::after{content:"";position:absolute;top:11px;left:50%;width:100%;height:2px;background:var(--line)}.px-tl div.done i{background:var(--up);border-color:var(--up);color:#fff}.px-tl div.done::after{background:var(--up)!important}.px-tl div.cur i{border-color:var(--gold);color:var(--gold)}.px-tl div.cur{color:var(--text)}
-.px-cd{font-size:30px;font-weight:800;font-family:var(--serif);color:var(--gold);text-align:center}
-.px-box{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px;margin:10px 0;font-size:14px}.px-copy{cursor:pointer;color:var(--gold);font-weight:700}
-.px-chat{max-height:260px;overflow-y:auto;display:flex;flex-direction:column;gap:6px;padding:4px 0 8px}
-.px-msg{max-width:82%;padding:8px 12px;border-radius:12px;font-size:14px;line-height:1.45;word-break:break-word}.px-msg small{display:block;font-size:10.5px;opacity:.7;margin-top:2px}
-.px-msg.me{align-self:flex-end;background:var(--gold);color:#111}.px-msg.m{align-self:flex-start;background:var(--bg);border:1px solid var(--line)}.px-msg.sys{align-self:center;background:transparent;color:var(--muted);font-size:12px;text-align:center;max-width:100%}
-.px-send{display:flex;gap:8px}.px-send input{min-height:44px;padding:10px 12px}.px-send button{flex:none;width:auto;padding:0 18px}
-.px-sheet{position:absolute;inset:0;z-index:5;background:rgba(0,0,0,.6);display:none;align-items:flex-end;justify-content:center}.px-sheet.show{display:flex}
-.px-sb{background:var(--surface);width:100%;max-width:560px;max-height:92%;overflow-y:auto;border-radius:22px 22px 0 0;padding:20px 18px calc(22px + env(safe-area-inset-bottom,0px));border:1px solid var(--line)}
-@media(min-width:700px){.px-sheet{align-items:center}.px-sb{border-radius:22px}}
-.px-sb h3{margin:0 0 4px;font-size:19px}.px-err{color:var(--bad);font-size:13px;min-height:18px;margin:6px 0}
-.px-toast{position:absolute;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--surface);border:1px solid var(--gold);padding:10px 18px;border-radius:12px;font-size:14px;z-index:9;display:none;max-width:90%;text-align:center}
-.p2pov{position:fixed}
-</style>
 </head>
 <body>
 <script>document.documentElement.classList.add('js');try{var t=localStorage.getItem('tfx_theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
@@ -789,8 +699,8 @@ html, body {max-width:100%;overflow-x:hidden;}
 <header><div class="wrap nav">
   <a class="logo" href="#top">TAMINADO <span>FX</span></a>
   <nav>
-    <div class="mh">Main navigation menu</div><div class="mmain"><a class="mi" href="#top"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11 12 3l9 8"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg></span><span class="tx"><b>Home</b><small>Company overview and introduction</small></span><span class="ch"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></span></a><a class="mi" href="#markets"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><rect x="7" y="10" width="3" height="6" rx=".5"/><path d="M8.5 7v3M8.5 16v2"/><rect x="13" y="7" width="3" height="7" rx=".5"/><path d="M14.5 4v3M14.5 14v3"/></svg></span><span class="tx"><b>Markets</b><small>Live market information and analysis</small></span><span class="ch"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></span></a><a class="mi" href="#tools"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><rect x="8" y="6" width="8" height="3"/><path d="M8.5 13h.01M12 13h.01M15.5 13h.01M8.5 17h.01M12 17h.01M15.5 17h.01"/></svg></span><span class="tx"><b>Trading Tools</b><small>Calculators and trading utilities</small></span><span class="ch"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></span></a><a class="mi" href="#p2p-app" onclick="openP2P();return false"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h13l-3-3"/><path d="M17 17H4l3 3"/></svg></span><span class="tx"><b>P2P Trading</b><small>Buy and sell crypto in Malawi Kwacha</small></span><span class="ch"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></span></a><a class="mi" href="#library"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5"/><path d="M22 10v6"/></svg></span><span class="tx"><b>Academy</b><small>Forex education and courses</small></span><span class="ch"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></span></a><a class="mi" href="#blog"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h13v14H6a2 2 0 0 1-2-2V5z"/><path d="M17 9h3v8a2 2 0 0 1-2 2"/><path d="M7 9h7M7 12h7M7 15h4"/></svg></span><span class="tx"><b>Research</b><small>Market reports and economic insights</small></span><span class="ch"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></span></a><a class="mi" href="#group"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="7" width="10" height="10" rx="1.5"/><rect x="10" y="10" width="4" height="4"/><path d="M9 3v3M15 3v3M9 18v3M15 18v3M3 9h3M3 15h3M18 9h3M18 15h3"/></svg></span><span class="tx"><b>Technology</b><small>Trading software and automation</small></span><span class="ch"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></span></a><a class="mi" href="#community"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="2.6"/><path d="M17 14c2.5 0 4.5 2 4.5 4.5"/></svg></span><span class="tx"><b>Community</b><small>Trader network and discussions</small></span><span class="ch"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></span></a><a class="mi" href="#about"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21V9l6-4v16"/><path d="M10 21V12l6-3v12"/><path d="M3 21h18"/></svg></span><span class="tx"><b>About Us</b><small>Company profile and leadership</small></span><span class="ch"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></span></a></div><div class="mhm">More</div><div class="mmore"><a class="l" href="#services">Services</a><a class="l" href="#leadership">Leadership</a><a class="l" href="#team">Team</a><a class="l" href="#courses">Courses</a><a class="l" href="#academy">Academy</a><a class="l" href="#books">Books</a>
-<a class="l" href="#p2p-app" onclick="openP2P();return false">P2P</a><a class="l" href="#journal">Journal</a><a class="l" href="#live">Live</a><a class="l" href="#competitions">Competitions</a><a class="l" href="#resources">Resources</a><a class="l" href="#partners">Partners</a><a class="l" href="#investors">Investors</a><a class="l" href="#careers">Careers</a><a class="l" href="#compliance">Compliance</a><a class="l" href="#help">Help</a><a class="l" href="#contact">Contact</a></div>
+    <div class="mh">Main navigation menu</div><div class="mmain"><a class="mi" href="#top"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11 12 3l9 8"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg></span><span class="tx"><b>Home</b><small>Company overview and introduction</small></span><span class="ch"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></span></a><a class="mi" href="#markets"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><rect x="7" y="10" width="3" height="6" rx=".5"/><path d="M8.5 7v3M8.5 16v2"/><rect x="13" y="7" width="3" height="7" rx=".5"/><path d="M14.5 4v3M14.5 14v3"/></svg></span><span class="tx"><b>Markets</b><small>Live market information and analysis</small></span><span class="ch"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></span></a><a class="mi" href="#tools"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><rect x="8" y="6" width="8" height="3"/><path d="M8.5 13h.01M12 13h.01M15.5 13h.01M8.5 17h.01M12 17h.01M15.5 17h.01"/></svg></span><span class="tx"><b>Trading Tools</b><small>Calculators and trading utilities</small></span><span class="ch"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></span></a><a class="mi" href="p2p.html" onclick="openP2P();return false"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h13l-3-3"/><path d="M17 17H4l3 3"/></svg></span><span class="tx"><b>P2P Trading</b><small>Buy and sell crypto in Malawi Kwacha</small></span><span class="ch"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></span></a><a class="mi" href="#library"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5"/><path d="M22 10v6"/></svg></span><span class="tx"><b>Academy</b><small>Forex education and courses</small></span><span class="ch"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></span></a><a class="mi" href="#blog"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h13v14H6a2 2 0 0 1-2-2V5z"/><path d="M17 9h3v8a2 2 0 0 1-2 2"/><path d="M7 9h7M7 12h7M7 15h4"/></svg></span><span class="tx"><b>Research</b><small>Market reports and economic insights</small></span><span class="ch"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></span></a><a class="mi" href="#group"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="7" width="10" height="10" rx="1.5"/><rect x="10" y="10" width="4" height="4"/><path d="M9 3v3M15 3v3M9 18v3M15 18v3M3 9h3M3 15h3M18 9h3M18 15h3"/></svg></span><span class="tx"><b>Technology</b><small>Trading software and automation</small></span><span class="ch"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></span></a><a class="mi" href="#community"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="2.6"/><path d="M17 14c2.5 0 4.5 2 4.5 4.5"/></svg></span><span class="tx"><b>Community</b><small>Trader network and discussions</small></span><span class="ch"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></span></a><a class="mi" href="#about"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21V9l6-4v16"/><path d="M10 21V12l6-3v12"/><path d="M3 21h18"/></svg></span><span class="tx"><b>About Us</b><small>Company profile and leadership</small></span><span class="ch"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></span></a></div><div class="mhm">More</div><div class="mmore"><a class="l" href="#services">Services</a><a class="l" href="#leadership">Leadership</a><a class="l" href="#team">Team</a><a class="l" href="#courses">Courses</a><a class="l" href="#academy">Academy</a><a class="l" href="#books">Books</a>
+<a class="l" href="p2p.html" onclick="openP2P();return false">P2P</a><a class="l" href="#journal">Journal</a><a class="l" href="#live">Live</a><a class="l" href="#competitions">Competitions</a><a class="l" href="#resources">Resources</a><a class="l" href="#partners">Partners</a><a class="l" href="#investors">Investors</a><a class="l" href="#careers">Careers</a><a class="l" href="#compliance">Compliance</a><a class="l" href="#help">Help</a><a class="l" href="#contact">Contact</a></div>
     <span class="nb" id="out"><a class="btn g" href="#" onclick="openAuth('in');return false">Log In</a><a class="btn p" href="#" onclick="openAuth('up');return false">Sign Up</a></span>
     <span class="nb" id="inn" style="display:none"><a class="btn p" id="dashBtn" href="#" onclick="openDash();return false">Dashboard</a><a class="btn g" id="adm" style="display:none" href="#" onclick="openAdmin();return false">Admin</a><a class="btn g" href="#" onclick="openMyPay();return false">My Payments</a><a class="btn g" id="refBtn" style="display:none" href="#" onclick="openRef();return false">Refer</a><a class="btn g" id="pushBtn" style="display:none" href="#" onclick="enablePush();return false" title="Notifications">🔔</a><span class="badge" id="plan">free</span><span class="note" id="who"></span><a class="btn g" href="#" onclick="logout();return false">Log Out</a></span>
     <button class="tbtn" id="tb" aria-label="Toggle light and dark theme" title="Toggle theme">◐</button>
@@ -822,7 +732,7 @@ html, body {max-width:100%;overflow-x:hidden;}
 </div>
 
 <section class="p3" aria-label="What we offer"><div class="wrap"><p>Empowering traders through knowledge, technology and innovation.</p>
-<div class="p3g"><a href="#library"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5"/><path d="M22 10v6"/></svg><span>Trading knowledge</span></a><a href="#markets"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="m7 15 3.5-4 3 2.5L17 8"/></svg><span>Market intelligence</span></a><a href="#tools"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="7" width="10" height="10" rx="1.5"/><rect x="10" y="10" width="4" height="4"/><path d="M9 3v3M15 3v3M9 18v3M15 18v3M3 9h3M3 15h3M18 9h3M18 15h3"/></svg><span>Trading solutions</span></a><a href="#p2p-app" onclick="openP2P();return false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h13l-3-3"/><path d="M17 17H4l3 3"/></svg><span>P2P trading</span></a></div></div></section>
+<div class="p3g"><a href="#library"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5"/><path d="M22 10v6"/></svg><span>Trading knowledge</span></a><a href="#markets"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="m7 15 3.5-4 3 2.5L17 8"/></svg><span>Market intelligence</span></a><a href="#tools"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="7" width="10" height="10" rx="1.5"/><rect x="10" y="10" width="4" height="4"/><path d="M9 3v3M15 3v3M9 18v3M15 18v3M3 9h3M3 15h3M18 9h3M18 15h3"/></svg><span>Trading solutions</span></a><a href="p2p.html" onclick="openP2P();return false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h13l-3-3"/><path d="M17 17H4l3 3"/></svg><span>P2P trading</span></a></div></div></section>
 <div id="tvt" class="tvt"></div><div class="ticker" id="tkw" aria-hidden="true"><div class="tk" id="tk"></div></div>
 <div class="riskbar" role="note"><b>⚠ Risk warning:</b> Trading forex and CFDs carries a high level of risk and you can lose more than you deposit. Education only, not financial advice. <a href="#" onclick="openM('priv2');return false" style="color:var(--gold);text-decoration:underline">Read more</a></div>
 
@@ -972,56 +882,20 @@ html, body {max-width:100%;overflow-x:hidden;}
 <div class="card rv"><span class="k">LOCAL PAYMENTS</span><h3>Built for Malawi</h3><p>Prices in MWK with bank and mobile money payouts, clear order limits and a set payment window on every buy.</p></div>
 <div class="card rv"><span class="k">SUPPORT</span><h3>Order Chat &amp; Records</h3><p>Every order has its own chat and status timeline, giving you a clear record if anything needs to be reviewed.</p></div>
 </div>
-<div class="p2pcta"><a class="btn p" href="#p2p-app" onclick="openP2P();return false">Open TAMINADO P2P</a><a class="btn g" href="#contact">Ask a question</a></div>
+<div class="p2pcta"><a class="btn p" href="p2p.html" onclick="openP2P();return false">Open TAMINADO P2P</a><a class="btn g" href="#contact">Ask a question</a></div>
 <p class="note" style="margin-top:16px">P2P trading is separate from our forex education. Crypto assets are volatile and you can lose money. Only trade what you can afford to lose.</p>
 </div></section>
 <section id="journal" class="alt"><div class="wrap">
 <div class="rv"><span class="tag">Members</span><h2>Trade Journal.</h2>
-<p class="sub">Log every trade, track your edge and see what your emotions are costing you. Judge yourself on execution, not on one outcome.</p></div>
+<p class="sub">Log every trade, track your win rate and watch your equity curve. Judge yourself on execution, not on one outcome.</p></div>
 <div id="jOut" class="card rv" style="margin-top:28px;max-width:560px"><h3>Log in to use your journal</h3><p>Your journal is private and saved to your free account.</p><p style="margin-top:16px"><a class="btn p sm" href="#" onclick="openAuth('up');return false">Sign Up Free</a> <a class="btn g sm" href="#" onclick="openAuth('in');return false">Log In</a></p></div>
 <div id="jIn" style="display:none">
-<div class="jx-bar"><span id="jsync" class="jx-sync local"><i></i><em>Saved on this device</em></span>
-<div class="jx-actions"><button type="button" class="btn g sm" id="jexp">Export CSV</button><label class="btn g sm" style="margin:0">Import CSV<input type="file" id="jimp" accept=".csv,text/csv" hidden></label></div></div>
-<div class="stats jx-stats" id="jstats"></div>
-
-<div class="calcbox jx-wide"><div class="jx-h"><h3>Equity curve</h3><div class="jx-seg" id="jcseg"><button type="button" data-v="r" class="on">In R</button><button type="button" data-v="p">In $</button></div></div>
-<div class="jx-cv" id="jcw"><svg id="jcurve" aria-label="Equity curve"></svg><div class="jx-tip" id="jtip"></div></div><p class="note" id="jcnote" style="margin-top:8px"></p></div>
-
-<div class="jx-two">
-<div class="calcbox jx-wide"><div class="jx-h"><h3 id="jcalh">Calendar</h3><div class="jx-seg"><button type="button" id="jcprev">‹</button><button type="button" id="jcnext">›</button></div></div><div class="jx-cal" id="jcal"></div><p class="note" style="margin-top:8px">Tap a day to filter your trades.</p></div>
-<div class="calcbox jx-wide"><div class="jx-h"><h3>Insights</h3></div><div id="jins" class="jx-ins"></div></div>
-</div>
-
-<div class="calcbox jx-wide"><div class="jx-h"><h3>Performance breakdown</h3><div class="jx-seg" id="jbseg"><button type="button" data-v="pair" class="on">Pair</button><button type="button" data-v="sess">Session</button><button type="button" data-v="emotion">Emotion</button><button type="button" data-v="setup">Setup</button><button type="button" data-v="day">Weekday</button></div></div><div id="jbd"></div></div>
-
-<div class="calcbox jx-wide" id="jformbox"><h3 id="jformh">Log a trade</h3>
-<form id="jf" class="jx-form" autocomplete="off">
-<label class="jx-f"><span>Date &amp; time</span><input id="jd" type="datetime-local" required></label>
-<label class="jx-f"><span>Pair</span><select id="jpair"></select></label>
-<label class="jx-f"><span>Direction</span><select id="jside"><option>Buy</option><option>Sell</option></select></label>
-<label class="jx-f"><span>Timeframe</span><select id="jtf"><option value="">-</option><option>M1</option><option>M5</option><option>M15</option><option>M30</option><option>H1</option><option>H4</option><option>D1</option><option>W1</option></select></label>
-<label class="jx-f"><span>Entry</span><input id="jent" type="number" step="any" inputmode="decimal"></label>
-<label class="jx-f"><span>Stop loss</span><input id="jsl" type="number" step="any" inputmode="decimal"></label>
-<label class="jx-f"><span>Take profit</span><input id="jtp" type="number" step="any" inputmode="decimal"></label>
-<label class="jx-f"><span>Exit price</span><input id="jex" type="number" step="any" inputmode="decimal"></label>
-<label class="jx-f"><span>Result in R <small id="jauto"></small></span><input id="jr" type="number" step="0.01" inputmode="decimal" placeholder="e.g. 2 or -1"></label>
-<label class="jx-f"><span>P&amp;L $ (optional)</span><input id="jp" type="number" step="0.01" inputmode="decimal"></label>
-<label class="jx-f"><span>Risk %</span><input id="jrisk" type="number" step="0.1" min="0" inputmode="decimal"></label>
-<label class="jx-f"><span>Lot size</span><input id="jlot" type="number" step="0.01" min="0" inputmode="decimal"></label>
-<label class="jx-f"><span>Setup / strategy</span><input id="jsetup" list="jsetups" maxlength="40" placeholder="Breakout, pullback..."><datalist id="jsetups"></datalist></label>
-<label class="jx-f"><span>Emotion</span><select id="jem"><option>Calm</option><option>Confident</option><option>Anxious</option><option>Fearful</option><option>Greedy</option><option>Revenge</option><option>FOMO</option><option>Bored</option></select></label>
-<label class="jx-f"><span>Tags (comma separated)</span><input id="jtags" maxlength="80" placeholder="news, london, A+ setup"></label>
-<label class="jx-f jx-chk"><input id="jplan" type="checkbox" checked><span>I followed my trading plan</span></label>
-<label class="jx-f jx-full"><span>Notes (setup, mistake, lesson)</span><textarea id="jn" rows="2" maxlength="600"></textarea></label>
-<div class="jx-f jx-full"><span>Chart screenshot (optional)</span><div class="jx-shot"><label class="btn g sm" style="margin:0">Choose image<input type="file" id="jshot" accept="image/*" hidden></label><button type="button" class="btn g sm" id="jshotx" style="display:none">Remove</button><img id="jshotp" alt="Screenshot preview" style="display:none"></div></div>
-<div class="jx-full jx-sub"><button class="btn p sm" type="submit" id="jsave">Save trade</button> <button class="btn g sm" type="button" id="jcancel" style="display:none">Cancel edit</button> <span class="msg" id="jm"></span></div>
-</form></div>
-
-<div class="calcbox jx-wide"><div class="jx-h"><h3>Trade history <small id="jcount" class="note"></small></h3></div>
-<div class="jx-filters"><input id="jq" placeholder="Search pair, setup, notes, tags" aria-label="Search"><select id="jfp" aria-label="Pair"></select><select id="jfo" aria-label="Outcome"><option value="">All outcomes</option><option value="w">Wins</option><option value="l">Losses</option><option value="b">Breakeven</option></select><select id="jfs" aria-label="Direction"><option value="">Buy &amp; Sell</option><option>Buy</option><option>Sell</option></select><select id="jfr" aria-label="Range"><option value="">All time</option><option value="7">Last 7 days</option><option value="30">Last 30 days</option><option value="90">Last 90 days</option></select><select id="jfz" aria-label="Sort"><option value="new">Newest first</option><option value="old">Oldest first</option><option value="best">Best R</option><option value="worst">Worst R</option></select></div>
-<div id="jday" class="jx-daychip" style="display:none"></div>
-<div id="jlist"></div><p style="text-align:center;margin:14px 0 0"><button type="button" class="btn g sm" id="jmore" style="display:none">Show more</button></p>
-</div>
+<div class="stats" style="margin-top:28px"><div class="stat"><b id="js1">0</b><span>Trades</span></div><div class="stat"><b id="js2">-</b><span>Win rate</span></div><div class="stat"><b id="js3">0R</b><span>Total result</span></div><div class="stat"><b id="js4">-</b><span>Avg per trade</span></div><div class="stat"><b id="js5">$0</b><span>Total P&amp;L</span></div></div>
+<div class="calcbox" style="max-width:none"><svg id="jcurve" viewBox="0 0 600 160" preserveAspectRatio="none" style="width:100%;height:160px;display:block" aria-label="Equity curve"></svg><p class="note" id="jcnote" style="margin-top:8px"></p></div>
+<div class="calcbox" style="max-width:none"><h3>Log a trade</h3>
+<form id="jf" class="jf"><input id="jd" type="datetime-local" required aria-label="Date and time"><select id="jpair" aria-label="Pair"></select><select id="jside" aria-label="Direction"><option>Buy</option><option>Sell</option></select><input id="jrisk" type="number" step="0.1" min="0" placeholder="Risk %" aria-label="Risk percent"><input id="jr" type="number" step="0.01" placeholder="Result in R (e.g. 2 or -1)" required aria-label="Result in R"><input id="jp" type="number" step="0.01" placeholder="P&amp;L $ (optional)" aria-label="Profit or loss"><select id="jem" aria-label="Emotion"><option>Calm</option><option>Confident</option><option>Anxious</option><option>Fearful</option><option>Greedy</option><option>Revenge</option><option>FOMO</option><option>Bored</option></select><input id="jn" placeholder="Notes (setup, mistake, lesson)" maxlength="300">
+<div><button class="btn p sm" type="submit">Save trade</button> <span class="msg" id="jm"></span></div></form></div>
+<div class="aw" style="margin-top:20px"><table><thead><tr><th>Date</th><th>Pair</th><th>Side</th><th>Result</th><th>Emotion</th><th>Notes</th><th></th></tr></thead><tbody id="jbody"></tbody></table></div>
 </div></div></section>
 
 <section id="markets"><div class="wrap">
@@ -1251,7 +1125,7 @@ html, body {max-width:100%;overflow-x:hidden;}
 
 <footer><div class="wrap">
 <div class="cols"><div><div class="logo">TAMINADO <span>FX</span></div><p>Forex markets company: education, research and mentorship.</p><p id="coleg" style="margin-top:6px"></p></div>
-<div><a href="#about">Company</a><a href="#services">Services</a><a href="#group">Group</a><a href="#leadership">Leadership</a><a href="#courses">Courses</a><a href="#p2p-app" onclick="openP2P();return false">P2P Trading</a><a href="#partners">Partners</a><a href="#team">Team</a><a href="#competitions">Competitions</a><a href="#resources">Glossary</a><a href="#investors">Investors</a><a href="#careers">Careers</a><a href="#press">Press</a><a href="#help">Help</a><a href="#compliance">Compliance</a><a href="#faq">FAQ</a><a href="#contact">Contact</a></div></div>
+<div><a href="#about">Company</a><a href="#services">Services</a><a href="#group">Group</a><a href="#leadership">Leadership</a><a href="#courses">Courses</a><a href="p2p.html" onclick="openP2P();return false">P2P Trading</a><a href="#partners">Partners</a><a href="#team">Team</a><a href="#competitions">Competitions</a><a href="#resources">Glossary</a><a href="#investors">Investors</a><a href="#careers">Careers</a><a href="#press">Press</a><a href="#help">Help</a><a href="#compliance">Compliance</a><a href="#faq">FAQ</a><a href="#contact">Contact</a></div></div>
 <div class="soc" id="cosoc"></div>
 <p><b>Disclaimer:</b> <span class="coname">TAMINADO FX</span> is an educational and research company. It is not a broker, does not hold client funds and does not provide personal financial advice. Nothing here is an offer to buy or sell any instrument. Trading forex and CFDs involves substantial risk and you may lose more than your initial investment. Past performance is not indicative of future results.</p>
 <p>© 2026 <span class="coname">TAMINADO FX</span>. All rights reserved. <a href="#" onclick="openM('priv');return false">Privacy</a><a href="#" onclick="openM('terms');return false">Terms</a><a href="#" onclick="openM('priv2');return false">Risk Disclosure</a><a href="#" onclick="openM('refund');return false">Refunds</a><a href="#" onclick="openM('complaints');return false">Complaints</a><a href="#" onclick="openM('aml');return false">AML Policy</a><a href="#" onclick="openM('crules');return false">Competition Rules</a></p>
@@ -1367,7 +1241,7 @@ html, body {max-width:100%;overflow-x:hidden;}
 <button class="btn p" type="button" onclick="closeM('aml')" style="margin-top:14px">Close</button></div></div>
 
 <div class="modal" id="pay"><div class="box wide"><button class="x" onclick="closeM('pay')" aria-label="Close">×</button>
-<h3>Upgrade to Mastery</h3><p class="note" id="pamt"></p>
+<h3>Upgrade to Mastery</h3><p class="note" id="pamt"></p><p class="note">Payments are checked by TAMINADO FX before access is granted. Submitting a transaction reference does not unlock a download.</p>
 <div class="pm" id="pms"></div><div class="pi" id="pinfo">Choose a payment method.</div>
 <form class="pf" id="pform"><input id="psender" placeholder="Name / number you paid from" required maxlength="80"><input id="pref" placeholder="Transaction ID or reference" required maxlength="60" pattern="[A-Za-z0-9 ._\-+#/]{3,60}" title="Letters, numbers and . _ - + # / only (3 to 60 characters)">
 <button class="btn p" type="submit">I Have Paid</button> <span class="msg" id="pmsg"></span></form></div></div>
@@ -1721,6 +1595,29 @@ function fmtPrice(v){
   if(v==='')return '';
   if(/^\d+(\.\d+)?$/.test(v)){var n=parseFloat(v);return n===0?'Free':(BOOK_CURRENCY?BOOK_CURRENCY+' ':'')+n.toLocaleString()}
   return v}
+function bookPriceMWK(item){
+  var raw=pickCol(item,COLS.price),n=parseFloat(String(raw).replace(/[^0-9.]/g,''));
+  return Number.isFinite(n)?n:0
+}
+async function downloadBook(item){
+  if(!cur){openAuth('in');return}
+  if(!sb){toast('Please sign in and connect the payment system first.','bad');return}
+  var price=bookPriceMWK(item),plan='book-'+String(item.id||item.title||'book');
+  if(price>0){
+    var q=await sb.from('payments').select('id,status').eq('user_id',cur.id).eq('plan',plan).eq('status','approved').limit(1);
+    if(q.error){toast('Could not verify your purchase. Please try again.','bad');return}
+    if(!q.data||!q.data.length){openPay(item);return}
+  }
+  var f=pickCol(item,COLS.file);
+  if(!f||safeUrl(f)){toast('This book must be stored in the private Supabase books bucket using a storage file path before secure downloads can be enabled.','bad');return}
+  var w=window.open('about:blank','_blank');
+  try{
+    /* The Edge Function verifies ownership server-side before it creates a short-lived download URL. */
+    var r=await sb.functions.invoke('download-book',{body:{book_id:item.id}});
+    if(r.error||!r.data||!r.data.signedUrl)throw (r.error||new Error('Download not authorised'));
+    if(w)w.location=r.data.signedUrl;else location.href=r.data.signedUrl
+  }catch(e){if(w)w.close();toast('Download could not be authorised. Check that your payment is approved, then try again.','bad')}
+}
 function shopCard(item,kind){
   var d=document.createElement('div');d.className='card rv in';
   var cu=coverUrl(pickCol(item,COLS.cover));
@@ -1732,25 +1629,12 @@ function shopCard(item,kind){
   if(kind==='book'&&item.author){var au=document.createElement('p');au.className='note';au.textContent='by '+item.author;d.appendChild(au)}
   var p=document.createElement('p');p.textContent=item.description||'';d.appendChild(p);
   var row=document.createElement('div');row.className='shopact';
-  if(kind==='book'){var pt=fmtPrice(pickCol(item,COLS.price));if(pt){var pr=document.createElement('span');pr.className='badge';pr.textContent=pt;row.appendChild(pr)}}
-  var buy=safeUrl(item.buy_url);
-  if(buy){var a=document.createElement('a');a.className='btn p sm';a.href=buy;a.target='_blank';a.rel='noopener noreferrer';a.textContent='Buy now';row.appendChild(a)}
   if(kind==='book'){
+    var pt=fmtPrice(pickCol(item,COLS.price));if(pt){var pr=document.createElement('span');pr.className='badge';pr.textContent=pt;row.appendChild(pr)}
     var f=pickCol(item,COLS.file);
-    if(f){
-      if(safeUrl(f)){
-        var dl=document.createElement('a');dl.className='btn g sm';dl.href=f;dl.target='_blank';dl.rel='noopener noreferrer';dl.setAttribute('download','');dl.textContent='Download';row.appendChild(dl)
-      }else{
-        var bt=document.createElement('button');bt.type='button';bt.className='btn g sm';bt.textContent='Download';
-        bt.onclick=async function(){
-          bt.disabled=true;var w=window.open('about:blank','_blank');
-          try{
-            var r=await sb.storage.from('books').createSignedUrl(f,120);
-            if(r.error||!r.data)throw (r.error||new Error('no url'));
-            if(w)w.location=r.data.signedUrl;else location.href=r.data.signedUrl
-          }catch(e){if(w)w.close();bt.textContent='Unavailable. Try again.'}
-          finally{bt.disabled=false}};
-        row.appendChild(bt)}}}
+    if(f){var bt=document.createElement('button');bt.type='button';bt.className='btn p sm';bt.textContent=bookPriceMWK(item)>0?'Buy & Download':'Download';
+      bt.onclick=function(){downloadBook(item)};row.appendChild(bt)}
+  }
   if(kind==='course'){var need=RANK[item.min_plan]||1;if(need>1&&(!cur||RANK[cur.plan]<need)){var lk=document.createElement('span');lk.className='badge';lk.textContent=item.min_plan;row.appendChild(lk)}}
   d.appendChild(row);return d}
 function renderShop(){
@@ -1903,18 +1787,24 @@ var PAY={plan:'mastery',usd:20,mwk:35000,days:365,cardLink:'',methods:{
  binance:{name:'Binance (USDT)',cur:'USD',lines:['Binance Pay ID: 1132002627','Send the exact amount in USDT']}}};
 /* ================================================================================== */
 function esc2(t){return String(t==null?'':t).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
-var pm=null,_ra=renderAll;
+var pm=null,currentBook=null,_ra=renderAll;
 renderAll=function(){_ra();var a=$('adm');if(a)a.style.display=cur&&cur.role==='admin'?'':'none'};
-function amtOf(k){return PAY.methods[k].cur==='USD'?'$'+PAY.usd:'MWK '+PAY.mwk.toLocaleString()}
+function amtOf(k){
+ if(currentBook){var mwk=bookPriceMWK(currentBook);return PAY.methods[k].cur==='USD'?'$'+(mwk/(rate('MWK')||1750)).toFixed(2):'MWK '+mwk.toLocaleString()}
+ return PAY.methods[k].cur==='USD'?'$'+PAY.usd:'MWK '+PAY.mwk.toLocaleString()
+}
 $('mprice').textContent='MWK '+PAY.mwk.toLocaleString();
-function openPay(){
+function openPay(book){
  if(!cur){openAuth('up');return}
- pm=null;$('pmsg').textContent='';$('pinfo').textContent='Choose a payment method.';
- $('pamt').textContent='Mastery access: MWK '+PAY.mwk.toLocaleString()+' (or $'+PAY.usd+' via Binance). Pay, then enter your transaction ID below.';
+ currentBook=book||null;pm=null;$('pmsg').textContent='';$('pinfo').textContent='Choose a payment method.';
+ var head=$('pay').querySelector('h3');
+ if(currentBook){$('pamt').textContent='Purchase: '+currentBook.title+' · MWK '+bookPriceMWK(currentBook).toLocaleString()+'. Access is unlocked only after an administrator verifies your payment.';if(head)head.textContent='Buy this book'}
+ else{$('pamt').textContent='Mastery access: MWK '+PAY.mwk.toLocaleString()+' (or $'+PAY.usd+' via Binance). Pay, then enter your transaction ID below.';if(head)head.textContent='Upgrade to Mastery'}
  $('pms').innerHTML=Object.keys(PAY.methods).map(function(k){return '<button type="button" data-k="'+k+'">'+esc2(PAY.methods[k].name)+'</button>'}).join('');
  $('pms').querySelectorAll('button').forEach(function(b){b.onclick=function(){
   pm=b.dataset.k;$('pms').querySelectorAll('button').forEach(function(x){x.classList.toggle('on',x===b)});
-  $('pinfo').innerHTML='<b>Amount: '+esc2(amtOf(pm))+'</b><br>'+PAY.methods[pm].lines.map(esc2).join('<br>')}});
+  var amount=amtOf(pm),extra=pm==='binance'?' · Binance USD amount is calculated using the current site exchange rate.':'';
+  $('pinfo').innerHTML='<b>Amount: '+esc2(amount)+'</b><br>'+PAY.methods[pm].lines.map(esc2).join('<br>')+esc2(extra)}});
  openM('pay')}
 function isMissingCol(e){var m=String(e&&e.message||'').toLowerCase();return !!e&&(e.code==='PGRST204'||e.code==='42703'||(m.indexOf('column')>-1&&(m.indexOf('schema cache')>-1||m.indexOf('does not exist')>-1)))}
 $('pform').addEventListener('submit',async function(e){
@@ -1931,7 +1821,11 @@ $('pform').addEventListener('submit',async function(e){
   var ss=await sb.auth.getSession(),su=ss&&ss.data&&ss.data.session?ss.data.session.user:null;
   if(!su){setMsg(m,'You are not logged in (session expired). Please log in again.',false);return}
   var d=PAY.methods[pm];
-  var core={user_id:su.id,amount:d.cur==='USD'?PAY.usd:PAY.mwk,currency:d.cur,method:pm,reference:ref,plan:PAY.plan,status:'pending'};
+  var isBook=!!currentBook,bookPrice=isBook?bookPriceMWK(currentBook):0;
+  if(isBook&&bookPrice<=0){setMsg(m,'This book has no valid price. Please contact support.',false);return}
+  var paymentAmount=isBook?(d.cur==='USD'?Number((bookPrice/(rate('MWK')||1750)).toFixed(2)):bookPrice):(d.cur==='USD'?PAY.usd:PAY.mwk);
+  var paymentPlan=isBook?'book-'+String(currentBook.id||currentBook.title||'book'):PAY.plan;
+  var core={user_id:su.id,amount:paymentAmount,currency:d.cur,method:pm,reference:ref,plan:paymentPlan,status:'pending'};
   var extra={email:su.email,sender:snd};
   var row=Object.assign({},core,extra);
   var r=await sb.from('payments').insert(row);
@@ -1940,7 +1834,7 @@ $('pform').addEventListener('submit',async function(e){
   if(r.error){
     var t=r.error.code==='23505'?'This transaction ID was already submitted.':'Please check your details and try again.';
     setMsg(m,'Could not submit. '+t,false);return}
-  setMsg(m,'Payment submitted, waiting for approval.',true);$('pform').reset();
+  setMsg(m,isBook?'Payment submitted. Your book download will unlock after an administrator verifies the payment.':'Payment submitted, waiting for approval.',true);$('pform').reset();
  }catch(err){setMsg(m,'Could not submit. Please try again.',false)}
  finally{btn.disabled=false}});
 
@@ -2012,7 +1906,8 @@ async function admTab(t){
  box.querySelectorAll('button[data-a]').forEach(function(b){b.onclick=async function(){
   var id=b.dataset.i,p=rows.find(function(x){return String(x.id)===id}),ok=b.dataset.a==='ok';b.disabled=true;
   var u=await sb.from('payments').update({status:ok?'approved':'rejected'}).eq('id',id);
-  if(!u.error&&ok){var ex=new Date(Date.now()+PAY.days*864e5).toISOString();u=await sb.from('profiles').update({plan:p.plan||'mastery',plan_expires:ex}).eq('id',p.user_id);if(u.error)u=await sb.from('profiles').update({plan:p.plan||'mastery'}).eq('id',p.user_id)}
+  /* Book approvals unlock only that purchased book; they must never upgrade the customer's Academy plan. */
+  if(!u.error&&ok&&String(p.plan||'').indexOf('book-')!==0){var ex=new Date(Date.now()+PAY.days*864e5).toISOString();u=await sb.from('profiles').update({plan:p.plan||'mastery',plan_expires:ex}).eq('id',p.user_id);if(u.error)u=await sb.from('profiles').update({plan:p.plan||'mastery'}).eq('id',p.user_id)}
   if(u.error)alert('Action failed. Please try again.');admTab('payments')}});
  box.querySelectorAll('select[data-m]').forEach(function(sel){sel.onchange=async function(){
   var u=await sb.from('profiles').update({plan:sel.value}).eq('id',sel.dataset.m);if(u.error)alert('Action failed. Please try again.')}});
@@ -2075,216 +1970,48 @@ function conv(){
 $('cvS').addEventListener('click',function(){var f=$('cvF').value;$('cvF').value=$('cvT').value;$('cvT').value=f;conv()});
 calc();conv();loadRates();
 
-/* ---------- trade journal (advanced: local-first, cloud sync, analytics) ---------- */
-var JR=[],JV={curve:'r',bd:'pair',mon:new Date(),page:15,edit:null,shot:'',day:''};
+/* ---------- trade journal ---------- */
+var JR=[];
 function jKey(){return 'tfx_j_'+(cur&&cur.id)}
 function nowLocal(){var d=new Date();d.setMinutes(d.getMinutes()-d.getTimezoneOffset());return d.toISOString().slice(0,16)}
-function jesc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
-function jn(v){v=parseFloat(v);return isNaN(v)?null:v}
-function jfR(v){v=+v||0;return(v>0?'+':'')+v.toFixed(2)+'R'}
-function jfM(v){v=+v||0;return(v<0?'-$':'$')+Math.abs(v).toFixed(2)}
-function jcol(v){return v>0?'var(--up)':v<0?'var(--down)':'var(--muted)'}
-function jsave(){try{localStorage.setItem(jKey(),JSON.stringify(JR));return true}catch(e){return false}}
-function jsort(){JR.sort(function(a,b){return String(a.traded_at).localeCompare(String(b.traded_at))})}
-function jsess(j){var h=new Date(j.traded_at).getUTCHours();return h>=21||h<7?'Asian':h<12?'London':h<16?'London/NY overlap':'New York'}
-function jday(j){return['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][new Date(j.traded_at).getDay()]}
-function jdkey(j){var d=new Date(j.traded_at);return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2)}
-function jid(){return'l'+Date.now().toString(36)+Math.random().toString(36).slice(2,6)}
-function jnorm(j){j.id=j.id||jid();j.result_r=+j.result_r||0;if(!Array.isArray(j.tags))j.tags=[];if(j.plan!==0&&j.plan!==1)j.plan=null;return j}
-function jsyncState(s){var e=$('jsync');if(!e)return;e.className='jx-sync '+s;e.lastChild.textContent=s==='cloud'?'Synced to your account':s==='busy'?'Syncing...':'Saved on this device'}
-
-function jcalc(L){L=L.slice().sort(function(a,b){return String(a.traded_at).localeCompare(String(b.traded_at))});
-  var o={n:L.length,w:0,l:0,be:0,tr:0,pnl:0,gw:0,gl:0,best:null,worst:null,mdd:0,cs:0,mw:0,ml:0,plan:0,pn:0},cum=0,pk=0,sw=0,sl=0;
-  L.forEach(function(j){var r=+j.result_r||0;o.tr+=r;o.pnl+=+j.pnl||0;
-    if(r>0){o.w++;o.gw+=r;sw++;sl=0}else if(r<0){o.l++;o.gl-=r;sl++;sw=0}else{o.be++;sw=0;sl=0}
-    if(sw>o.mw)o.mw=sw;if(sl>o.ml)o.ml=sl;cum+=r;if(cum>pk)pk=cum;if(pk-cum>o.mdd)o.mdd=pk-cum;
-    if(o.best===null||r>o.best)o.best=r;if(o.worst===null||r<o.worst)o.worst=r;
-    if(j.plan===1||j.plan===0){o.pn++;if(j.plan===1)o.plan++}});
-  o.cs=sw?sw:-sl;o.wr=o.n?o.w/o.n*100:0;o.avg=o.n?o.tr/o.n:0;o.pf=o.gl?o.gw/o.gl:(o.gw?Infinity:0);o.aw=o.w?o.gw/o.w:0;o.al=o.l?o.gl/o.l:0;return o}
-
-/* ----- cloud mirror (core columns only; never blocks the UI) ----- */
-function jcore(j){return{pair:j.pair,side:j.side,risk_pct:j.risk_pct==null?null:j.risk_pct,result_r:j.result_r,pnl:j.pnl==null?null:j.pnl,emotion:j.emotion||'',notes:j.notes||'',traded_at:j.traded_at}}
-async function jpush(j){if(!sb||!cur)return;
-  try{var r;if(j.cid)r=await tmo(sb.from('journal').update(jcore(j)).eq('id',j.cid).eq('user_id',cur.id),8000);
-    else{r=await tmo(sb.from('journal').insert(Object.assign({user_id:cur.id},jcore(j))).select().single(),8000);if(!r.error&&r.data){j.cid=r.data.id;jsave()}}
-    jsyncState(r&&r.error?'local':'cloud')}catch(e){jsyncState('local')}}
-async function jsyncAll(){if(!sb||!cur)return;jsyncState('busy');
-  try{var r=await tmo(sb.from('journal').select('*').eq('user_id',cur.id).order('traded_at',{ascending:true}),8000);
-    if(r.error){jsyncState('local');return}
-    var have={};JR.forEach(function(j){if(j.cid)have[j.cid]=1});
-    (r.data||[]).forEach(function(x){if(!have[x.id])JR.push(jnorm({id:'c'+x.id,cid:x.id,pair:x.pair,side:x.side,risk_pct:x.risk_pct,result_r:x.result_r,pnl:x.pnl,emotion:x.emotion,notes:x.notes,traded_at:x.traded_at,plan:null}))});
-    jsort();jsave();renderJournal();
-    var todo=JR.filter(function(j){return!j.cid}).slice(0,40);for(var i=0;i<todo.length;i++)await jpush(todo[i]);
-    jsyncState('cloud')}catch(e){jsyncState('local')}}
-async function loadJournal(){JR=[];if(!cur){renderJournal();return}
-  try{JR=JSON.parse(store(jKey())||'[]')}catch(e){JR=[]}
-  if(!Array.isArray(JR))JR=[];JR.forEach(jnorm);jsort();renderJournal();jsyncAll()}
-
-/* ----- filters ----- */
-function jfiltered(){var q=($('jq').value||'').toLowerCase().trim(),fp=$('jfp').value,fo=$('jfo').value,fs=$('jfs').value,fr=+$('jfr').value,fz=$('jfz').value,now=Date.now();
-  var L=JR.filter(function(j){
-    if(fp&&j.pair!==fp)return false;if(fs&&j.side!==fs)return false;
-    if(fo==='w'&&!(j.result_r>0))return false;if(fo==='l'&&!(j.result_r<0))return false;if(fo==='b'&&j.result_r!==0)return false;
-    if(fr&&now-new Date(j.traded_at).getTime()>fr*864e5)return false;
-    if(JV.day&&jdkey(j)!==JV.day)return false;
-    if(q){var h=[j.pair,j.setup,j.notes,(j.tags||[]).join(' '),j.emotion,j.tf].join(' ').toLowerCase();if(h.indexOf(q)<0)return false}
-    return true});
-  if(fz==='old')L.sort(function(a,b){return String(a.traded_at).localeCompare(String(b.traded_at))});
-  else if(fz==='best')L.sort(function(a,b){return b.result_r-a.result_r});
-  else if(fz==='worst')L.sort(function(a,b){return a.result_r-b.result_r});
-  else L.sort(function(a,b){return String(b.traded_at).localeCompare(String(a.traded_at))});
-  return L}
-
-/* ----- renderers ----- */
-function jStats(){var o=jcalc(JR),c=[
-  ['Trades',o.n,''],['Win rate',o.n?o.wr.toFixed(0)+'%':'-',''],['Total result',o.n?jfR(o.tr):'-',jcol(o.tr)],['Expectancy',o.n?jfR(o.avg):'-',jcol(o.avg)],
-  ['Profit factor',o.n?(o.pf===Infinity?'∞':o.pf.toFixed(2)):'-',o.pf>=1?'var(--up)':o.n?'var(--down)':''],['Max drawdown',o.n?'-'+o.mdd.toFixed(2)+'R':'-',o.mdd>0?'var(--down)':''],
-  ['Avg win / loss',o.n?'+'+o.aw.toFixed(2)+' / -'+o.al.toFixed(2):'-',''],['Best / worst',o.n?jfR(o.best)+' / '+jfR(o.worst):'-',''],
-  ['Streak',o.n?(o.cs>0?o.cs+' W':o.cs<0?(-o.cs)+' L':'-'):'-',o.cs>0?'var(--up)':o.cs<0?'var(--down)':''],
-  ['Plan followed',o.pn?Math.round(o.plan/o.pn*100)+'%':'-',''],['Total P&L',o.n?jfM(o.pnl):'-',jcol(o.pnl)]];
-  $('jstats').innerHTML=c.map(function(x){return'<div class="stat"><b'+(x[2]?' style="color:'+x[2]+'"':'')+'>'+jesc(x[1])+'</b><span>'+x[0]+'</span></div>'}).join('')}
-
-function jCurve(){var sv=$('jcurve'),w=$('jcw'),W=Math.max(280,w.clientWidth||600),H=190,P=14,ns='http://www.w3.org/2000/svg',useP=JV.curve==='p';
-  sv.setAttribute('viewBox','0 0 '+W+' '+H);sv.setAttribute('width',W);sv.setAttribute('height',H);sv.innerHTML='';$('jtip').style.display='none';
-  var key=useP?'pnl':'result_r',pts=[0],L=JR.slice();var cum=0;L.forEach(function(j){cum+=+j[key]||0;pts.push(cum)});
-  if(L.length<2){$('jcnote').textContent='Log at least 2 trades to see your equity curve.';return}
-  var mn=Math.min.apply(null,pts),mx=Math.max.apply(null,pts);if(mx===mn){mx+=1;mn-=1}
-  var X=function(i){return P+i*(W-2*P)/(pts.length-1)},Y=function(v){return H-P-(v-mn)*(H-2*P)/(mx-mn)};
-  function mk(t,a,s){var e=document.createElementNS(ns,t);for(var k in a)e.setAttribute(k,a[k]);if(s)for(var q in s)e.style[q]=s[q];sv.appendChild(e);return e}
-  var d=mk('defs',{});d.innerHTML='<linearGradient id="jgr" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--gold);stop-opacity:.35"/><stop offset="1" style="stop-color:var(--gold);stop-opacity:0"/></linearGradient>';
-  mk('line',{x1:P,x2:W-P,y1:Y(0),y2:Y(0),'stroke-dasharray':'4 4'},{stroke:'var(--line)'});
-  var line=pts.map(function(v,i){return X(i).toFixed(1)+','+Y(v).toFixed(1)}).join(' ');
-  mk('polygon',{points:X(0)+','+Y(Math.max(mn,Math.min(0,mx)))+' '+line+' '+X(pts.length-1)+','+Y(Math.max(mn,Math.min(0,mx))),fill:'url(#jgr)'});
-  mk('polyline',{points:line,fill:'none','stroke-width':2.5,'stroke-linejoin':'round'},{stroke:'var(--gold)'});
-  var dot=mk('circle',{r:5,cx:-10,cy:-10},{fill:'var(--gold)',stroke:'var(--bg)','stroke-width':'2'});
-  function hv(ev){var r=sv.getBoundingClientRect(),cx=(ev.touches?ev.touches[0].clientX:ev.clientX)-r.left,i=Math.max(0,Math.min(pts.length-1,Math.round((cx-P)/((W-2*P)/(pts.length-1)))));
-    dot.setAttribute('cx',X(i));dot.setAttribute('cy',Y(pts[i]));var t=$('jtip'),tr=L[i-1];
-    t.innerHTML=i?'#'+i+' · '+jesc(tr.pair)+' '+jesc(tr.side)+'<br><b>'+(useP?jfM(pts[i]):jfR(pts[i]))+'</b> total':'Start';t.style.display='block';t.style.left=Math.min(Math.max(X(i)-60,0),W-130)+'px';t.style.top=Math.max(Y(pts[i])-52,0)+'px'}
-  sv.onmousemove=hv;sv.ontouchmove=hv;sv.ontouchstart=hv;sv.onmouseleave=function(){$('jtip').style.display='none'};
-  $('jcnote').textContent=(useP?'Cumulative profit and loss in $.':'Cumulative result in R.')+' Hover or touch the curve for each trade.'}
-
-function jCal(){var m=JV.mon,y=m.getFullYear(),mo=m.getMonth(),first=new Date(y,mo,1),days=new Date(y,mo+1,0).getDate(),off=(first.getDay()+6)%7,map={};
-  JR.forEach(function(j){var k=jdkey(j);if(!map[k])map[k]={r:0,n:0};map[k].r+=+j.result_r||0;map[k].n++});
-  var mx=1;Object.keys(map).forEach(function(k){mx=Math.max(mx,Math.abs(map[k].r))});
-  $('jcalh').textContent=m.toLocaleString('en',{month:'long',year:'numeric'});
-  var h=['Mo','Tu','We','Th','Fr','Sa','Su'].map(function(d){return'<b>'+d+'</b>'}).join('');
-  for(var i=0;i<off;i++)h+='<i></i>';
-  for(var d=1;d<=days;d++){var k=y+'-'+('0'+(mo+1)).slice(-2)+'-'+('0'+d).slice(-2),v=map[k],bg='',cl='';
-    if(v){var a=(.18+.55*Math.min(1,Math.abs(v.r)/mx)).toFixed(2);bg='background:'+(v.r>0?'rgba(22,163,106,'+a+')':v.r<0?'rgba(220,69,69,'+a+')':'rgba(150,160,180,.25)')}
-    h+='<button type="button" class="jx-d'+(JV.day===k?' sel':'')+'" data-k="'+k+'" style="'+bg+'"><span>'+d+'</span>'+(v?'<em>'+(v.r>0?'+':'')+v.r.toFixed(1)+'R</em>':'')+'</button>'}
-  $('jcal').innerHTML=h}
-
-function jIns(){var o=jcalc(JR),out=[];
-  if(o.n<5){$('jins').innerHTML='<p class="note">Log at least 5 trades to unlock personal insights. You have '+o.n+'.</p>';return}
-  function grp(f){var g={};JR.forEach(function(j){var k=f(j)||'-';(g[k]=g[k]||[]).push(j)});return Object.keys(g).map(function(k){var c=jcalc(g[k]);return{k:k,n:c.n,tr:c.tr,avg:c.avg}}).filter(function(x){return x.n>=2})}
-  var s=grp(jsess).sort(function(a,b){return b.avg-a.avg});if(s.length>1)out.push(['up','Best session: <b>'+jesc(s[0].k)+'</b> ('+jfR(s[0].avg)+' avg over '+s[0].n+' trades). Weakest: <b>'+jesc(s[s.length-1].k)+'</b> ('+jfR(s[s.length-1].avg)+').']);
-  var e=grp(function(j){return j.emotion}).sort(function(a,b){return a.tr-b.tr});if(e.length&&e[0].tr<0)out.push(['dn','Trading while <b>'+jesc(e[0].k.toLowerCase())+'</b> has cost you '+jfR(e[0].tr)+' across '+e[0].n+' trades.']);
-  var p=grp(function(j){return j.pair}).sort(function(a,b){return b.tr-a.tr});if(p.length)out.push(['up','Best pair: <b>'+jesc(p[0].k)+'</b> ('+jfR(p[0].tr)+' total).'+(p.length>1&&p[p.length-1].tr<0?' Weakest: <b>'+jesc(p[p.length-1].k)+'</b> ('+jfR(p[p.length-1].tr)+').':'')]);
-  var f=JR.filter(function(j){return j.plan===1}),u=JR.filter(function(j){return j.plan===0});
-  if(f.length>=2&&u.length>=2){var cf=jcalc(f),cu=jcalc(u);out.push([cf.avg>=cu.avg?'up':'dn','Trades that followed your plan average <b>'+jfR(cf.avg)+'</b> vs <b>'+jfR(cu.avg)+'</b> when you broke it.'])}
-  var rk=JR.filter(function(j){return j.risk_pct}),ar=rk.length?rk.reduce(function(a,j){return a+j.risk_pct},0)/rk.length:0;if(ar>2)out.push(['dn','Your average risk is <b>'+ar.toFixed(1)+'%</b> per trade. Most traders cap this at 1-2%.']);
-  if(o.cs<=-3)out.push(['dn','You are on a <b>'+(-o.cs)+'-trade losing streak</b>. Consider reducing size or stepping back until your next A+ setup.']);
-  if(o.pf!==Infinity&&o.pf<1&&o.n>=10)out.push(['dn','Profit factor is <b>'+o.pf.toFixed(2)+'</b> (below 1.0). Review your losers for a repeating mistake.']);
-  if(o.pf>=1.5)out.push(['up','Profit factor of <b>'+(o.pf===Infinity?'∞':o.pf.toFixed(2))+'</b> shows a healthy edge. Stay consistent.']);
-  $('jins').innerHTML=out.length?out.map(function(x){return'<div class="jx-i '+x[0]+'">'+x[1]+'</div>'}).join(''):'<p class="note">No clear patterns yet. Keep logging.</p>'}
-
-function jBd(){var f={pair:function(j){return j.pair},sess:jsess,emotion:function(j){return j.emotion||'-'},setup:function(j){return j.setup||'(none)'},day:jday}[JV.bd],g={};
-  JR.forEach(function(j){var k=f(j);(g[k]=g[k]||[]).push(j)});
-  var rows=Object.keys(g).map(function(k){var c=jcalc(g[k]);c.k=k;return c});
-  if(JV.bd==='day'){var ord=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];rows.sort(function(a,b){return ord.indexOf(a.k)-ord.indexOf(b.k)})}else rows.sort(function(a,b){return b.tr-a.tr});
-  if(!rows.length){$('jbd').innerHTML='<p class="note">Nothing to show yet.</p>';return}
-  var mx=Math.max.apply(null,rows.map(function(r){return Math.abs(r.tr)}).concat([.01]));
-  $('jbd').innerHTML=rows.slice(0,12).map(function(r){return'<div class="jx-b"><div class="jx-bl"><b>'+jesc(r.k)+'</b><span>'+r.n+' trade'+(r.n>1?'s':'')+' · '+r.wr.toFixed(0)+'% win</span></div><div class="jx-bt"><i style="width:'+Math.max(3,Math.round(Math.abs(r.tr)/mx*100))+'%;background:'+(r.tr>=0?'var(--up)':'var(--down)')+'"></i></div><div class="jx-bv" style="color:'+jcol(r.tr)+'">'+jfR(r.tr)+'</div></div>'}).join('')}
-
-function jList(){var L=jfiltered(),sh=L.slice(0,JV.page);
-  $('jcount').textContent='('+L.length+(L.length!==JR.length?' of '+JR.length:'')+')';
-  var dc=$('jday');dc.style.display=JV.day?'flex':'none';dc.innerHTML=JV.day?'<span>Day: '+jesc(JV.day)+'</span><button type="button" class="btn g sm" id="jdayx">Clear ✕</button>':'';
-  if(!JR.length){$('jlist').innerHTML='<p class="note">No trades yet. Log your first trade above.</p>';$('jmore').style.display='none';return}
-  if(!L.length){$('jlist').innerHTML='<p class="note">No trades match these filters.</p>';$('jmore').style.display='none';return}
-  $('jlist').innerHTML=sh.map(function(j){var d=new Date(j.traded_at),ds=isNaN(d)?'':d.toLocaleDateString('en',{day:'numeric',month:'short',year:'numeric'})+' '+d.toLocaleTimeString('en',{hour:'2-digit',minute:'2-digit'});
-    var meta=[ds,j.tf,j.setup,jsess(j)].filter(Boolean).map(jesc).join(' · ');
-    var det=[['Entry',j.entry],['Stop',j.sl],['Target',j.tp],['Exit',j.exit],['Risk',j.risk_pct!=null?j.risk_pct+'%':null],['Lots',j.lots],['Emotion',j.emotion],['Plan',j.plan===1?'Followed':j.plan===0?'Broken':null]].filter(function(x){return x[1]!=null&&x[1]!==''}).map(function(x){return'<span><small>'+x[0]+'</small>'+jesc(x[1])+'</span>'}).join('');
-    return'<div class="jx-t" data-id="'+jesc(j.id)+'"><div class="jx-th" role="button" tabindex="0"><div><b>'+jesc(j.pair)+'</b> <em class="jx-s '+(j.side==='Buy'?'b':'s')+'">'+jesc(j.side)+'</em><div class="jx-m">'+meta+'</div></div><div class="jx-r"><b style="color:'+jcol(j.result_r)+'">'+jfR(j.result_r)+'</b>'+(j.pnl!=null?'<small style="color:'+jcol(j.pnl)+'">'+jfM(j.pnl)+'</small>':'')+'</div></div>'+
-      '<div class="jx-td"><div class="jx-det">'+det+'</div>'+((j.tags&&j.tags.length)?'<div class="jx-tg">'+j.tags.map(function(t){return'<em>#'+jesc(t)+'</em>'}).join('')+'</div>':'')+(j.notes?'<p>'+jesc(j.notes)+'</p>':'')+(j.shot?'<img src="'+jesc(j.shot)+'" alt="Chart screenshot" class="jx-img">':'')+'<div class="jx-ac"><button type="button" class="btn g sm" data-a="edit">Edit</button><button type="button" class="btn g sm" data-a="del">Delete</button></div></div></div>'}).join('');
-  $('jmore').style.display=L.length>JV.page?'inline-block':'none'}
-
-function renderJournal(){var on=!!cur;$('jOut').style.display=on?'none':'block';$('jIn').style.display=on?'block':'none';
-  if(!on){JR=[];return}
-  var pairs={},cs=$('jfp'),cv=cs.value;JR.forEach(function(j){pairs[j.pair]=1});
-  cs.innerHTML='<option value="">All pairs</option>'+Object.keys(pairs).sort().map(function(p){return'<option>'+jesc(p)+'</option>'}).join('');cs.value=pairs[cv]?cv:'';
-  var su={Breakout:1,Pullback:1,Reversal:1,'Trend continuation':1,'Support/Resistance':1,'Supply/Demand':1,'News trade':1};JR.forEach(function(j){if(j.setup)su[j.setup]=1});
-  $('jsetups').innerHTML=Object.keys(su).map(function(s){return'<option value="'+jesc(s)+'">'}).join('');
-  jStats();jCurve();jCal();jIns();jBd();jList()}
-
-/* ----- form ----- */
-function jauto(){var ent=jn($('jent').value),sl=jn($('jsl').value),ex=jn($('jex').value),r=$('jr');
-  if(r.dataset.m)return;var a=$('jauto');
-  if(ent!==null&&sl!==null&&ex!==null&&ent!==sl){var v=((($('jside').value==='Buy')?ex-ent:ent-ex)/Math.abs(ent-sl));r.value=(Math.round(v*100)/100).toString();a.textContent='(auto)'}else a.textContent=''}
-['jent','jsl','jex'].forEach(function(i){$(i).addEventListener('input',jauto)});$('jside').addEventListener('change',jauto);
-$('jr').addEventListener('input',function(){if(this.value===''){delete this.dataset.m;jauto()}else{this.dataset.m='1';$('jauto').textContent=''}});
-function jreset(){JV.edit=null;JV.shot='';$('jf').reset();delete $('jr').dataset.m;$('jauto').textContent='';$('jd').value=nowLocal();$('jplan').checked=true;
-  $('jformh').textContent='Log a trade';$('jsave').textContent='Save trade';$('jcancel').style.display='none';jshotUI()}
-function jshotUI(){var p=$('jshotp');p.style.display=JV.shot?'block':'none';if(JV.shot)p.src=JV.shot;$('jshotx').style.display=JV.shot?'inline-block':'none'}
-$('jshot').addEventListener('change',function(){var f=this.files&&this.files[0];this.value='';if(!f)return;if(f.size>12e6){setMsg($('jm'),'Image is too large (max 12 MB).',false);return}
-  var fr=new FileReader();fr.onload=function(){var im=new Image();im.onload=function(){var s=Math.min(1,900/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*s);c.height=Math.round(im.height*s);c.getContext('2d').drawImage(im,0,0,c.width,c.height);JV.shot=c.toDataURL('image/jpeg',.7);jshotUI()};im.onerror=function(){setMsg($('jm'),'Could not read that image.',false)};im.src=fr.result};fr.readAsDataURL(f)});
-$('jshotx').onclick=function(){JV.shot='';jshotUI()};
-$('jcancel').onclick=jreset;
 $('jd').value=nowLocal();
+async function loadJournal(){JR=[];if(!cur){renderJournal();return}
+  if(sb){try{var r=await sb.from('journal').select('*').eq('user_id',cur.id).order('traded_at',{ascending:true});JR=r.error?[]:(r.data||[])}catch(e){JR=[]}}
+  else{try{JR=JSON.parse(store(jKey())||'[]')}catch(e){JR=[]}}
+  renderJournal()}
+function renderJournal(){
+  var on=!!cur;$('jOut').style.display=on?'none':'block';$('jIn').style.display=on?'block':'none';
+  if(!on){JR=[];return}
+  var n=JR.length,w=0,tr=0,pn=0;
+  JR.forEach(function(j){var r=+j.result_r||0;if(r>0)w++;tr+=r;pn+=+j.pnl||0});
+  $('js1').textContent=n;$('js2').textContent=n?Math.round(w/n*100)+'%':'-';$('js3').textContent=(tr>=0?'+':'')+tr.toFixed(2)+'R';
+  $('js4').textContent=n?(tr/n).toFixed(2)+'R':'-';$('js5').textContent=(pn<0?'-$':'$')+Math.abs(pn).toFixed(2);$('js3').style.color=tr>0?'var(--up)':tr<0?'var(--down)':'';$('js5').style.color=pn>0?'var(--up)':pn<0?'var(--down)':'';
+  var sv=$('jcurve');sv.innerHTML='';
+  if(n>1){var W=600,H=160,P=10,cum=0,pts=[0];JR.forEach(function(j){cum+=+j.result_r||0;pts.push(cum)});
+    var mn=Math.min.apply(null,pts),mx=Math.max.apply(null,pts);if(mx===mn){mx+=1;mn-=1}
+    var X=function(i){return P+i*(W-2*P)/(pts.length-1)},Y=function(v){return H-P-(v-mn)*(H-2*P)/(mx-mn)},ns='http://www.w3.org/2000/svg';
+    var z=document.createElementNS(ns,'line');z.setAttribute('x1',P);z.setAttribute('x2',W-P);z.setAttribute('y1',Y(0));z.setAttribute('y2',Y(0));z.style.stroke='var(--line)';z.setAttribute('stroke-dasharray','4 4');sv.appendChild(z);
+    var pl=document.createElementNS(ns,'polyline');pl.setAttribute('points',pts.map(function(v,i){return X(i).toFixed(1)+','+Y(v).toFixed(1)}).join(' '));pl.setAttribute('fill','none');pl.style.stroke='var(--gold)';pl.setAttribute('stroke-width','2.5');sv.appendChild(pl)}
+  $('jcnote').textContent=n>1?'Equity curve in R (cumulative result).':'Log at least 2 trades to see your equity curve.';
+  var tb=$('jbody');tb.innerHTML='';
+  JR.slice().reverse().slice(0,15).forEach(function(j){var tr2=document.createElement('tr');
+    [(j.traded_at||'').slice(0,10),j.pair,j.side,((+j.result_r>0)?'+':'')+j.result_r+'R',j.emotion||'',j.notes||''].forEach(function(v){tr2.appendChild(el('td',null,v))});
+    var rv=+j.result_r;tr2.children[3].style.color=rv>0?'var(--up)':rv<0?'var(--down)':'';var td=document.createElement('td'),b=el('button','btn g','Delete');b.type='button';b.onclick=function(){delJ(j)};td.appendChild(b);tr2.appendChild(td);tb.appendChild(tr2)})}
+async function delJ(j){if(!confirm('Delete this trade?'))return;
+  if(sb){var r=await sb.from('journal').delete().eq('id',j.id).eq('user_id',cur.id);if(r.error){alert('Could not delete. Please try again.');return}}
+  JR=JR.filter(function(x){return x.id!==j.id});if(!sb)store(jKey(),JSON.stringify(JR));renderJournal()}
 $('jf').addEventListener('submit',async function(e){
   e.preventDefault();var m=$('jm');if(!cur)return;
-  var side=$('jside').value,ent=jn($('jent').value),sl=jn($('jsl').value),tp=jn($('jtp').value),ex=jn($('jex').value),rr=jn($('jr').value);
-  if(rr===null&&ent!==null&&sl!==null&&ex!==null&&ent!==sl)rr=Math.round(((side==='Buy'?ex-ent:ent-ex)/Math.abs(ent-sl))*100)/100;
-  if(rr===null||rr<-100||rr>100){setMsg(m,'Enter the result in R (for example 2 or -1), or fill entry, stop loss and exit so it can be calculated.',false);return}
+  var rr=parseFloat($('jr').value);if(isNaN(rr)||rr<-100||rr>100){setMsg(m,'Enter the result in R, for example 2 or -1.',false);return}
   var d=new Date($('jd').value);if(isNaN(d))d=new Date();
-  var row={pair:$('jpair').value,side:side,tf:$('jtf').value,entry:ent,sl:sl,tp:tp,exit:ex,lots:jn($('jlot').value),risk_pct:jn($('jrisk').value),result_r:rr,pnl:jn($('jp').value),
-    setup:clean($('jsetup').value,40),emotion:$('jem').value,plan:$('jplan').checked?1:0,tags:clean($('jtags').value,80).split(',').map(function(t){return t.replace(/^#/,'').trim()}).filter(Boolean).slice(0,8),
-    notes:clean($('jn').value,600),shot:JV.shot||'',traded_at:d.toISOString()};
-  var j,i=JV.edit?JR.findIndex(function(x){return x.id===JV.edit}):-1;
-  if(i>-1){j=Object.assign(JR[i],row)}else{j=jnorm(Object.assign({id:jid()},row));JR.push(j)}
-  jsort();
-  if(!jsave()){j.shot='';row.shot='';if(!jsave()){setMsg(m,'Could not save: this device storage is full.',false);return}setMsg(m,'Saved, but the screenshot was too big for device storage and was skipped.',false)}
-  else setMsg(m,i>-1?'Trade updated.':'Trade saved.',true);
-  jreset();JV.page=Math.max(JV.page,15);renderJournal();jpush(j)});
-
-/* ----- events ----- */
-['jq','jfp','jfo','jfs','jfr','jfz'].forEach(function(i){$(i).addEventListener('input',function(){JV.page=15;jList()});$(i).addEventListener('change',function(){JV.page=15;jList()})});
-$('jmore').onclick=function(){JV.page+=15;jList()};
-$('jcseg').onclick=function(e){var b=e.target.closest('button');if(!b)return;JV.curve=b.dataset.v;[].forEach.call(this.children,function(x){x.classList.toggle('on',x===b)});jCurve()};
-$('jbseg').onclick=function(e){var b=e.target.closest('button');if(!b)return;JV.bd=b.dataset.v;[].forEach.call(this.children,function(x){x.classList.toggle('on',x===b)});jBd()};
-$('jcprev').onclick=function(){JV.mon=new Date(JV.mon.getFullYear(),JV.mon.getMonth()-1,1);jCal()};
-$('jcnext').onclick=function(){JV.mon=new Date(JV.mon.getFullYear(),JV.mon.getMonth()+1,1);jCal()};
-$('jcal').onclick=function(e){var b=e.target.closest('.jx-d');if(!b)return;JV.day=JV.day===b.dataset.k?'':b.dataset.k;JV.page=15;jCal();jList();if(JV.day)$('jlist').scrollIntoView({behavior:'smooth',block:'nearest'})};
-$('jday').onclick=function(e){if(e.target.id==='jdayx'){JV.day='';jCal();jList()}};
-$('jlist').addEventListener('click',function(e){var t=e.target.closest('.jx-t');if(!t)return;var id=t.dataset.id,a=e.target.closest('[data-a]');
-  if(!a){if(e.target.closest('.jx-th'))t.classList.toggle('open');return}
-  var j=JR.find(function(x){return x.id===id});if(!j)return;
-  if(a.dataset.a==='del')jdel(j);
-  else{JV.edit=j.id;JV.shot=j.shot||'';var d=new Date(j.traded_at);d.setMinutes(d.getMinutes()-d.getTimezoneOffset());
-    $('jd').value=isNaN(d)?nowLocal():d.toISOString().slice(0,16);$('jpair').value=j.pair;$('jside').value=j.side;$('jtf').value=j.tf||'';
-    $('jent').value=j.entry!=null?j.entry:'';$('jsl').value=j.sl!=null?j.sl:'';$('jtp').value=j.tp!=null?j.tp:'';$('jex').value=j.exit!=null?j.exit:'';
-    $('jr').value=j.result_r;$('jr').dataset.m='1';$('jauto').textContent='';$('jp').value=j.pnl!=null?j.pnl:'';$('jrisk').value=j.risk_pct!=null?j.risk_pct:'';$('jlot').value=j.lots!=null?j.lots:'';
-    $('jsetup').value=j.setup||'';$('jem').value=j.emotion||'Calm';$('jtags').value=(j.tags||[]).join(', ');$('jplan').checked=j.plan!==0;$('jn').value=j.notes||'';
-    $('jformh').textContent='Edit trade';$('jsave').textContent='Update trade';$('jcancel').style.display='inline-block';jshotUI();$('jformbox').scrollIntoView({behavior:'smooth',block:'start'})}});
-$('jlist').addEventListener('keydown',function(e){if((e.key==='Enter'||e.key===' ')&&e.target.classList.contains('jx-th')){e.preventDefault();e.target.parentNode.classList.toggle('open')}});
-async function jdel(j){if(!confirm('Delete this trade?'))return;
-  JR=JR.filter(function(x){return x.id!==j.id});jsave();renderJournal();
-  if(sb&&j.cid){try{await tmo(sb.from('journal').delete().eq('id',j.cid).eq('user_id',cur.id),8000)}catch(e){}}}
-window.addEventListener('resize',function(){clearTimeout(jdel.t);jdel.t=setTimeout(function(){if(cur&&JR.length>1)jCurve()},150)});
-
-/* ----- CSV export / import ----- */
-var JCOLS=['traded_at','pair','side','tf','entry','sl','tp','exit','lots','risk_pct','result_r','pnl','setup','emotion','plan','tags','notes'];
-function jcell(k,v){if(v==null)return'';if(Array.isArray(v))v=v.join('|');v=String(v);if(/^[=+\-@\t\r]/.test(v)&&isNaN(+v))v="'"+v;return/[",\n\r]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v}
-$('jexp').onclick=function(){if(!JR.length){setMsg($('jm'),'Nothing to export yet.',false);return}
-  var t=JCOLS.join(',')+'\n'+JR.map(function(j){return JCOLS.map(function(k){return jcell(k,j[k])}).join(',')}).join('\n');
-  var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([t],{type:'text/csv'}));a.download='taminado-journal-'+nowLocal().slice(0,10)+'.csv';document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},500)};
-function jcsv(t){var rows=[],r=[],c='',q=false;for(var i=0;i<t.length;i++){var ch=t[i];if(q){if(ch==='"'){if(t[i+1]==='"'){c+='"';i++}else q=false}else c+=ch}else if(ch==='"')q=true;else if(ch===','){r.push(c);c=''}else if(ch==='\n'||ch==='\r'){if(ch==='\r'&&t[i+1]==='\n')i++;r.push(c);c='';rows.push(r);r=[]}else c+=ch}if(c!==''||r.length){r.push(c);rows.push(r)}return rows.filter(function(x){return x.join('').trim()})}
-$('jimp').addEventListener('change',function(){var f=this.files&&this.files[0];this.value='';if(!f||!cur)return;
-  var fr=new FileReader();fr.onload=function(){try{var rows=jcsv(String(fr.result)),h=rows.shift().map(function(x){return x.trim().toLowerCase()}),add=0,seen={};
-    JR.forEach(function(j){seen[j.traded_at+j.pair+j.result_r]=1});
-    rows.slice(0,2000).forEach(function(r){var o={};h.forEach(function(k,i){o[k]=r[i]});var d=new Date(o.traded_at||o.date),rv=parseFloat(o.result_r||o.r);if(isNaN(d)||isNaN(rv))return;
-      var j=jnorm({pair:clean(o.pair||'EURUSD',12).toUpperCase(),side:/sell|short/i.test(o.side)?'Sell':'Buy',tf:clean(o.tf,4),entry:jn(o.entry),sl:jn(o.sl),tp:jn(o.tp),exit:jn(o.exit),lots:jn(o.lots),risk_pct:jn(o.risk_pct),result_r:rv,pnl:jn(o.pnl),setup:clean(o.setup,40),emotion:clean(o.emotion,20)||'Calm',plan:o.plan==='1'?1:o.plan==='0'?0:null,tags:clean(o.tags,80).split('|').filter(Boolean),notes:clean(o.notes,600),traded_at:d.toISOString()});
-      var k=j.traded_at+j.pair+j.result_r;if(seen[k])return;seen[k]=1;JR.push(j);add++});
-    jsort();jsave();renderJournal();setMsg($('jm'),add?'Imported '+add+' trade'+(add>1?'s':'')+'.':'No new trades found in that file.',!!add);if(add)jsyncAll()}catch(e){setMsg($('jm'),'Could not read that CSV file.',false)}};fr.readAsText(f)});
+  var row={pair:$('jpair').value,side:$('jside').value,risk_pct:parseFloat($('jrisk').value)||null,result_r:rr,pnl:$('jp').value===''?null:parseFloat($('jp').value),emotion:$('jem').value,notes:clean($('jn').value,300),traded_at:d.toISOString()};
+  setMsg(m,'Saving...');
+  try{
+    if(sb){row.user_id=cur.id;var r=await sb.from('journal').insert(row).select().single();if(r.error){setMsg(m,'Could not save. Please try again.',false);return}JR.push(r.data)}
+    else{row.id=Date.now();JR.push(row);store(jKey(),JSON.stringify(JR))}
+    JR.sort(function(a,b){return String(a.traded_at).localeCompare(String(b.traded_at))});
+    setMsg(m,'Trade saved.',true);$('jr').value='';$('jp').value='';$('jn').value='';$('jd').value=nowLocal();renderJournal()
+  }catch(x){setMsg(m,GENERIC,false)}});
 
 /* ---------- lesson quizzes + certificate + library search ---------- */
 var QUIZ={
@@ -2715,195 +2442,24 @@ if(cur){afterProfile().then(renderAll)}
 
 <div class="p2pov" id="p2pov" role="dialog" aria-modal="true" aria-label="TAMINADO P2P">
   <div class="ptop"><b>TAMINADO <span>P2P</span></b><button type="button" onclick="closeP2P()">Close ✕</button></div>
-  <div class="px" id="p2pbody"></div>
-  <div class="px-sheet" id="px-sheet"></div><div class="px-toast" id="px-toast"></div>
+  <iframe id="p2pf" title="TAMINADO P2P" loading="lazy"></iframe>
 </div>
 <script>
 (function(){
-var KEY='tfx_p2p_v3',ov=document.getElementById('p2pov'),root=document.getElementById('p2pbody'),sheet=document.getElementById('px-sheet'),tst=document.getElementById('px-toast');
-var ASSETS={USDT:{p:1,d:2,nets:['TRC20','BEP20','ERC20']},USDC:{p:1,d:2,nets:['ERC20','BEP20','TRC20']},BTC:{p:90000,d:6,nets:['Bitcoin']},ETH:{p:3000,d:5,nets:['ERC20']},BNB:{p:600,d:4,nets:['BEP20']}},CG={BTC:'bitcoin',ETH:'ethereum',BNB:'binancecoin'};
-var PAYS=['Airtel Money','TNM Mpamba','National Bank of Malawi','Standard Bank','FDH Bank','NBS Bank'];
-var FX={mwk:1750,live:false,t:0,cg:false};
-function defSt(){var a={};Object.keys(ASSETS).forEach(function(k){a[k]={on:k==='USDT'?1:0,bm:2,sm:1.5,bp:'',sp:'',lo:5000,hi:2000000}});return{win:15,wa:'',assets:a,pay:[],dep:{}}}
-var ST=defSt(),ORD=[],MODE='local',SIG='',V={tab:'market',side:'buy',asset:'USDT',order:null,trade:null},tm1=null,tm2=null,busy=false;
-
-function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
-function $(i){return document.getElementById(i)}
-function mwk(n){return 'MWK '+Math.round(n).toLocaleString('en-US')}
-function qty(n,a){return (+n).toFixed(ASSETS[a].d)}
-function mkt(a){return ASSETS[a].p*FX.mwk}
-function hm(ts){return new Date(ts).toLocaleTimeString('en',{hour:'2-digit',minute:'2-digit'})}
-function toast(t){tst.textContent=t;tst.style.display='block';clearTimeout(tst._t);tst._t=setTimeout(function(){tst.style.display='none'},2800)}
-function uid(){return (typeof cur!=='undefined'&&cur)?cur.id:null}
-function isAdmin(){return typeof cur!=='undefined'&&!!cur&&cur.role==='admin'}
-function L(){try{var d=JSON.parse(localStorage.getItem(KEY));return d&&typeof d==='object'?d:{}}catch(e){return{}}}
-function Ls(d){try{localStorage.setItem(KEY,JSON.stringify(d))}catch(e){}}
-function merge(a,b){var o=defSt();if(!b)return o;o.win=+b.win||15;o.wa=b.wa||'';o.pay=Array.isArray(b.pay)?b.pay:[];o.dep=b.dep||{};Object.keys(o.assets).forEach(function(k){if(b.assets&&b.assets[k])Object.assign(o.assets[k],b.assets[k])});return o}
-
-/* ----- data layer (Supabase when ready, device storage otherwise) ----- */
-async function loadSettings(){
-  if(typeof sb!=='undefined'&&sb){try{var r=await tmo(sb.from('tfx_p2p_settings').select('data').eq('id',1).maybeSingle(),7000);if(!r.error){MODE='cloud';ST=merge(null,r.data&&r.data.data);return}}catch(e){}}
-  MODE='local';ST=merge(null,L().settings)}
-async function saveSettings(){var d=L();d.settings=ST;Ls(d);
-  if(MODE==='cloud'){var r=await tmo(sb.from('tfx_p2p_settings').upsert({id:1,data:ST,updated_at:new Date().toISOString()}),8000);if(r.error)throw r.error}}
-function fromRow(r){return Object.assign({},r.data,{id:r.id,status:r.status,uid:r.user_id})}
-async function loadOrders(){
-  if(MODE==='cloud'&&uid()){try{var q=sb.from('tfx_p2p_orders').select('*').order('created_at',{ascending:false}).limit(200);if(!isAdmin())q=q.eq('user_id',uid());var r=await tmo(q,8000);if(!r.error){ORD=r.data.map(fromRow);return true}}catch(e){}}
-  ORD=(L().orders||[]).filter(function(o){return isAdmin()||o.uid===uid()});return MODE==='local'}
-async function putOrder(o,isNew){var d=L();d.orders=d.orders||[];var i=d.orders.findIndex(function(x){return x.id===o.id});if(i>-1)d.orders[i]=o;else d.orders.unshift(o);
-  if(MODE==='cloud'){var body={status:o.status,data:o,updated_at:new Date().toISOString()},r;
-    if(isNew)r=await tmo(sb.from('tfx_p2p_orders').insert(Object.assign({id:o.id,user_id:o.uid,email:o.email||''},body)),8000);else r=await tmo(sb.from('tfx_p2p_orders').update(body).eq('id',o.id),8000);
-    if(r.error)throw r.error}
-  Ls(d);var j=ORD.findIndex(function(x){return x.id===o.id});if(j>-1)ORD[j]=o;else ORD.unshift(o)}
-async function mutate(id,fn){if(busy)return;busy=true;try{await loadOrders();var o=ORD.filter(function(x){return x.id===id})[0];if(!o)return;if(fn(o)===false)return;await putOrder(o,false);SIG=sig();refreshOrder()}catch(e){toast('Could not save. Check your connection and try again.')}finally{busy=false}}
-
-/* ----- prices ----- */
-function cfg(a){return ST.assets[a]}
-function price(a,side){var c=cfg(a);if(side==='buy'){var p=parseFloat(c.bp);return p>0?p:mkt(a)*(1+(+c.bm||0)/100)}var s=parseFloat(c.sp);return s>0?s:mkt(a)*(1-(+c.sm||0)/100)}
-function enabled(){return Object.keys(ASSETS).filter(function(k){return ST.assets[k].on})}
-function buyMethods(){var s={};ST.pay.forEach(function(p){s[p.m]=1});return Object.keys(s)}
-function ready(side,a){if(!ST.assets[a].on)return 'This asset is not available right now.';if(side==='buy'&&!ST.pay.length)return 'TAMINADO is still adding payment accounts. Please check back soon.';if(side==='sell'&&!(ST.dep[a]&&ST.dep[a].addr))return 'TAMINADO has not set a '+a+' deposit address yet. Please check back soon.';return ''}
-function fetchRates(){if(Date.now()-FX.t<3e5)return;FX.t=Date.now();
-  fetch('https://open.er-api.com/v6/latest/USD').then(function(r){return r.json()}).then(function(d){if(d&&d.rates&&d.rates.MWK>100){FX.mwk=d.rates.MWK;FX.live=true;if(V.tab==='market'&&!V.order)rMain()}}).catch(function(){});
-  fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,binancecoin&vs_currencies=usd').then(function(r){return r.json()}).then(function(d){Object.keys(CG).forEach(function(k){if(d[CG[k]]&&d[CG[k]].usd)ASSETS[k].p=d[CG[k]].usd});FX.cg=true;if(V.tab==='market'&&!V.order)rMain()}).catch(function(){})}
-
-/* ----- main render ----- */
-function sig(){return ORD.map(function(o){return o.id+o.status+(o.chat||[]).length}).join('|')}
-function render(){
-  if(V.tab==='settings'&&!isAdmin())V.tab='market';
-  var admin=isAdmin(),need=ORD.filter(function(o){return o.status==='paid'}).length,mine=ORD.filter(function(o){return o.status==='pending'||o.status==='paid'}).length;
-  var h='<div class="px-in">'+(MODE==='local'?'<div class="px-demo"><b>Server not connected.</b> Orders are saved on this device only'+(admin?'. Run <b>p2p-setup.sql</b> in Supabase so customer orders reach you.':'.')+'</div>':'');
-  if(V.order)h+=rOrder(V.order);
-  else{var tabs=[['market','Market'],['orders',admin?'All orders'+(need?'<b>'+need+'</b>':''):'My orders'+(mine?'<b>'+mine+'</b>':'')]];if(admin)tabs.push(['settings','Settings']);
-    h+='<div class="px-tabs">'+tabs.map(function(t){return'<button type="button" class="'+(V.tab===t[0]?'on':'')+'" data-a="tab" data-v="'+t[0]+'">'+t[1]+'</button>'}).join('')+'</div><div id="px-main"></div>'}
-  root.innerHTML=h+'</div>';if(!V.order)rMain()}
-function rMain(){var m=$('px-main');if(!m)return;if(V.tab==='settings'&&!isAdmin())V.tab='market';m.innerHTML=V.tab==='market'?rMarket():V.tab==='orders'?rOrders():rSettings()}
-
-function rMarket(){var en=enabled();
-  var h='<div class="px-card" style="display:flex;gap:12px;align-items:center"><div class="px-av" style="width:46px;height:46px;font-size:20px">T</div><div><b style="font-size:17px">TAMINADO P2P</b><div class="note" style="font-size:12.5px">Official TAMINADO FX desk · Buy and sell crypto in kwacha</div></div></div>';
-  if(!en.length)return h+'<div class="px-empty">The P2P desk is being set up. Please check back soon.</div>';
-  if(en.indexOf(V.asset)<0)V.asset=en[0];var a=V.asset,c=cfg(a),pr=price(a,V.side),bad=ready(V.side,a);
-  h+='<div class="px-seg"><button type="button" class="buy'+(V.side==='buy'?' on':'')+'" data-a="side" data-v="buy">Buy</button><button type="button" class="sell'+(V.side==='sell'?' on':'')+'" data-a="side" data-v="sell">Sell</button></div>';
-  h+='<div class="px-chips">'+en.map(function(k){return'<button type="button" class="'+(a===k?'on':'')+'" data-a="asset" data-v="'+k+'">'+k+'</button>'}).join('')+'</div>';
-  h+='<p class="px-rate" style="margin-top:10px">Market: 1 '+a+' ≈ '+mwk(mkt(a))+(FX.live?' · live USD/MWK rate':' · approximate rate')+(a==='USDT'||a==='USDC'||FX.cg?'':' · indicative crypto price')+'</p>';
-  var pays=V.side==='buy'?buyMethods():PAYS;
-  h+='<div class="px-ad"><div class="px-m"><div class="px-av">T</div><div><b>TAMINADO</b><small>'+(V.side==='buy'?'You buy from TAMINADO':'You sell to TAMINADO')+'</small></div></div><div class="px-pr">'+mwk(pr)+'<br><small>per '+a+'</small></div>'+
-  '<div class="px-meta"><span>Limit <b>'+mwk(c.lo)+' – '+mwk(c.hi)+'</b></span><span>'+(V.side==='buy'?'Pay within <b>'+ST.win+' min</b>':'Network <b>'+esc((ST.dep[a]&&ST.dep[a].net)||ASSETS[a].nets[0])+'</b>')+'</span></div>'+
-  '<div class="px-pays">'+(V.side==='buy'?'':'<small class="note" style="width:100%;font-size:12px">You can be paid via:</small>')+pays.map(function(p){return'<em>'+esc(p)+'</em>'}).join('')+'</div>'+
-  '<div class="px-go">'+(bad?'<div class="px-empty" style="padding:14px">'+esc(bad)+'</div>':'<button type="button" class="px-btn '+V.side+'" data-a="trade">'+(V.side==='buy'?'Buy ':'Sell ')+a+'</button>')+'</div></div>';
-  return h+'<p class="note" style="font-size:12px;margin-top:6px">Crypto prices move quickly. Your price is locked when you place the order. Only trade what you can afford to lose.</p>'}
-
-function stText(o,adm){return{pending:o.side==='buy'?(adm?'Awaiting customer payment':'Awaiting your payment'):(adm?'Awaiting customer crypto':'Send your crypto'),paid:adm?'Needs your action':'Waiting for TAMINADO',completed:'Completed',cancelled:'Cancelled'}[o.status]}
-function rOrders(){var adm=isAdmin();
-  if(!uid())return'<div class="px-empty">Log in to see your orders.<br><br><button type="button" class="px-btn gold" style="display:inline-block;width:auto;padding:10px 20px" data-a="login">Log in</button></div>';
-  if(!ORD.length)return'<div class="px-empty">'+(adm?'No customer orders yet.':'No orders yet. Place your first order in the Market tab.')+'</div>';
-  return ORD.map(function(o){return'<div class="px-ord" data-a="order" data-id="'+esc(o.id)+'"><div><b>'+(o.side==='buy'?'Buy ':'Sell ')+qty(o.qty,o.asset)+' '+o.asset+'</b><small>'+(adm?esc(o.email||'Customer')+' · ':'')+mwk(o.mwk)+' · '+new Date(o.created).toLocaleDateString('en',{day:'numeric',month:'short'})+' '+hm(o.created)+'</small></div><span class="px-pill '+o.status+'">'+stText(o,adm)+'</span></div>'}).join('')}
-
-/* ----- admin settings ----- */
-function rSettings(){var h='<div class="px-card"><h3>Prices &amp; limits</h3><p class="note" style="font-size:12.5px;margin:0 0 10px">Leave a fixed price empty to use the live market rate plus your margin. Margins are % over market (buy) or under market (sell).</p>';
-  Object.keys(ASSETS).forEach(function(k){var c=cfg(k);h+='<div class="px-box"><label class="px-chk" style="margin-bottom:8px"><label><input type="checkbox" id="st-'+k+'-on"'+(c.on?' checked':'')+'><b>'+k+'</b> available</label></label><div class="px-form"><div class="px-row"><label>Buy margin %<input id="st-'+k+'-bm" type="number" step="0.1" value="'+esc(c.bm)+'"></label><label>Sell margin %<input id="st-'+k+'-sm" type="number" step="0.1" value="'+esc(c.sm)+'"></label></div>'+
-    '<div class="px-row"><label>Fixed buy price (MWK)<input id="st-'+k+'-bp" type="number" step="any" value="'+esc(c.bp)+'" placeholder="auto"></label><label>Fixed sell price (MWK)<input id="st-'+k+'-sp" type="number" step="any" value="'+esc(c.sp)+'" placeholder="auto"></label></div>'+
-    '<div class="px-row"><label>Min order (MWK)<input id="st-'+k+'-lo" type="number" value="'+esc(c.lo)+'"></label><label>Max order (MWK)<input id="st-'+k+'-hi" type="number" value="'+esc(c.hi)+'"></label></div>'+
-    '<div class="px-row"><label>Deposit network<select id="st-'+k+'-net">'+ASSETS[k].nets.map(function(n){return'<option'+(ST.dep[k]&&ST.dep[k].net===n?' selected':'')+'>'+n+'</option>'}).join('')+'</select></label><label>Your '+k+' deposit address<input id="st-'+k+'-addr" value="'+esc((ST.dep[k]&&ST.dep[k].addr)||'')+'" placeholder="Where customers send '+k+'"></label></div></div></div>'});
-  h+='<div class="px-form"><div class="px-row"><label>Payment window (minutes)<input id="st-win" type="number" min="5" max="120" value="'+esc(ST.win)+'"></label><label>Support WhatsApp (optional)<input id="st-wa" value="'+esc(ST.wa)+'" placeholder="e.g. 265999123456"></label></div><div class="px-err" id="st-err"></div><button type="button" class="px-btn gold" data-a="savest">Save settings</button></div></div>';
-  h+='<div class="px-card"><h3>Your payment accounts</h3><p class="note" style="font-size:12.5px;margin:0 0 10px">Customers who buy crypto will pay into these accounts.</p><div class="px-form"><label>Method<select id="pm-m">'+PAYS.map(function(p){return'<option>'+p+'</option>'}).join('')+'</select></label><label>Account name<input id="pm-n" maxlength="60"></label><label>Account / phone number<input id="pm-a" maxlength="30"></label><div class="px-err" id="pm-err"></div><button type="button" class="px-btn gold" data-a="addpm">Add account</button></div></div>';
-  h+=ST.pay.length?ST.pay.map(function(p,i){return'<div class="px-ord" style="cursor:default"><div><b>'+esc(p.m)+'</b><small>'+esc(p.n)+' · '+esc(p.a)+'</small></div><button type="button" class="px-btn danger" style="width:auto;padding:8px 14px;font-size:13px" data-a="delpm" data-v="'+i+'">Remove</button></div>'}).join(''):'<div class="px-empty">No payment accounts yet. Buyers cannot place orders until you add one.</div>';
-  return h}
-function readSettings(){var er=$('st-err'),n=JSON.parse(JSON.stringify(ST));
-  for(var k in ASSETS){var g=function(s){return $('st-'+k+'-'+s)};n.assets[k]={on:g('on').checked?1:0,bm:parseFloat(g('bm').value)||0,sm:parseFloat(g('sm').value)||0,bp:g('bp').value,sp:g('sp').value,lo:parseFloat(g('lo').value)||0,hi:parseFloat(g('hi').value)||0};
-    if(n.assets[k].on&&(!(n.assets[k].lo>0)||n.assets[k].hi<n.assets[k].lo)){er.textContent='Check the limits for '+k+'.';return null}
-    if(Math.abs(n.assets[k].bm)>30||Math.abs(n.assets[k].sm)>30){er.textContent='Margins must be within ±30%.';return null}
-    var ad=g('addr').value.trim();n.dep[k]={net:g('net').value,addr:ad}}
-  n.win=Math.min(120,Math.max(5,parseInt($('st-win').value)||15));n.wa=$('st-wa').value.replace(/[^\d]/g,'');return n}
-
-/* ----- trade sheet (customer) ----- */
-function openTrade(){if(!uid()){toast('Please log in to trade.');closeP2P();setTimeout(function(){if(window.openAuth)openAuth('in')},120);return}
-  var side=V.side,A=V.asset,c=cfg(A),pr=price(A,side),bad=ready(side,A);if(bad){toast(bad);return}
-  var h='<div class="px-sb"><div style="display:flex;justify-content:space-between;align-items:start"><div><h3>'+(side==='buy'?'Buy ':'Sell ')+A+'</h3><div class="note" style="font-size:13px">Price <b>'+mwk(pr)+'</b> per '+A+' · Limit '+mwk(c.lo)+' – '+mwk(c.hi)+'</div></div><button type="button" class="px-btn ghost" style="width:auto;padding:6px 12px" data-a="closetrade">✕</button></div><div class="px-form" style="margin-top:12px">'+
-  '<label>'+(side==='buy'?'I will pay (MWK)':'I want to receive (MWK)')+'<input id="tr-m" type="number" inputmode="numeric" placeholder="'+c.lo+' – '+c.hi+'"></label><label>'+(side==='buy'?'I will receive ('+A+')':'I will sell ('+A+')')+'<input id="tr-c" type="number" step="any" inputmode="decimal"></label>';
-  if(side==='buy')h+='<label>Pay with<select id="tr-p">'+buyMethods().map(function(p){return'<option>'+esc(p)+'</option>'}).join('')+'</select></label><label>Network for receiving<select id="tr-net">'+ASSETS[A].nets.map(function(n){return'<option>'+n+'</option>'}).join('')+'</select></label><label>Your '+A+' wallet address<input id="tr-w" maxlength="120" placeholder="Where TAMINADO should send your crypto"></label><div class="note" style="font-size:12.5px">Check the address and network carefully. Crypto sent to a wrong address cannot be recovered.</div>';
-  else h+='<label>Get paid via<select id="tr-p">'+PAYS.map(function(p){return'<option>'+p+'</option>'}).join('')+'</select></label><label>Your account name<input id="tr-n" maxlength="60"></label><label>Your account / phone number<input id="tr-a" maxlength="30" inputmode="numeric"></label><div class="note" style="font-size:12.5px">After placing the order you will get TAMINADO\'s deposit address. Send the exact amount, then confirm with your transaction ID.</div>';
-  h+='<div class="px-err" id="tr-err"></div><button type="button" class="px-btn '+side+'" data-a="confirm">'+(side==='buy'?'Place buy order':'Place sell order')+'</button></div></div>';
-  sheet.innerHTML=h;sheet.classList.add('show');V.trade=1}
-function trSync(from){var pr=price(V.asset,V.side),m=$('tr-m'),c=$('tr-c');if(!m||!c)return;
-  if(from==='m'){var v=parseFloat(m.value);c.value=v>0?(v/pr).toFixed(ASSETS[V.asset].d):''}else{var q=parseFloat(c.value);m.value=q>0?Math.round(q*pr):''}}
-function closeTrade(){sheet.classList.remove('show');sheet.innerHTML='';V.trade=null}
-async function confirmTrade(){var err=$('tr-err'),side=V.side,A=V.asset,c=cfg(A),mw=parseFloat($('tr-m').value),pm=$('tr-p').value,pr=price(A,side);
-  if(!(mw>0)){err.textContent='Enter an amount.';return}if(mw<c.lo){err.textContent='Minimum order is '+mwk(c.lo)+'.';return}if(mw>c.hi){err.textContent='Maximum order is '+mwk(c.hi)+'.';return}
-  var info;
-  if(side==='buy'){var w=$('tr-w').value.trim();if(w.length<10){err.textContent='Enter your wallet address.';return}info={net:$('tr-net').value,wallet:w}}
-  else{var nm=$('tr-n').value.trim(),ac=$('tr-a').value.trim();if(nm.length<2||ac.length<5){err.textContent='Enter your account name and number so we can pay you.';return}info={name:nm,acct:ac}}
-  var now=Date.now(),o={id:'P2P'+now.toString().slice(-9),uid:uid(),email:cur.email||'',side:side,asset:A,price:pr,mwk:mw,qty:mw/pr,pm:pm,info:info,status:'pending',created:now,expires:now+ST.win*60e3,chat:[]};
-  if(side==='buy'){var acc=ST.pay.filter(function(p){return p.m===pm})[0];o.pay=acc?{name:acc.n,acct:acc.a}:null}else o.dep=ST.dep[A];
-  o.chat.push({f:'sys',x:side==='buy'?'Order placed. Pay '+mwk(mw)+' via '+pm+' within '+ST.win+' minutes, then tap "I have paid".':'Order placed. Send '+qty(o.qty,A)+' '+A+' to the deposit address, then confirm with your transaction ID.',t:now});
-  if(busy)return;busy=true;try{await putOrder(o,true);closeTrade();V.order=o.id;SIG=sig();render();toast('Order placed')}catch(e){err.textContent='Could not place the order. Please try again.'}finally{busy=false}}
-
-/* ----- order view ----- */
-function ord(id){return ORD.filter(function(o){return o.id===id})[0]}
-function rOrder(id){var o=ord(id);if(!o)return'<p class="note">Order not found.</p>';var adm=isAdmin()&&o.uid!==uid()||isAdmin(),b=o.side==='buy',A=o.asset;
-  var steps=b?['Order placed','Customer pays','Crypto sent','Completed']:['Order placed','Customer sends','You pay','Completed'];if(!adm)steps=b?['Order placed','You pay','TAMINADO sends','Completed']:['Order placed','You send crypto','TAMINADO pays','Completed'];
-  var cur_={pending:1,paid:2,completed:4,cancelled:-1}[o.status],dead=o.status==='cancelled';
-  var h='<p style="margin:0 0 10px"><button type="button" class="px-btn ghost" style="width:auto;padding:8px 14px;font-size:13px" data-a="back">← Back</button></p><div class="px-card"><div style="display:flex;justify-content:space-between;gap:10px;align-items:start"><div><h3 style="margin:0">'+(b?'Buy ':'Sell ')+qty(o.qty,A)+' '+A+'</h3><div class="note" style="font-size:12px">Order '+esc(o.id)+(adm?' · '+esc(o.email||''):'')+'</div></div><span class="px-pill '+o.status+'">'+stText(o,adm)+'</span></div>'+
-  '<div class="px-tl" style="margin-top:14px">'+steps.map(function(s,i){return'<div class="'+(!dead&&i<cur_?'done':!dead&&i===cur_?'cur':'')+'"><i>'+(!dead&&i<cur_?'✓':i+1)+'</i>'+s+'</div>'}).join('')+'</div></div>'+
-  '<div class="px-card"><div class="px-kv"><span>Price</span><b>'+mwk(o.price)+' / '+A+'</b><span>Amount</span><b>'+mwk(o.mwk)+'</b><span>Quantity</span><b>'+qty(o.qty,A)+' '+A+'</b><span>'+(b?'Pay with':'Paid via')+'</span><b>'+esc(o.pm)+'</b>'+
-  (b?'<span>Customer wallet</span><b>'+esc(o.info.wallet)+'</b><span>Network</span><b>'+esc(o.info.net)+'</b>':'<span>Customer account</span><b>'+esc(o.info.name)+' · '+esc(o.info.acct)+'</b>')+(o.ref?'<span>'+(b?'Payment ref':'Crypto TXID')+'</span><b>'+esc(o.ref)+'</b>':'')+(o.adminRef?'<span>TAMINADO ref</span><b>'+esc(o.adminRef)+'</b>':'')+'</div></div>';
-  h+='<div class="px-card" id="px-act">'+(adm?rActAdmin(o):rActCust(o))+'</div>';
-  h+='<div class="px-card"><h3>Order chat</h3><div class="px-chat" id="px-chat">'+rChat(o,adm)+'</div>'+(o.status==='cancelled'||o.status==='completed'?'':'<div class="px-send"><input id="px-ci" maxlength="300" placeholder="'+(adm?'Message the customer':'Message TAMINADO')+'"><button type="button" class="px-btn gold" data-a="send">Send</button></div>')+(ST.wa?'<p class="note" style="font-size:12px;margin:10px 0 0">Need help? <a href="https://wa.me/'+esc(ST.wa)+'" target="_blank" rel="noopener noreferrer" style="color:var(--gold)">WhatsApp TAMINADO</a></p>':'')+'</div>';return h}
-function cd(o){var s=Math.max(0,Math.round((o.expires-Date.now())/1e3));return('0'+Math.floor(s/60)).slice(-2)+':'+('0'+s%60).slice(-2)}
-function rActCust(o){var b=o.side==='buy';
-  if(o.status==='pending'&&b)return'<h3>Pay TAMINADO</h3><div class="px-cd" id="px-cd">'+cd(o)+'</div><div class="px-box"><div class="px-kv"><span>Method</span><b>'+esc(o.pm)+'</b><span>Account name</span><b>'+esc(o.pay?o.pay.name:'-')+'</b><span>Account number</span><b>'+esc(o.pay?o.pay.acct:'-')+'</b><span>Amount</span><b>'+mwk(o.mwk)+'</b><span>Reference</span><b>'+esc(o.id)+'</b></div></div><p class="note" style="font-size:12.5px;margin:0 0 10px">Transfer the exact amount using the reference above, then confirm. Do not pay after the timer ends.</p><div class="px-form" style="margin-bottom:10px"><input id="px-ref" maxlength="60" placeholder="Transaction ID / reference (optional)"></div><div class="px-row"><button type="button" class="px-btn buy" data-a="paid">I have paid</button><button type="button" class="px-btn danger" data-a="cancel">Cancel order</button></div>';
-  if(o.status==='pending')return'<h3>Send your '+o.asset+'</h3><div class="px-cd" id="px-cd">'+cd(o)+'</div><div class="px-box"><div class="px-kv"><span>Amount</span><b>'+qty(o.qty,o.asset)+' '+o.asset+'</b><span>Network</span><b>'+esc(o.dep?o.dep.net:'-')+'</b><span>Address</span><b>'+esc(o.dep?o.dep.addr:'-')+'</b></div></div><p class="note" style="font-size:12.5px;margin:0 0 10px">Send exactly this amount on the network shown. Sending on a different network may lose your funds. Then paste your transaction ID.</p><div class="px-form" style="margin-bottom:10px"><input id="px-ref" maxlength="120" placeholder="Transaction ID (TXID)"></div><div class="px-row"><button type="button" class="px-btn sell" data-a="paid">I have sent it</button><button type="button" class="px-btn danger" data-a="cancel">Cancel order</button></div>';
-  if(o.status==='paid')return'<h3>Waiting for TAMINADO</h3><p class="note" style="margin:0">'+(b?'TAMINADO is confirming your payment and will send the crypto to your wallet.':'TAMINADO is confirming your crypto and will pay '+mwk(o.mwk)+' to your '+esc(o.pm)+' account.')+' You can use the chat below if you need to share proof.</p>';
-  if(o.status==='completed')return'<h3>Order completed ✓</h3><p class="note" style="margin:0">'+(b?qty(o.qty,o.asset)+' '+o.asset+' was sent to your wallet.':'You were paid '+mwk(o.mwk)+'.')+'</p>';
-  return'<h3>Order cancelled</h3><p class="note" style="margin:0">'+esc(o.why||'This order was cancelled.')+'</p>'}
-function rActAdmin(o){var b=o.side==='buy';
-  if(o.status==='pending')return'<h3>Waiting for the customer</h3><div class="px-cd" id="px-cd">'+cd(o)+'</div><p class="note" style="margin:0 0 12px">'+(b?'The customer has not yet confirmed payment.':'The customer has not yet confirmed sending crypto.')+'</p><button type="button" class="px-btn danger" data-a="cancel">Cancel order</button>';
-  if(o.status==='paid')return'<h3>Your action needed</h3><p class="note" style="margin:0 0 10px">'+(b?'Check that <b>'+mwk(o.mwk)+'</b> arrived in your '+esc(o.pm)+' account. Then send <b>'+qty(o.qty,o.asset)+' '+o.asset+'</b> to the customer wallet shown above ('+esc(o.info.net)+').':'Check the blockchain that <b>'+qty(o.qty,o.asset)+' '+o.asset+'</b> arrived. Then pay <b>'+mwk(o.mwk)+'</b> to the customer account shown above.')+'</p><div class="px-form" style="margin-bottom:10px"><input id="px-aref" maxlength="120" placeholder="'+(b?'Your crypto TXID (optional)':'Your payment reference (optional)')+'"></div><div class="px-row"><button type="button" class="px-btn buy" data-a="complete">'+(b?'Crypto sent · Complete':'Customer paid · Complete')+'</button><button type="button" class="px-btn danger" data-a="cancel">Reject / cancel</button></div>';
-  if(o.status==='completed')return'<h3>Order completed ✓</h3>';return'<h3>Order cancelled</h3><p class="note" style="margin:0">'+esc(o.why||'')+'</p>'}
-function rChat(o,adm){return(o.chat||[]).map(function(c){var cls=c.f==='sys'?'sys':((c.f==='a')===!!adm?'me':'m');return'<div class="px-msg '+cls+'">'+esc(c.x)+(c.f==='sys'?'':'<small>'+(c.f==='a'?'TAMINADO':'Customer')+' · '+hm(c.t)+'</small>')+'</div>'}).join('')}
-function refreshOrder(){if(!ov.classList.contains('show'))return;var y=root.scrollTop,i=$('px-ci'),v=i?i.value:'',r=$('px-ref'),rv=r?r.value:'',ar=$('px-aref'),av=ar?ar.value:'',foc=document.activeElement&&document.activeElement.id;
-  render();root.scrollTop=y;var n;if(i&&(n=$('px-ci')))n.value=v;if(r&&(n=$('px-ref')))n.value=rv;if(ar&&(n=$('px-aref')))n.value=av;if(foc&&(n=$(foc)))try{n.focus()}catch(e){}var c=$('px-chat');if(c)c.scrollTop=c.scrollHeight}
-
-/* ----- actions ----- */
-function say(o,f,x){o.chat=o.chat||[];o.chat.push({f:f,x:x,t:Date.now()})}
-function act(a,id){var adm=isAdmin();
-  if(a==='paid'){var ref=($('px-ref')||{}).value||'';mutate(id,function(o){if(o.status!=='pending')return false;if(o.side==='sell'&&ref.trim().length<6){toast('Enter your transaction ID first.');return false}o.status='paid';o.ref=ref.trim().slice(0,120);say(o,'sys',o.side==='buy'?'Customer marked payment as sent.':'Customer marked crypto as sent.')})}
-  else if(a==='cancel'){if(!confirm('Cancel this order?'))return;mutate(id,function(o){if(o.status==='completed'||o.status==='cancelled')return false;o.status='cancelled';o.why=adm&&o.uid!==uid()?'Cancelled by TAMINADO.':'Cancelled.';say(o,'sys','Order cancelled.')})}
-  else if(a==='complete'){var ar=($('px-aref')||{}).value||'';if(!confirm('Mark this order as completed? Make sure the '+'transfer is done.'))return;mutate(id,function(o){if(o.status!=='paid')return false;o.status='completed';o.adminRef=ar.trim().slice(0,120);say(o,'sys','Order completed by TAMINADO.')})}
-  else if(a==='send'){var t=(($('px-ci')||{}).value||'').trim();if(!t)return;mutate(id,function(o){if(o.status==='completed'||o.status==='cancelled')return false;say(o,isAdmin()?'a':'c',t.slice(0,300))})}}
-
-/* ----- timers & polling ----- */
-async function poll(){if(!ov.classList.contains('show')||!uid()||busy||V.trade)return;var had=sig(),prev={};ORD.forEach(function(o){prev[o.id]=o.status});
-  await loadOrders();var now=Date.now(),exp=ORD.filter(function(o){return o.status==='pending'&&o.expires&&now>o.expires&&(o.uid===uid())});
-  for(var i=0;i<exp.length;i++){var o=exp[i];o.status='cancelled';o.why='The '+ST.win+' minute window expired.';say(o,'sys','Time window expired. Order cancelled.');try{await putOrder(o,false)}catch(e){}}
-  ORD.forEach(function(o){if(prev[o.id]&&prev[o.id]!==o.status&&!isAdmin()){if(o.status==='completed')toast('Order '+o.id+' completed ✓');else if(o.status==='cancelled')toast('Order '+o.id+' was cancelled')}});
-  var s=sig();if(s!==had){SIG=s;var typing=document.activeElement&&/^(px-ci|px-ref|px-aref|px-q)$/.test(document.activeElement.id);if(V.order)refreshOrder();else if(V.tab==='orders'||V.tab==='market'){if(!typing)render()}}}
-function second(){var c=$('px-cd');if(c){var o=ord(V.order);if(o)c.textContent=cd(o)}}
-
-/* ----- events ----- */
-root.addEventListener('click',function(e){var t=e.target.closest('[data-a]');if(!t)return;var a=t.dataset.a;
-  if(a==='tab'){V.tab=t.dataset.v;render();if(V.tab==='orders')poll()}
-  else if(a==='side'){V.side=t.dataset.v;rMain()}else if(a==='asset'){V.asset=t.dataset.v;rMain()}
-  else if(a==='trade')openTrade();
-  else if(a==='login'){closeP2P();setTimeout(function(){if(window.openAuth)openAuth('in')},120)}
-  else if(a==='order'){V.order=t.dataset.id;render();root.scrollTop=0;var c=$('px-chat');if(c)c.scrollTop=c.scrollHeight}
-  else if(a==='back'){V.order=null;V.tab='orders';render()}
-  else if(['paid','cancel','complete','send'].indexOf(a)>-1)act(a,V.order);
-  else if(a==='addpm'){var n=$('pm-n').value.trim(),ac=$('pm-a').value.trim(),er=$('pm-err');if(n.length<2||ac.length<5){er.textContent='Enter the account name and number.';return}var keep=readSettings();if(keep)ST=keep;ST.pay.push({m:$('pm-m').value,n:n,a:ac});saveSettings().then(function(){toast('Account added');rMain()}).catch(function(){toast('Saved on this device only. Could not reach the server.');rMain()})}
-  else if(a==='delpm'){var keep2=readSettings();if(keep2)ST=keep2;ST.pay.splice(+t.dataset.v,1);saveSettings().then(rMain).catch(rMain)}
-  else if(a==='savest'){var n2=readSettings();if(!n2)return;ST=n2;saveSettings().then(function(){toast('Settings saved');rMain()}).catch(function(){toast('Saved on this device only. Could not reach the server.')})}});
-root.addEventListener('keydown',function(e){if(e.key==='Enter'&&e.target.id==='px-ci'){e.preventDefault();act('send',V.order)}});
-sheet.addEventListener('click',function(e){if(e.target===sheet){closeTrade();return}var t=e.target.closest('[data-a]');if(!t)return;if(t.dataset.a==='closetrade')closeTrade();else if(t.dataset.a==='confirm')confirmTrade()});
-sheet.addEventListener('input',function(e){if(e.target.id==='tr-m')trSync('m');else if(e.target.id==='tr-c')trSync('c')});
-
-/* ----- open / close ----- */
-window.openP2P=async function(){V.order=null;V.trade=null;ov.classList.add('show');document.body.style.overflow='hidden';try{history.replaceState(null,'','#p2p-app')}catch(e){}
-  root.innerHTML='<div class="px-in"><div class="px-empty">Loading P2P desk...</div></div>';fetchRates();
-  await loadSettings();await loadOrders();SIG=sig();render();clearInterval(tm1);clearInterval(tm2);tm1=setInterval(poll,5000);tm2=setInterval(second,1000)};
-window.closeP2P=function(){closeTrade();ov.classList.remove('show');document.body.style.overflow='';clearInterval(tm1);clearInterval(tm2);try{history.replaceState(null,'',location.pathname+location.search+'#p2p')}catch(e){}};
-document.addEventListener('keydown',function(e){if(e.key==='Escape'&&ov.classList.contains('show')){if(sheet.classList.contains('show'))closeTrade();else closeP2P()}});
-window.addEventListener('hashchange',function(){if(location.hash==='#p2p-app'&&!ov.classList.contains('show'))openP2P()});
-if(location.hash==='#p2p-app')openP2P();
+  var ov=document.getElementById('p2pov'),fr=document.getElementById('p2pf');
+  function theme(){try{var d=fr.contentDocument.documentElement;d.setAttribute('data-theme',document.documentElement.getAttribute('data-theme')==='light'?'light':'dark')}catch(e){}}
+  fr.addEventListener('load',theme);
+  window.openP2P=function(){
+    if(!fr.getAttribute('src'))fr.setAttribute('src','p2p.html');else theme();
+    ov.classList.add('show');document.body.style.overflow='hidden';
+    try{history.replaceState(null,'','#p2p-app')}catch(e){}
+  };
+  window.closeP2P=function(){
+    ov.classList.remove('show');document.body.style.overflow='';
+    try{history.replaceState(null,'',location.pathname+location.search+'#p2p')}catch(e){}
+  };
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&ov.classList.contains('show'))closeP2P()});
+  if(location.hash==='#p2p-app')openP2P();
 })();
 </script>
 <script>
