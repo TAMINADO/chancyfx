@@ -2194,7 +2194,7 @@ openMyPay=async function(){await _opay();var box=$('mypbody');
 /* ---------- card payments (switch on by setting PAY.cardLink) ---------- */
 if(PAY.cardLink&&safeUrl(PAY.cardLink)){PAY.methods.card={name:'Card (Visa / Mastercard)',cur:'USD',lines:['Pay by card on the secure page, using the same email as your account.','Then enter the receipt or transaction ID below and tap "I Have Paid". Approval is automatic once the payment is confirmed.']}}
 var _opn=openPay;
-openPay=function(){_opn();var b=$('pms').querySelector('button[data-k=card]');if(!b)return;var o=b.onclick;
+openPay=function(book){_opn(book);var b=$('pms').querySelector('button[data-k=card]');if(!b)return;var o=b.onclick;
   b.onclick=function(){o();var a=el('a','btn p sm','Pay by card →');a.href=PAY.cardLink+(PAY.cardLink.indexOf('?')>-1?'&':'?')+'email='+encodeURIComponent(cur.email);a.target='_blank';a.rel='noopener noreferrer';a.style.marginTop='10px';a.style.display='inline-block';$('pinfo').appendChild(a)}};
 
 /* ---------- final render hook + boot ---------- */
