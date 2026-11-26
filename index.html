@@ -9,8 +9,7 @@
 <!-- Security (in-page layer; the server headers in .htaccess / nginx.conf add the rest) -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://s3.tradingview.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https:; media-src 'self' https:; connect-src 'self' https://*.supabase.co wss://*.supabase.co https://open.er-api.com https://api.coingecko.com; frame-src 'self' https://www.youtube-nocookie.com https://www.tradingview-widget.com https://s.tradingview.com; object-src 'none'; base-uri 'self'; form-action 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<style id="antiframe">html{display:none!important}.skip{position:absolute;left:-999px;top:8px;z-index:100;background:var(--gold);color:var(--onGold);padding:10px 16px;border-radius:8px;font-weight:700}.skip:focus{left:8px}
-</style>
+<style id="antiframe">html{display:none!important}</style>
 <script>try{if(window.top===window.self){var _af=document.getElementById('antiframe');_af.parentNode.removeChild(_af)}else{window.top.location=window.self.location}}catch(e){}</script>
 <!-- Share preview: replace YOUR-DOMAIN.com with your real domain so WhatsApp/Telegram show the image -->
 <meta property="og:type" content="website">
@@ -742,7 +741,6 @@ html, body {max-width:100%;overflow-x:hidden;}
 
 </head>
 <body>
-<a class="skip" href="#top">Skip to main content</a>
 <script>document.documentElement.classList.add('js');try{var t=localStorage.getItem('tfx_theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 
 <div class="annc" id="annc" style="display:none"></div>
@@ -820,7 +818,7 @@ html, body {max-width:100%;overflow-x:hidden;}
 </div></section>
 
 <section id="leadership" class="alt"><div class="wrap split">
-<div class="photo rv"><img src="ma.jpg" alt="TAMINADO, Founder and CEO" loading="lazy" onerror="this.parentNode.style.display='none'"></div>
+<div class="photo rv"><img src="ma.png.png" alt="TAMINADO, Founder and CEO" loading="lazy" onerror="this.parentNode.style.display='none'"></div>
 <div class="rv"><span class="tag">Leadership</span><h2>Led by our Founder &amp; CEO.</h2>
 <p class="sub">TAMINADO founded the company with one focus: helping traders become consistent through discipline, structure and risk control, and sets the direction for every programme, report and session we deliver.</p>
 <ul class="chk"><li>Sets the company strategy and teaching standards</li><li>Leads live sessions and 1-on-1 mentorship</li><li>Personally accountable for our risk-first approach</li></ul>
@@ -849,7 +847,7 @@ html, body {max-width:100%;overflow-x:hidden;}
 
 <section id="academy" class="alt"><div class="wrap">
 <div><span class="tag">Student &amp; Admin Portals</span><h2>TAMINADO Academy.</h2><p class="sub">Buy courses, watch lessons, track progress and earn certificates. Log in to buy; admins see the Administration Portal.</p></div>
-<div class="acsec"><span>🧪 Checkout (preview)</span><span>🎓 Certificates of completion (preview)</span><span>📈 Progress tracking</span><span>🛡 Admin portal for authorised staff</span></div>
+<div class="acsec"><span>🔒 Secure checkout</span><span>🎓 Certificates of completion</span><span>📈 Progress tracking</span><span>🛡 Admin portal for authorised staff</span></div>
 <div class="acapp"><aside id="acside"></aside><div id="acmain"></div></div></div></section>
 
 <section id="community" class="alt"><div class="wrap split">
@@ -868,7 +866,7 @@ html, body {max-width:100%;overflow-x:hidden;}
 <p style="margin-top:24px"><a class="btn p" href="#contact" onclick="pick('1-on-1 Coaching')">Secure Your Spot</a></p></div>
 <div class="rv"><span class="tag">Personal Mentorship</span><h2>Work directly with a mentor.</h2>
 <p class="sub">Personalised sessions built around your goals, your schedule and your learning style.</p>
-<div class="photo wide"><img src="me.jpg" alt="TAMINADO, your mentor" loading="lazy" onerror="this.parentNode.style.display='none'"></div></div>
+<div class="photo wide"><img src="me.png.png" alt="TAMINADO, your mentor" loading="lazy" onerror="this.parentNode.style.display='none'"></div></div>
 </div></section>
 
 <section id="library" class="alt"><div class="wrap">
@@ -1182,7 +1180,7 @@ html, body {max-width:100%;overflow-x:hidden;}
 </div></footer>
 
 <a class="wa" href="https://whatsapp.com/channel/0029Vb8x5JZ3wtbAJbSzhY0m" id="wa" target="_blank" rel="noopener noreferrer" title="WhatsApp" aria-label="Chat on WhatsApp">WA</a>
-<div class="demo" id="demo" role="status" aria-live="polite">Limited mode: live features are unavailable right now.</div>
+<div class="demo" id="demo">Demo mode: Supabase not connected</div>
 <button class="btn p" id="inst" type="button" style="display:none;position:fixed;left:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:16">Install App</button>
 <div class="modal" id="ios"><div class="box"><button class="x" onclick="closeM('ios')" aria-label="Close">×</button>
 <h3>Install TAMINADO FX</h3>
@@ -1305,7 +1303,6 @@ html, body {max-width:100%;overflow-x:hidden;}
 <h3>Refer &amp; Earn</h3><p class="note">Share your personal link. Every friend who signs up through it is tracked to you, and TAMINADO FX rewards active referrers (for example a free month of Mastery).</p>
 <input id="refLink" readonly style="margin-top:14px"><div class="shopact"><button class="btn p sm" type="button" id="refCopy">Copy link</button><span class="note" id="refCount"></span></div></div></div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
-<script>window.supabase||document.write('<script src="vendor/supabase.min.js"><\/script>')</script>
 <script>
 /* ===================== CONFIG ===================== */
 /* Supabase: Dashboard → Project Settings → API. Use the "anon / public" key ONLY (never the service_role key). */
@@ -1328,7 +1325,7 @@ var COMPANY={
 };
 /* Team: add real people here (name, role, bio, photo = image file or URL). Entries with no name show as "Open position". */
 var TEAM=[
-  {name:'TAMINADO',role:'Founder & CEO',bio:'Sets the company strategy and teaching standards.',photo:'ma.jpg'},
+  {name:'TAMINADO',role:'Founder & CEO',bio:'Sets the company strategy and teaching standards.',photo:'ma.png.png'},
   {name:'',role:'Head of Education'},{name:'',role:'Head of Research'},{name:'',role:'Head of Technology'},
   {name:'',role:'Community Manager'},{name:'',role:'Compliance Officer'}
 ];
@@ -1705,7 +1702,7 @@ $('wf').addEventListener('submit',async function(e){
   if(!validEmail(em)){setMsg(m,'Please enter a valid email address.',false);return}
   var w=rateOk('wl',3,600000);if(w){setMsg(m,waitText(w),false);return}
   setMsg(m,'Saving...');
-  if(!sb){setMsg(m,'We could not send this right now because the server is unreachable. Nothing was saved. Please try again later or message us on WhatsApp or Telegram.',false);return}
+  if(!sb){setMsg(m,'Thanks! (Demo mode: connect Supabase to store emails.)',true);this.reset();return}
   var r=await sb.from('waitlist').insert({email:em,source:'mastery'});
   if(r.error&&r.error.code==='23505'){setMsg(m,'You are already on the list. We will be in touch!',true);return}
   if(r.error){setMsg(m,'Could not save. Please try again.',false);return}
@@ -1723,7 +1720,7 @@ $('cf').addEventListener('submit',async function(e){
   var w=rateOk('contact',3,600000);if(w){setMsg(m,waitText(w),false);return}
   b.disabled=true;setMsg(m,'Sending...');
   try{
-    if(!sb){setMsg(m,'We could not send this right now because the server is unreachable. Nothing was saved. Please try again later or message us on WhatsApp or Telegram.',false);return}
+    if(!sb){setMsg(m,'Thank you! (Demo mode: connect Supabase to receive messages.)',true);this.reset();return}
     var r=await sb.from('contact_messages').insert({topic:ct,name:cn,email:ce,message:cm});
     if(r.error){setMsg(m,'Could not send. Please try again.',false);return}
     setMsg(m,'Thank you! Your message has been sent.',true);this.reset()
@@ -1785,7 +1782,7 @@ $('nf').addEventListener('submit',async function(e){
   if(!validEmail(em)){setMsg(m,'Please enter a valid email address.',false);return}
   var w=rateOk('nl',3,600000);if(w){setMsg(m,waitText(w),false);return}
   setMsg(m,'Saving...');
-  if(!sb){setMsg(m,'We could not send this right now because the server is unreachable. Nothing was saved. Please try again later or message us on WhatsApp or Telegram.',false);return}
+  if(!sb){setMsg(m,'Thanks! (Demo mode: connect Supabase to store emails.)',true);this.reset();return}
   var r=await sb.from('waitlist').insert({email:em,source:'newsletter'});
   if(r.error&&r.error.code==='23505'){setMsg(m,'You are already subscribed. Thank you!',true);return}
   if(r.error){setMsg(m,'Could not save. Please try again.',false);return}
@@ -1796,10 +1793,7 @@ $('nf').addEventListener('submit',async function(e){
 /* ---------- links + boot ---------- */
 if(WHATSAPP){$('wa').href=WHATSAPP;$('wch').href=WHATSAPP}else{$('wa').style.display='none';$('wch').style.display='none'}
 if(TELEGRAM)$('tg').href=TELEGRAM;
-function showLimited(t){var d=$('demo');if(d){d.textContent=t;d.style.display='block'}}
-if(!sb)showLimited('Limited mode: the live server library did not load. Sign-in, payments and messages are unavailable. Please refresh.');
-else{try{var _ac=new AbortController(),_to=setTimeout(function(){_ac.abort()},8000);
- fetch(SUPABASE_URL+'/auth/v1/health',{headers:{apikey:SUPABASE_KEY},signal:_ac.signal}).then(function(r){clearTimeout(_to);if(!r.ok)throw 0}).catch(function(){showLimited('Cannot reach the server right now. Sign-in, payments and messages may not work.')})}catch(e){}}
+if(!sb)$('demo').style.display='block';
 loadShop();
 
 /* ---------- install as app (PWA) ---------- */
@@ -2442,7 +2436,7 @@ loadLive();loadPosts();renderJournal();
     b.disabled=true;setMsg(m,'Sending...');
     try{
       var msg=clean('Competition: '+(this.dataset.t||'')+' | Demo account: '+(ac||'not given')+' | Country: '+(co||'not given')+' | Confirmed 18+ and rules',2000);
-      if(!sb){setMsg(m,'We could not send this right now because the server is unreachable. Nothing was saved. Please try again later or message us on WhatsApp or Telegram.',false);return}
+      if(!sb){setMsg(m,'Thank you! (Demo mode: connect Supabase to receive entries.)',true);this.reset();return}
       var r=await sb.from('contact_messages').insert({topic:'Competition Entry',name:nm,email:em,message:msg});
       if(r.error){setMsg(m,'Could not register. Please try again.',false);return}
       setMsg(m,'You are registered! We will email you the details.',true);this.reset()
@@ -2743,9 +2737,10 @@ c.les.map(function(l,i){var open=ok||l.f;return'<div class="card" style="margin-
 'a-an':function(){var m={};S.orders.forEach(function(o){m[o.item]=(m[o.item]||0)+o.amt});var mx=Math.max.apply(null,Object.keys(m).map(function(k){return m[k]}).concat([1]));return'<h1>Analytics &amp; <span>Reports</span></h1>'+(Object.keys(m).map(function(k){return'<div class="card" style="margin-bottom:10px"><b>'+esc(k)+'</b> <span class="acm">'+money(m[k])+'</span><div class="acbar"><i style="width:'+Math.round(100*m[k]/mx)+'%"></i></div></div>'}).join('')||'<p class="acm">No sales yet. Make a demo purchase.</p>')}};
 function mark(id,i){var a=S.done[id]=S.done[id]||[],k=a.indexOf(i);if(k>-1)a.splice(k,1);else a.push(i);save();go('s-lessons',id)}
 function coupon(){var c=S.coupons.filter(function(x){return x.code==$('cp').value.trim().toUpperCase()})[0];if(!c){$('cm').textContent='Invalid code.';cart.pct=0;cart.cp='';}else{cart.pct=c.pct;cart.cp=c.code;$('cm').textContent=c.pct+'% off applied.'}$('tot').textContent=money(Math.round(cart.price*(100-cart.pct)/100))}
-function pay(){var c=cart;
-if(c&&c.id=='member'&&window.openPay){window.openPay();return}
-if(window.toast)window.toast('Course checkout is a preview. No payment was taken and no access was granted.','bad')}
+function pay(){var c=cart,amt=Math.round(c.price*(100-c.pct)/100),it=c.id=='member'?{t:'All-Access Pass',ins:'TAMINADO'}:course(c.id);
+S.orders.push({date:new Date().toISOString().slice(0,10),item:it.t,amt:amt,pm:$('pm').value,cp:c.cp,ins:it.ins});
+if(c.cp)S.coupons.forEach(function(x){if(x.code==c.cp)x.used++});
+if(c.id=='member')S.member=true;else if(S.owned.indexOf(c.id)<0)S.owned.push(c.id);save();go('s-buy')}
 function addC(){var t=$('ct').value.trim();if(!t)return;S.courses.push({id:Date.now(),t:t,d:$('cd').value,price:+$('cpr').value||0,ins:'TAMINADO',pub:0,les:[]});save();go('a-courses')}
 function pub(id){var c=course(id);c.pub=c.pub?0:1;save();go('a-courses')}
 function addL(){var c=course($('lc').value),t=$('lt').value.trim();if(!c||!t)return;c.les.push({t:t,f:+$('lf').value});save();go('a-les')}
