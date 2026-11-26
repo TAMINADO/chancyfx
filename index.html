@@ -1241,10 +1241,11 @@ html, body {max-width:100%;overflow-x:hidden;}
 <button class="btn p" type="button" onclick="closeM('aml')" style="margin-top:14px">Close</button></div></div>
 
 <div class="modal" id="pay"><div class="box wide"><button class="x" onclick="closeM('pay')" aria-label="Close">×</button>
-<h3>Upgrade to Mastery</h3><p class="note" id="pamt"></p><p class="note">Payments are checked by TAMINADO FX before access is granted. Submitting a transaction reference does not unlock a download.</p>
+<h3>Upgrade to Mastery</h3><p class="note" id="pamt"></p>
 <div class="pm" id="pms"></div><div class="pi" id="pinfo">Choose a payment method.</div>
-<form class="pf" id="pform"><input id="psender" placeholder="Name / number you paid from" required maxlength="80"><input id="pref" placeholder="Transaction ID or reference" required maxlength="60" pattern="[A-Za-z0-9 ._\-+#/]{3,60}" title="Letters, numbers and . _ - + # / only (3 to 60 characters)">
-<button class="btn p" type="submit">I Have Paid</button> <span class="msg" id="pmsg"></span></form></div></div>
+<form class="pf" id="pform"><label for="pproof" class="note">Upload a screenshot or receipt showing that your payment was successful</label><input id="pproof" type="file" accept="image/jpeg,image/png,image/webp,application/pdf" required><input id="psender" placeholder="Name used to make payment" required maxlength="80"><input id="pphone" type="tel" placeholder="Phone number used to pay (if applicable)" maxlength="30">
+<p class="note">No transaction ID is needed. Please make sure the screenshot clearly shows the amount, recipient and payment confirmation. Hide unrelated personal information before uploading.</p>
+<button class="btn p" type="submit">Submit Payment Proof</button> <span class="msg" id="pmsg"></span></form></div></div>
 <div class="modal" id="mypm"><div class="box wide"><button class="x" onclick="closeM('mypm')" aria-label="Close">×</button>
 <h3>My Payments</h3><div class="aw" id="mypbody">Loading…</div></div></div>
 <div class="modal" id="adminm"><div class="box wide"><button class="x" onclick="closeM('adminm')" aria-label="Close">×</button>
@@ -1595,29 +1596,6 @@ function fmtPrice(v){
   if(v==='')return '';
   if(/^\d+(\.\d+)?$/.test(v)){var n=parseFloat(v);return n===0?'Free':(BOOK_CURRENCY?BOOK_CURRENCY+' ':'')+n.toLocaleString()}
   return v}
-function bookPriceMWK(item){
-  var raw=pickCol(item,COLS.price),n=parseFloat(String(raw).replace(/[^0-9.]/g,''));
-  return Number.isFinite(n)?n:0
-}
-async function downloadBook(item){
-  if(!cur){openAuth('in');return}
-  if(!sb){toast('Please sign in and connect the payment system first.','bad');return}
-  var price=bookPriceMWK(item),plan='book-'+String(item.id||item.title||'book');
-  if(price>0){
-    var q=await sb.from('payments').select('id,status').eq('user_id',cur.id).eq('plan',plan).eq('status','approved').limit(1);
-    if(q.error){toast('Could not verify your purchase. Please try again.','bad');return}
-    if(!q.data||!q.data.length){openPay(item);return}
-  }
-  var f=pickCol(item,COLS.file);
-  if(!f||safeUrl(f)){toast('This book must be stored in the private Supabase books bucket using a storage file path before secure downloads can be enabled.','bad');return}
-  var w=window.open('about:blank','_blank');
-  try{
-    /* The Edge Function verifies ownership server-side before it creates a short-lived download URL. */
-    var r=await sb.functions.invoke('download-book',{body:{book_id:item.id}});
-    if(r.error||!r.data||!r.data.signedUrl)throw (r.error||new Error('Download not authorised'));
-    if(w)w.location=r.data.signedUrl;else location.href=r.data.signedUrl
-  }catch(e){if(w)w.close();toast('Download could not be authorised. Check that your payment is approved, then try again.','bad')}
-}
 function shopCard(item,kind){
   var d=document.createElement('div');d.className='card rv in';
   var cu=coverUrl(pickCol(item,COLS.cover));
@@ -1629,12 +1607,25 @@ function shopCard(item,kind){
   if(kind==='book'&&item.author){var au=document.createElement('p');au.className='note';au.textContent='by '+item.author;d.appendChild(au)}
   var p=document.createElement('p');p.textContent=item.description||'';d.appendChild(p);
   var row=document.createElement('div');row.className='shopact';
+  if(kind==='book'){var pt=fmtPrice(pickCol(item,COLS.price));if(pt){var pr=document.createElement('span');pr.className='badge';pr.textContent=pt;row.appendChild(pr)}}
+  var buy=safeUrl(item.buy_url);
+  if(buy){var a=document.createElement('a');a.className='btn p sm';a.href=buy;a.target='_blank';a.rel='noopener noreferrer';a.textContent='Buy now';row.appendChild(a)}
   if(kind==='book'){
-    var pt=fmtPrice(pickCol(item,COLS.price));if(pt){var pr=document.createElement('span');pr.className='badge';pr.textContent=pt;row.appendChild(pr)}
     var f=pickCol(item,COLS.file);
-    if(f){var bt=document.createElement('button');bt.type='button';bt.className='btn p sm';bt.textContent=bookPriceMWK(item)>0?'Buy & Download':'Download';
-      bt.onclick=function(){downloadBook(item)};row.appendChild(bt)}
-  }
+    if(f){
+      if(safeUrl(f)){
+        var dl=document.createElement('a');dl.className='btn g sm';dl.href=f;dl.target='_blank';dl.rel='noopener noreferrer';dl.setAttribute('download','');dl.textContent='Download';row.appendChild(dl)
+      }else{
+        var bt=document.createElement('button');bt.type='button';bt.className='btn g sm';bt.textContent='Download';
+        bt.onclick=async function(){
+          bt.disabled=true;var w=window.open('about:blank','_blank');
+          try{
+            var r=await sb.storage.from('books').createSignedUrl(f,120);
+            if(r.error||!r.data)throw (r.error||new Error('no url'));
+            if(w)w.location=r.data.signedUrl;else location.href=r.data.signedUrl
+          }catch(e){if(w)w.close();bt.textContent='Unavailable. Try again.'}
+          finally{bt.disabled=false}};
+        row.appendChild(bt)}}}
   if(kind==='course'){var need=RANK[item.min_plan]||1;if(need>1&&(!cur||RANK[cur.plan]<need)){var lk=document.createElement('span');lk.className='badge';lk.textContent=item.min_plan;row.appendChild(lk)}}
   d.appendChild(row);return d}
 function renderShop(){
@@ -1787,54 +1778,46 @@ var PAY={plan:'mastery',usd:20,mwk:35000,days:365,cardLink:'',methods:{
  binance:{name:'Binance (USDT)',cur:'USD',lines:['Binance Pay ID: 1132002627','Send the exact amount in USDT']}}};
 /* ================================================================================== */
 function esc2(t){return String(t==null?'':t).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
-var pm=null,currentBook=null,_ra=renderAll;
+var pm=null,_ra=renderAll;
 renderAll=function(){_ra();var a=$('adm');if(a)a.style.display=cur&&cur.role==='admin'?'':'none'};
-function amtOf(k){
- if(currentBook){var mwk=bookPriceMWK(currentBook);return PAY.methods[k].cur==='USD'?'$'+(mwk/(rate('MWK')||1750)).toFixed(2):'MWK '+mwk.toLocaleString()}
- return PAY.methods[k].cur==='USD'?'$'+PAY.usd:'MWK '+PAY.mwk.toLocaleString()
-}
+function amtOf(k){return PAY.methods[k].cur==='USD'?'$'+PAY.usd:'MWK '+PAY.mwk.toLocaleString()}
 $('mprice').textContent='MWK '+PAY.mwk.toLocaleString();
-function openPay(book){
+function openPay(){
  if(!cur){openAuth('up');return}
- currentBook=book||null;pm=null;$('pmsg').textContent='';$('pinfo').textContent='Choose a payment method.';
- var head=$('pay').querySelector('h3');
- if(currentBook){$('pamt').textContent='Purchase: '+currentBook.title+' · MWK '+bookPriceMWK(currentBook).toLocaleString()+'. Access is unlocked only after an administrator verifies your payment.';if(head)head.textContent='Buy this book'}
- else{$('pamt').textContent='Mastery access: MWK '+PAY.mwk.toLocaleString()+' (or $'+PAY.usd+' via Binance). Pay, then enter your transaction ID below.';if(head)head.textContent='Upgrade to Mastery'}
+ pm=null;$('pmsg').textContent='';$('pinfo').textContent='Choose a payment method.';
+ $('pamt').textContent='Mastery access: MWK '+PAY.mwk.toLocaleString()+' (or $'+PAY.usd+' via Binance). Make your payment, then upload a screenshot or receipt as proof.';
  $('pms').innerHTML=Object.keys(PAY.methods).map(function(k){return '<button type="button" data-k="'+k+'">'+esc2(PAY.methods[k].name)+'</button>'}).join('');
  $('pms').querySelectorAll('button').forEach(function(b){b.onclick=function(){
   pm=b.dataset.k;$('pms').querySelectorAll('button').forEach(function(x){x.classList.toggle('on',x===b)});
-  var amount=amtOf(pm),extra=pm==='binance'?' · Binance USD amount is calculated using the current site exchange rate.':'';
-  $('pinfo').innerHTML='<b>Amount: '+esc2(amount)+'</b><br>'+PAY.methods[pm].lines.map(esc2).join('<br>')+esc2(extra)}});
+  $('pinfo').innerHTML='<b>Amount: '+esc2(amtOf(pm))+'</b><br>'+PAY.methods[pm].lines.map(esc2).join('<br>')}});
  openM('pay')}
 function isMissingCol(e){var m=String(e&&e.message||'').toLowerCase();return !!e&&(e.code==='PGRST204'||e.code==='42703'||(m.indexOf('column')>-1&&(m.indexOf('schema cache')>-1||m.indexOf('does not exist')>-1)))}
 $('pform').addEventListener('submit',async function(e){
- e.preventDefault();var m=$('pmsg'),btn=this.querySelector('button[type=submit]');
+ e.preventDefault();var m=$('pmsg'),btn=this.querySelector('button[type=submit]'),file=$('pproof').files[0];
  if(!pm){setMsg(m,'Please choose a payment method first.',false);return}
  if(!sb){setMsg(m,'Payments are not connected yet.',false);return}
- var ref=clean($('pref').value,60),snd=clean($('psender').value,80);
- if(!/^[A-Za-z0-9 ._\-+#\/]{3,60}$/.test(ref)){setMsg(m,'Transaction ID can only contain letters, numbers and . _ - + # / (3 to 60 characters).',false);return}
- if(snd.length<2){setMsg(m,'Please enter the name or number you paid from.',false);return}
+ var snd=clean($('psender').value,80),phone=clean($('pphone').value,30);
+ if(snd.length<2){setMsg(m,'Please enter the name used to make the payment.',false);return}
+ if(!file){setMsg(m,'Please upload your payment screenshot or receipt.',false);return}
+ var allowed=['image/jpeg','image/png','image/webp','application/pdf'];
+ if(allowed.indexOf(file.type)===-1){setMsg(m,'Please upload a JPG, PNG, WEBP or PDF file.',false);return}
+ if(file.size>5*1024*1024){setMsg(m,'File is too large. Maximum size is 5 MB.',false);return}
  var w=rateOk('pay',4,600000);if(w){setMsg(m,waitText(w),false);return}
- btn.disabled=true;setMsg(m,'Submitting...');
+ btn.disabled=true;setMsg(m,'Uploading your proof...');
  try{
-  /* use the live Supabase session so user_id always matches auth.uid() (needed by row level security) */
+  /* Keep the receipt in a private Supabase Storage bucket. */
   var ss=await sb.auth.getSession(),su=ss&&ss.data&&ss.data.session?ss.data.session.user:null;
   if(!su){setMsg(m,'You are not logged in (session expired). Please log in again.',false);return}
+  var ext=file.name.split('.').pop().toLowerCase().replace(/[^a-z0-9]/g,'')||'file';
+  var path=su.id+'/'+Date.now()+'-'+Math.random().toString(36).slice(2,9)+'.'+ext;
+  var up=await sb.storage.from('payment-proofs').upload(path,file,{cacheControl:'3600',upsert:false,contentType:file.type});
+  if(up.error){setMsg(m,'Could not upload proof. Please check the payment-proofs storage bucket and try again.',false);return}
   var d=PAY.methods[pm];
-  var isBook=!!currentBook,bookPrice=isBook?bookPriceMWK(currentBook):0;
-  if(isBook&&bookPrice<=0){setMsg(m,'This book has no valid price. Please contact support.',false);return}
-  var paymentAmount=isBook?(d.cur==='USD'?Number((bookPrice/(rate('MWK')||1750)).toFixed(2)):bookPrice):(d.cur==='USD'?PAY.usd:PAY.mwk);
-  var paymentPlan=isBook?'book-'+String(currentBook.id||currentBook.title||'book'):PAY.plan;
-  var core={user_id:su.id,amount:paymentAmount,currency:d.cur,method:pm,reference:ref,plan:paymentPlan,status:'pending'};
-  var extra={email:su.email,sender:snd};
-  var row=Object.assign({},core,extra);
+  var row={user_id:su.id,email:su.email,sender:snd,phone:phone||null,amount:d.cur==='USD'?PAY.usd:PAY.mwk,currency:d.cur,method:pm,reference:'PROOF-'+Date.now(),proof_path:path,plan:PAY.plan,status:'pending'};
   var r=await sb.from('payments').insert(row);
-  if(r.error&&isMissingCol(r.error)){
-    r=await sb.from('payments').insert(core)}
-  if(r.error){
-    var t=r.error.code==='23505'?'This transaction ID was already submitted.':'Please check your details and try again.';
-    setMsg(m,'Could not submit. '+t,false);return}
-  setMsg(m,isBook?'Payment submitted. Your book download will unlock after an administrator verifies the payment.':'Payment submitted, waiting for approval.',true);$('pform').reset();
+  if(r.error){await sb.storage.from('payment-proofs').remove([path]);
+   setMsg(m,'Could not save payment details. Please ensure the proof_path column has been added to the payments table, then try again.',false);return}
+  setMsg(m,'Payment proof submitted. It is waiting for verification.',true);$('pform').reset();
  }catch(err){setMsg(m,'Could not submit. Please try again.',false)}
  finally{btn.disabled=false}});
 
@@ -1848,9 +1831,9 @@ async function openMyPay(){
  var rows=(r.data||[]).sort(function(x,y){return String(y.created_at||'').localeCompare(String(x.created_at||''))});
  if(!rows.length){box.textContent='You have not submitted any payments yet.';return}
  var lab={pending:'Pending approval',approved:'Approved',rejected:'Rejected'};
- box.innerHTML='<table><tr><th>Date</th><th>Method</th><th>Amount</th><th>Reference</th><th>Status</th></tr>'+rows.map(function(p){
+ box.innerHTML='<table><tr><th>Date</th><th>Method</th><th>Amount</th><th>Proof</th><th>Status</th></tr>'+rows.map(function(p){
   var nm=(PAY.methods[p.method]&&PAY.methods[p.method].name)||p.method;
-  return '<tr><td>'+esc2((p.created_at||'').slice(0,10))+'</td><td>'+esc2(nm)+'</td><td>'+esc2((p.currency||'')+' '+(p.amount==null?'':Number(p.amount).toLocaleString()))+'</td><td>'+esc2(p.reference)+'</td><td><span class="badge">'+esc2(lab[p.status]||p.status)+'</span></td></tr>'}).join('')+'</table>'}
+  return '<tr><td>'+esc2((p.created_at||'').slice(0,10))+'</td><td>'+esc2(nm)+'</td><td>'+esc2((p.currency||'')+' '+(p.amount==null?'':Number(p.amount).toLocaleString()))+'</td><td>'+(p.proof_path?'Uploaded':'Not available')+'</td><td><span class="badge">'+esc2(lab[p.status]||p.status)+'</span></td></tr>'}).join('')+'</table>'}
 
 /* ---------- admin ---------- */
 var AT={payments:'Payments',members:'Members',lessons:'Lessons',books:'Books',courses:'Courses',testimonials:'Testimonials',messages:'Messages',waitlist:'Waitlist',posts:'Blog posts',live:'Live sessions',referrals:'Referrals',push:'Notify'};
@@ -1897,17 +1880,20 @@ async function admTab(t){
  if(r.error){box.textContent='Could not load. Please try again.';return}
  var rows=r.data||[];if(!rows.length){box.textContent='Nothing here yet.';return}
  var h='<table>';
- if(t==='payments'){h+='<tr><th>Date</th><th>User</th><th>Method</th><th>Amount</th><th>Ref</th><th>Status</th><th></th></tr>'+rows.map(function(p){
-  return '<tr><td>'+esc2((p.created_at||'').slice(0,10))+'</td><td>'+esc2(p.email||p.user_id)+'<br>'+esc2(p.sender||'')+'</td><td>'+esc2(p.method)+'</td><td>'+esc2(p.currency+' '+p.amount)+'</td><td>'+esc2(p.reference)+'</td><td>'+esc2(p.status)+'</td><td>'+(p.status==='pending'?'<button class="btn p" data-a="ok" data-i="'+esc2(p.id)+'">Approve</button><button class="btn g" data-a="no" data-i="'+esc2(p.id)+'">Reject</button>':'')+'</td></tr>'}).join('')}
+ if(t==='payments'){h+='<tr><th>Date</th><th>User / payer</th><th>Method</th><th>Amount</th><th>Payment proof</th><th>Status</th><th></th></tr>'+rows.map(function(p){
+  return '<tr><td>'+esc2((p.created_at||'').slice(0,10))+'</td><td>'+esc2(p.email||p.user_id)+'<br>'+esc2(p.sender||'')+'<br>'+esc2(p.phone||'')+'</td><td>'+esc2(p.method)+'</td><td>'+esc2(p.currency+' '+p.amount)+'</td><td>'+(p.proof_path?'<button class="btn g" data-proof="'+esc2(p.proof_path)+'">View receipt</button>':'No proof uploaded')+'</td><td>'+esc2(p.status)+'</td><td>'+(p.status==='pending'?'<button class="btn p" data-a="ok" data-i="'+esc2(p.id)+'">Approve</button><button class="btn g" data-a="no" data-i="'+esc2(p.id)+'">Reject</button>':'')+'</td></tr>'}).join('')}
  else if(t==='members'){h+='<tr><th>Name</th><th>Plan</th><th>Role</th></tr>'+rows.map(function(m){
   return '<tr><td>'+esc2(m.full_name||m.id)+'</td><td><select data-m="'+esc2(m.id)+'">'+Object.keys(RANK).map(function(k){return '<option'+(k===m.plan?' selected':'')+'>'+k+'</option>'}).join('')+'</select></td><td><select data-r="'+esc2(m.id)+'"><option'+(m.role==='admin'?'':' selected')+'>user</option><option'+(m.role==='admin'?' selected':'')+'>admin</option></select></td></tr>'}).join('')}
  else{var ks=Object.keys(rows[0]).filter(function(k){return k!=='id'});h+='<tr>'+ks.map(function(k){return '<th>'+esc2(k)+'</th>'}).join('')+'</tr>'+rows.map(function(x){return '<tr>'+ks.map(function(k){return '<td>'+esc2(x[k])+'</td>'}).join('')+'</tr>'}).join('')}
  box.innerHTML=h+'</table>';
+ box.querySelectorAll('button[data-proof]').forEach(function(b){b.onclick=async function(){
+  b.disabled=true;var q=await sb.storage.from('payment-proofs').createSignedUrl(b.dataset.proof,300);
+  b.disabled=false;if(q.error||!q.data||!q.data.signedUrl){alert('Could not open receipt. Check storage permissions.');return}
+  window.open(q.data.signedUrl,'_blank','noopener,noreferrer')}});
  box.querySelectorAll('button[data-a]').forEach(function(b){b.onclick=async function(){
   var id=b.dataset.i,p=rows.find(function(x){return String(x.id)===id}),ok=b.dataset.a==='ok';b.disabled=true;
   var u=await sb.from('payments').update({status:ok?'approved':'rejected'}).eq('id',id);
-  /* Book approvals unlock only that purchased book; they must never upgrade the customer's Academy plan. */
-  if(!u.error&&ok&&String(p.plan||'').indexOf('book-')!==0){var ex=new Date(Date.now()+PAY.days*864e5).toISOString();u=await sb.from('profiles').update({plan:p.plan||'mastery',plan_expires:ex}).eq('id',p.user_id);if(u.error)u=await sb.from('profiles').update({plan:p.plan||'mastery'}).eq('id',p.user_id)}
+  if(!u.error&&ok){var ex=new Date(Date.now()+PAY.days*864e5).toISOString();u=await sb.from('profiles').update({plan:p.plan||'mastery',plan_expires:ex}).eq('id',p.user_id);if(u.error)u=await sb.from('profiles').update({plan:p.plan||'mastery'}).eq('id',p.user_id)}
   if(u.error)alert('Action failed. Please try again.');admTab('payments')}});
  box.querySelectorAll('select[data-m]').forEach(function(sel){sel.onchange=async function(){
   var u=await sb.from('profiles').update({plan:sel.value}).eq('id',sel.dataset.m);if(u.error)alert('Action failed. Please try again.')}});
