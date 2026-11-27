@@ -538,7 +538,7 @@ h1,h2,h3{overflow-wrap:anywhere}
 .p2pov.show{display:flex}
 .p2pov .ptop{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 16px;padding-top:calc(10px + env(safe-area-inset-top,0px));background:var(--surface);border-bottom:1px solid var(--line)}
 .p2pov .ptop b{font-weight:800;letter-spacing:.14em;font-size:15px}.p2pov .ptop b span{color:var(--gold)}
-.p2pov .ptop button{border:1px solid var(--line);background:transparent;color:var(--text);border-radius:10px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
+.p2pov .ptop button{border:1px solid var(--gold);background:linear-gradient(135deg,var(--gold),var(--gold2));color:#111;border-radius:999px;padding:10px 17px;min-height:44px;font:700 13px/1.2 Inter,system-ui,sans-serif;cursor:pointer;box-shadow:0 5px 16px rgba(212,175,55,.2);white-space:nowrap}.p2pov .ptop button:active{transform:scale(.97)}
 .p2pov iframe{flex:1;width:100%;min-height:0;min-width:0;border:0;background:var(--bg)}
 @media(max-width:600px){.p2pov .ptop{padding-left:12px;padding-right:12px}.p2pov .ptop b{font-size:13px}.p2pov .ptop button{min-height:42px}}
 @media print{.p2pov{display:none!important}}
@@ -4139,7 +4139,7 @@ if(cur){afterProfile().then(renderAll)}
 </script>
 
 <div class="p2pov" id="p2pov" role="dialog" aria-modal="true" aria-label="TAMINADO P2P">
-  <div class="ptop"><b>TAMINADO <span>P2P</span></b><button type="button" onclick="closeP2P()">Close ✕</button></div>
+  <div class="ptop"><b>TAMINADO <span>P2P</span></b><button class="p2p-home-btn" type="button" onclick="returnToP2PHome()" aria-label="Return to TAMINADO FX home page">⌂ Back to Home</button></div>
   <div class="px" id="p2pbody"></div>
   <div class="px-sheet" id="px-sheet"></div><div class="px-toast" id="px-toast"></div>
 </div>
@@ -4322,11 +4322,53 @@ sheet.addEventListener('click',function(e){if(e.target===sheet){closeTrade();ret
 sheet.addEventListener('input',function(e){if(e.target.id==='tr-m')trSync('m');else if(e.target.id==='tr-c')trSync('c')});
 
 /* ----- open / close ----- */
-window.openP2P=async function(){V.order=null;V.trade=null;ov.classList.add('show');document.body.style.overflow='hidden';try{history.replaceState(null,'','#p2p-app')}catch(e){}
+var p2pHistory=false,p2pClosingFromPop=false;
+function stopP2P(){
+  closeTrade();
+  ov.classList.remove('show');
+  document.body.style.overflow='';
+  clearInterval(tm1);clearInterval(tm2);
+}
+window.openP2P=async function(){
+  if(!ov.classList.contains('show')){
+    try{history.pushState({taminadoP2P:true},'','#p2p-app');p2pHistory=true}
+    catch(e){p2pHistory=false}
+  }
+  V.order=null;V.trade=null;ov.classList.add('show');document.body.style.overflow='hidden';
   root.innerHTML='<div class="px-in"><div class="px-empty">Loading P2P desk...</div></div>';fetchRates();
-  await loadSettings();await loadOrders();SIG=sig();render();clearInterval(tm1);clearInterval(tm2);tm1=setInterval(poll,5000);tm2=setInterval(second,1000)};
-window.closeP2P=function(){closeTrade();ov.classList.remove('show');document.body.style.overflow='';clearInterval(tm1);clearInterval(tm2);try{history.replaceState(null,'',location.pathname+location.search+'#p2p')}catch(e){}};
-document.addEventListener('keydown',function(e){if(e.key==='Escape'&&ov.classList.contains('show')){if(sheet.classList.contains('show'))closeTrade();else closeP2P()}});
+  await loadSettings();await loadOrders();SIG=sig();render();clearInterval(tm1);clearInterval(tm2);tm1=setInterval(poll,5000);tm2=setInterval(second,1000)
+};
+window.closeP2P=function(){
+  if(!ov.classList.contains('show'))return;
+  stopP2P();
+  if(p2pHistory&&!p2pClosingFromPop){
+    p2pHistory=false;
+    try{history.back()}catch(e){}
+  }else{
+    p2pHistory=false;
+    try{history.replaceState(null,'',location.pathname+location.search+'#top')}catch(e){}
+  }
+};
+window.returnToP2PHome=function(){
+  window.closeP2P();
+  setTimeout(function(){
+    var home=document.getElementById('top');
+    if(home)home.scrollIntoView({behavior:'smooth',block:'start'});
+    else window.scrollTo({top:0,behavior:'smooth'});
+    try{history.replaceState(null,'',location.pathname+location.search+'#top')}catch(e){}
+  },40);
+  return false;
+};
+window.addEventListener('popstate',function(){
+  if(ov.classList.contains('show')){
+    p2pClosingFromPop=true;
+    stopP2P();
+    p2pHistory=false;
+    p2pClosingFromPop=false;
+    try{history.replaceState(null,'',location.pathname+location.search+'#top')}catch(e){}
+  }
+});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&ov.classList.contains('show')){if(sheet.classList.contains('show'))closeTrade();else returnToP2PHome()}});
 window.addEventListener('hashchange',function(){if(location.hash==='#p2p-app'&&!ov.classList.contains('show'))openP2P()});
 if(location.hash==='#p2p-app')openP2P();
 })();
