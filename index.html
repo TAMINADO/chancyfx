@@ -1779,6 +1779,17 @@ html[data-theme="light"] .tbtn .theme-chevron{color:#8c6b1b}
 @media(prefers-reduced-motion:reduce){#academy .ac-coupon-panel,#academy .ac-coupon-panel:before,#academy .ac-coupon-burst i,.annc .promo-code.is-copied{animation:none!important}}
 </style>
 
+<style id="tfx-scroll-away-promo-banner">
+/* Professional flow: coupon bar sits at the very top in normal page flow and scrolls away.
+   The header sits directly under it, then sticks to the top of the screen once it gets there. */
+.annc,#annc{position:relative!important;top:auto!important;left:auto;right:auto;z-index:100}
+body{padding-top:0!important}
+header{position:-webkit-sticky!important;position:sticky!important;top:0!important;transition:none!important}
+/* body must not be a scroll container, otherwise sticky stops working */
+html,body{overflow-x:clip!important}
+@supports not (overflow:clip){html{overflow-x:hidden}body{overflow-x:visible}}
+</style>
+
 </head>
 <body>
 <script>document.documentElement.classList.add('js');try{var t=localStorage.getItem('tfx_theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
@@ -3684,7 +3695,28 @@ function openCert(){
   </style></head><body><div class="b"><p>TAMINADO FX</p>
   <h1>Certificate of Completion</h1><p>This certifies that</p><h2>${esc2(cur.name)}</h2>
   <p>has completed the TAMINADO FX educational curriculum covering currency markets, chart literacy, macroeconomics, risk awareness and financial information safety. This is a learning record, not an accredited professional qualification or financial advice.</p>
-  <p>${esc2(d)}</p></div><p><button onclick="window.print()">Print / Save as PDF</button></p></body></html>`;
+  <p>${esc2(d)}</p></div><p><button onclick="window.print()">Print / Save as PDF</button></p><script id="tfx-promo-scroll-behavior">
+(function(){
+  var root=document.documentElement;
+  var promo=document.getElementById('annc');
+  if(!promo)return;
+  var scheduled=false;
+  function syncPromoHeader(){
+    scheduled=false;
+    var active=promo.style.display!=='none' && promo.offsetHeight>0;
+    var height=active?promo.offsetHeight:0;
+    root.style.setProperty('--promo-height',height+'px');
+    root.style.setProperty('--promo-offset',(active && window.scrollY<=24?height:0)+'px');
+  }
+  function onScroll(){if(scheduled)return;scheduled=true;window.requestAnimationFrame(syncPromoHeader);}
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll,{passive:true});
+  if(window.MutationObserver){new MutationObserver(onScroll).observe(promo,{childList:true,subtree:true,attributes:true,attributeFilter:['style']});}
+  window.addEventListener('load',onScroll,{once:true});
+  onScroll();
+})();
+<\/script>
+</body></html>`;
   w.document.open();w.document.write(html);w.document.close();
 }
 
@@ -4473,7 +4505,7 @@ function pub(id){var c=course(id);c.pub=c.pub?0:1;save();go('a-courses')}
 function addL(){var c=course($('lc').value),t=$('lt').value.trim();if(!c||!t)return;c.les.push({t:t,f:+$('lf').value});save();go('a-les')}
 function addCp(){var c=$('cc').value.trim().toUpperCase(),pct=Math.max(1,Math.min(100,+$('cpc').value||0)),msg=$('cpmsg').value.trim(),expiry=$('cpexp').value,active=$('cpactive').checked;if(!c||!pct){alert('Enter a coupon code and a discount percentage.');return}if(active&&(!expiry||new Date(expiry).getTime()<=Date.now())){alert('Choose an expiry date and time in the future before publishing the banner.');return}var old=S.coupons.find(function(x){return x.code===c});if(old){old.pct=pct}else{S.coupons.push({code:c,pct:pct,used:0})}if(active){S.promo={code:c,pct:pct,message:msg||pct+'% OFF Academy courses',expires:new Date(expiry).toISOString(),active:true}}save();renderPromo();go('a-cpn')}
 function clearPromo(){S.promo=null;save();renderPromo();go('a-cpn')}
-function renderPromo(){var el=document.getElementById('annc');if(!el)return;var p=S&&S.promo;if(!p||!p.active||!p.expires||new Date(p.expires).getTime()<=Date.now()){el.style.display='none';document.documentElement.style.setProperty('--promo-offset','0px');return}el.innerHTML='<div class="promo-inner"><span class="promo-tag">LIMITED OFFER</span><span class="promo-copy">'+esc(p.message||p.pct+'% OFF Academy courses')+' — use code <button class="promo-code" type="button" id="promoCopy" aria-label="Copy coupon code '+esc(p.code)+'" title="Copy coupon code"><span>'+esc(p.code)+'</span><span class="promo-copy-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h2"/></svg></span></button></span><span class="promo-timer" id="promoTimer"></span></div>';el.style.display='block';var copy=document.getElementById('promoCopy');if(copy)copy.onclick=function(){var icon=copy.querySelector('.promo-copy-icon');function copied(){copy.classList.add('is-copied');copy.setAttribute('aria-label','Coupon code copied');copy.title='Copied';if(icon)icon.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 4 4L19 6"/></svg>';setTimeout(function(){copy.classList.remove('is-copied');copy.setAttribute('aria-label','Copy coupon code '+p.code);copy.title='Copy coupon code';if(icon)icon.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h2"/></svg>'},1800)}if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(p.code).then(copied).catch(function(){var ta=document.createElement('textarea');ta.value=p.code;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');copied()}catch(e){}ta.remove()})}else{var ta=document.createElement('textarea');ta.value=p.code;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');copied()}catch(e){}ta.remove()}};function tick(){var left=Math.max(0,new Date(p.expires).getTime()-Date.now()),d=Math.floor(left/86400000),h=Math.floor(left%86400000/3600000),m=Math.floor(left%3600000/60000),sec=Math.floor(left%60000/1000),timer=document.getElementById('promoTimer');if(timer)timer.innerHTML='<span>'+String(d).padStart(2,'0')+'d</span>:<span>'+String(h).padStart(2,'0')+'</span>:<span>'+String(m).padStart(2,'0')+'</span>:<span>'+String(sec).padStart(2,'0')+'</span>';if(left<=0){el.style.display='none';document.documentElement.style.setProperty('--promo-offset','0px')}}tick();clearInterval(window.tfxPromoTimer);window.tfxPromoTimer=setInterval(tick,1000);requestAnimationFrame(function(){document.documentElement.style.setProperty('--promo-offset',el.offsetHeight+'px')})}
+function renderPromo(){var el=document.getElementById('annc');if(!el)return;var p=S&&S.promo;if(!p||!p.active||!p.expires||new Date(p.expires).getTime()<=Date.now()){el.style.display='none';document.documentElement.style.setProperty('--promo-offset','0px');return}el.innerHTML='<div class="promo-inner"><span class="promo-tag">LIMITED OFFER</span><span class="promo-copy">'+esc(p.message||p.pct+'% OFF Academy courses')+' — use code <button class="promo-code" type="button" id="promoCopy" aria-label="Copy coupon code '+esc(p.code)+'" title="Copy coupon code"><span>'+esc(p.code)+'</span><span class="promo-copy-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h2"/></svg></span></button></span><span class="promo-timer" id="promoTimer"></span></div>';el.style.display='block';var copy=document.getElementById('promoCopy');if(copy)copy.onclick=function(){var icon=copy.querySelector('.promo-copy-icon');function copied(){copy.classList.add('is-copied');copy.setAttribute('aria-label','Coupon code copied');copy.title='Copied';if(icon)icon.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 4 4L19 6"/></svg>';setTimeout(function(){copy.classList.remove('is-copied');copy.setAttribute('aria-label','Copy coupon code '+p.code);copy.title='Copy coupon code';if(icon)icon.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h2"/></svg>'},1800)}if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(p.code).then(copied).catch(function(){var ta=document.createElement('textarea');ta.value=p.code;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');copied()}catch(e){}ta.remove()})}else{var ta=document.createElement('textarea');ta.value=p.code;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');copied()}catch(e){}ta.remove()}};function tick(){var left=Math.max(0,new Date(p.expires).getTime()-Date.now()),d=Math.floor(left/86400000),h=Math.floor(left%86400000/3600000),m=Math.floor(left%3600000/60000),sec=Math.floor(left%60000/1000),timer=document.getElementById('promoTimer');if(timer)timer.innerHTML='<span>'+String(d).padStart(2,'0')+'d</span>:<span>'+String(h).padStart(2,'0')+'</span>:<span>'+String(m).padStart(2,'0')+'</span>:<span>'+String(sec).padStart(2,'0')+'</span>';if(left<=0){el.style.display='none';document.documentElement.style.setProperty('--promo-offset','0px')}}tick();clearInterval(window.tfxPromoTimer);window.tfxPromoTimer=setInterval(tick,1000);requestAnimationFrame(function(){var h=el.offsetHeight;document.documentElement.style.setProperty('--promo-height',h+'px');document.documentElement.style.setProperty('--promo-offset',(window.scrollY>24?'0px':h+'px'))})}
 
 function lead(){var e=$('em').value.trim();if(e.indexOf('@')<1){$('lm').textContent='Enter a valid email.';return}S.students.push({n:'Lead',e:e,p:'lead'});save();$('lm').textContent='Thanks! Guide on its way (demo).'}
 
