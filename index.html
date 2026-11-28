@@ -1788,6 +1788,14 @@ header{transition:top .22s ease;}
 @media(prefers-reduced-motion:reduce){header{transition:none}}
 </style>
 
+<style id="tfx-coupon-typing-fix">
+/* Inputs under 16px make mobile browsers zoom/scroll on focus, which looks like the field is vibrating. */
+#academy input,#academy select,#academy textarea{font-size:16px!important;touch-action:manipulation;scroll-margin-top:140px;scroll-margin-bottom:120px}
+#academy .ac-coupon-panel{transition:border-color .35s,box-shadow .35s!important;transform:none!important}
+#academy .ac-coupon-panel:focus-within{animation:none!important}
+.annc .promo-timer,.annc .promo-timer span{white-space:nowrap;font-variant-numeric:tabular-nums}
+html.tfx-typing header{transition:none!important}
+</style>
 </head>
 <body>
 <script>document.documentElement.classList.add('js');try{var t=localStorage.getItem('tfx_theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
@@ -3703,6 +3711,7 @@ function openCert(){
     scheduled=false;
     var active=promo.style.display!=='none' && promo.offsetHeight>0;
     var height=active?promo.offsetHeight:0;
+    if(active){height=Math.max(height,window.__tfxPromoMax||0);window.__tfxPromoMax=height}else{window.__tfxPromoMax=0}
     root.style.setProperty('--promo-height',height+'px');
     root.style.setProperty('--promo-offset',(active && window.scrollY<=24?height:0)+'px');
   }
@@ -4459,7 +4468,12 @@ var SM=[['s-dash','Student Dashboard'],['s-path','School Learning Path'],['s-cou
 var AM=[['a-dash','Admin Dashboard'],['a-courses','Course Management'],['a-les','Lesson Management'],['a-stu','Student Management'],['a-pay','Payments & Orders'],['a-cpn','Coupons & Discounts'],['a-ins','Instructors'],['a-an','Analytics & Reports']];
 var V='home',cart,curKey='';
 function couponFormFocused(){var a=document.activeElement;return !!(a&&a.matches&&a.matches('#main input, #main textarea, #main select'))}
-function go(v,x,ns){var u=me(),k='tamAcademy1_'+(u?u.id:'guest');if(k!==curKey){curKey=k;load()}if(v.indexOf('a-')==0&&!isAdm())v='home';if(v=='checkout'&&!u){if(window.openAuth)openAuth('in');return}V=v;var adminRoot=document.getElementById('academy');if(adminRoot)adminRoot.classList.toggle('ac-admin-mode',v.indexOf('a-')===0);window.arg=x;side();var body=VIEWS[v]?VIEWS[v](x):'';var title=(v.indexOf('a-')===0?'Administration':'Student')+' Portal';$('main').innerHTML='<div class="ac-topline"><div><span class="ac-kicker">TAMINADO FX / '+title.toUpperCase()+'</span><div class="ac-top-title">'+title+'</div></div><div class="ac-top-meta"><span class="ac-secure">● Secure workspace</span><span class="ac-top-avatar">'+esc((S.name||'U').charAt(0).toUpperCase())+'</span></div></div>'+body+'<div class="ac-powered">TAMINADO FX Academy <span>·</span> Built for disciplined learning</div>';if(window.ACready&&!ns)document.getElementById('academy').scrollIntoView();if(v==='a-cpn')syncCoupons().then(function(ok){if(ok&&V==='a-cpn'&&!couponFormFocused())go('a-cpn',undefined,1)})}
+
+/* Background re-renders (auth refresh, coupon sync) used to rebuild #main and wipe whatever the person was typing. Save and restore form state around them. */
+function tfxSnapForm(){var m=document.getElementById('main');if(!m)return null;var ae=document.activeElement,out=[];m.querySelectorAll('input[id],textarea[id],select[id]').forEach(function(el){var t=(el.type||'').toLowerCase();if(t==='button'||t==='submit')return;var o={id:el.id,v:el.value,c:el.checked,f:el===ae,s:null,e:null};try{o.s=el.selectionStart;o.e=el.selectionEnd}catch(x){}out.push(o)});return {fields:out,cart:(V==='checkout'&&typeof cart!=='undefined'&&cart)?{id:cart.id,pct:cart.pct,cp:cart.cp}:null}}
+function tfxRestoreForm(snap){if(!snap)return;snap.fields.forEach(function(o){var el=document.getElementById(o.id);if(!el)return;var t=(el.type||'').toLowerCase();if(t==='checkbox'||t==='radio')el.checked=o.c;else if(o.v!==''&&el.value!==o.v)el.value=o.v;if(o.f){try{el.focus();if(o.s!=null)el.setSelectionRange(o.s,o.e)}catch(x){}}});
+ if(snap.cart&&snap.cart.pct&&typeof cart!=='undefined'&&cart&&cart.id==snap.cart.id){cart.pct=snap.cart.pct;cart.cp=snap.cart.cp;var t=document.getElementById('actot'),st=document.getElementById('accm');if(t)t.textContent=money(Math.round(cart.price*(100-cart.pct)/100));if(st)st.textContent=cart.pct+'% discount successfully activated. Your new price is '+money(Math.round(cart.price*(100-cart.pct)/100))+'.'}}
+function go(v,x,ns){if(ns&&V===v){var fa=document.activeElement;if(fa&&fa.matches&&fa.matches('#main input,#main textarea,#main select'))return}var u=me(),k='tamAcademy1_'+(u?u.id:'guest');if(k!==curKey){curKey=k;load()}if(v.indexOf('a-')==0&&!isAdm())v='home';if(v=='checkout'&&!u){if(window.openAuth)openAuth('in');return}var prevV=V;V=v;var adminRoot=document.getElementById('academy');if(adminRoot)adminRoot.classList.toggle('ac-admin-mode',v.indexOf('a-')===0);window.arg=x;side();var snap=(ns&&prevV===v)?tfxSnapForm():null;var body=VIEWS[v]?VIEWS[v](x):'';var title=(v.indexOf('a-')===0?'Administration':'Student')+' Portal';$('main').innerHTML='<div class="ac-topline"><div><span class="ac-kicker">TAMINADO FX / '+title.toUpperCase()+'</span><div class="ac-top-title">'+title+'</div></div><div class="ac-top-meta"><span class="ac-secure">● Secure workspace</span><span class="ac-top-avatar">'+esc((S.name||'U').charAt(0).toUpperCase())+'</span></div></div>'+body+'<div class="ac-powered">TAMINADO FX Academy <span>·</span> Built for disciplined learning</div>';if(window.ACready&&!ns)document.getElementById('academy').scrollIntoView();if(v==='a-cpn'&&!ns)syncCoupons().then(function(ok){if(ok&&V==='a-cpn'&&!couponFormFocused())go('a-cpn',undefined,1)})}
 function side(){function m(t,a){return'<div class="acbox"><h6>'+t+'</h6>'+a.map(function(i){return'<a class="'+(V==i[0]?'on':'')+'" onclick="AC.go(\''+i[0]+'\')">'+i[1]+'</a>'}).join('')+'</div>'}var u=me();$('side').innerHTML='<div class="ac-side-brand"><img class="ac-brand-mark ac-brand-image" src="taminado-logo.png" alt="TAMINADO FX logo"><div><b>TAMINADO <span>FX</span></b><small>ACADEMY WORKSPACE</small></div></div><div class="ac-user-mini"><div class="ac-avatar">'+esc((S.name||'S').charAt(0).toUpperCase())+'</div><div><b>'+esc(S.name)+'</b><small>'+(isAdm()?'Administrator':'Student')+'</small></div><span class="ac-status-dot"></span></div>'+m('STUDENT PORTAL',SM)+(isAdm()?m('ADMINISTRATION',AM):'')+'<div class="ac-side-footer">TAMINADO FX · Learn with discipline</div>'}
 function prog(c){var d=(S.done[c.id]||[]).length;return Math.round(100*d/c.les.length)}
 function table(h,r){return'<div style="overflow-x:auto"><table><tr>'+h.map(function(x){return'<th>'+x+'</th>'}).join('')+'</tr>'+r.map(function(x){return'<tr>'+x.map(function(y){return'<td>'+y+'</td>'}).join('')+'</tr>'}).join('')+'</table></div>'}
@@ -4524,7 +4538,7 @@ function addC(){var t=$('ct').value.trim();if(!t)return;S.courses.push({id:Date.
 function pub(id){var c=course(id);c.pub=c.pub?0:1;save();go('a-courses')}
 function addL(){var c=course($('lc').value),t=$('lt').value.trim();if(!c||!t)return;c.les.push({t:t,f:+$('lf').value});save();go('a-les')}
 async function addCp(){
- var codeEl=$('accc'),pctEl=$('accpc'),msgEl=$('accpmsg'),expiryEl=$('accpexp'),activeEl=$('accpactive');
+ var codeEl=document.getElementById('accc'),pctEl=document.getElementById('accpc'),msgEl=document.getElementById('accpmsg'),expiryEl=document.getElementById('accpexp'),activeEl=document.getElementById('accpactive');
  if(!codeEl||!pctEl||!msgEl||!expiryEl||!activeEl)return;
  var c=codeEl.value.trim().toUpperCase().replace(/\s+/g,''),pct=Number(pctEl.value),msg=msgEl.value.trim(),expiry=expiryEl.value,active=activeEl.checked;
  if(!isAdm()){alert('Administrator access required.');return}
@@ -4643,6 +4657,11 @@ prog();
     document.addEventListener('visibilitychange',()=>{if(document.hidden){if(timer)clearInterval(timer);}else restart();});restart();
   }
 })();
+</script>
+<script id="tfx-typing-guard">
+(function(){var r=document.documentElement;function on(e){var t=e.target;if(t&&t.closest&&t.closest('#academy')&&/^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))r.classList.add('tfx-typing')}
+function off(){r.classList.remove('tfx-typing')}
+document.addEventListener('focusin',on);document.addEventListener('focusout',off)})();
 </script>
 </body>
 </html>
